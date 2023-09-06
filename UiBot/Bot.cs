@@ -212,7 +212,7 @@ namespace UiBot
                     Console.WriteLine($"[Bot]: {msg}");
                     break;
                 case "help":
-                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle\nMost of these commands have random length cooldowns so use them wisely");
+                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop\nMost of these commands have random length cooldowns so use them wisely");
                     break;
                 case "stats":
                     client.SendMessage(channelId, $"Sprollucy has died {deathCount} times today, and has escaped {counter.SurvivalCount} times");
@@ -614,7 +614,7 @@ namespace UiBot
 
         private void SendRandomKeyPresses()
         {
-            string[] keysToSend = { "W", "A", "S", "D", "E", "Q", "C", "{TAB}", "I", "2", "3" };
+            string[] keysToSend = { "W", "A", "S", "D", "E", "Q", "C", "{TAB}", "G", "2", "3" };
             Random random = new Random();
 
             foreach (string key in keysToSend)
