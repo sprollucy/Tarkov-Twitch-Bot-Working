@@ -1,3 +1,9 @@
+
+# Tarkov Twitch Bot Bleeding
+Code may be uploaded on the fly. Code may be working or completely broken  
+
+This is not intended to be downloaded
+
 # Tarkov Twitch Bot Unstable
 Tarkov Twitch Bot that has bitbot style features and more  
 Many of the features may be incomplete or broken
@@ -19,6 +25,7 @@ Changelog
 Remember to report any bugs or new feature request on the github page!  
   
 Next feature update will include more bug fixes and hopefully I will start working on a way to adjust and edit cooldown timers
+
 
 
 
