@@ -45,8 +45,5 @@ namespace UiBot
         {
 
         }
-            InitializeComponent();
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-        }
     }
 }
