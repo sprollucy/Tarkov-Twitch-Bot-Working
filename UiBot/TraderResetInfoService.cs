@@ -9,7 +9,7 @@ namespace UiBot
 {
     public class TraderResetInfoService
     {
-        private const string BaseUrl = "https://api.tarkov.dev/graphql"; // Replace with the actual API URL
+        private const string BaseUrl = "https://api.tarkov.dev/graphql"; 
         private const string JsonFileName = "resetTime.json"; // JSON file name
 
         public async Task<string> GetAndSaveTraderResetInfoWithLatest()

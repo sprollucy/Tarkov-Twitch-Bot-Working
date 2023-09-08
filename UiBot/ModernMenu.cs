@@ -23,14 +23,15 @@ namespace UiBot
         private bool isConnectMenuVisible = false;
         private bool isSettingMenuVisible = false;
         private bool isControlMenuVisible = false;
+        private bool isLabelsSlidOut = false;
+        private int labelsOriginalLeft;
+        private int labelsTargetLeft;
+        private Timer labelsSlideTimer;
 
         public ModernMenu()
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
-            //temp load of menu - replace with start screen
-
-
             // Mouse events for pictureBox10
             pictureBox10.MouseDown += (s, e) =>
             {
@@ -56,10 +57,14 @@ namespace UiBot
             };
 
             originalWidth = pictureBox1.Width;
-            enlargedWidth = originalWidth + 200; // Adjust the enlarged width as needed
+            enlargedWidth = originalWidth + 130; // Adjust the enlarged width as needed
             transitionTimer = new Timer { Interval = 5 }; // Adjust the interval for smoother transition
             transitionTimer.Tick += TransitionTimer_Tick;
             originalPictureBox2BackColor = pictureBox2.BackColor; // Store the original background color
+            labelsOriginalLeft = label1.Left;
+            labelsTargetLeft = label1.Left + 130; // Adjust this value as needed
+            labelsSlideTimer = new Timer { Interval = 1 }; // Adjust the interval for smoother animation
+            labelsSlideTimer.Tick += LabelsSlideTimer_Tick;
 
             // Mouse events for pictureBox2 and pictureBox3 to pictureBox8
             Action<PictureBox> setMouseEvents = pictureBox =>
@@ -125,13 +130,41 @@ namespace UiBot
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void LabelsSlideTimer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - transitionStartTime;
+            double progress = elapsed.TotalMilliseconds / transitionDuration.TotalMilliseconds;
+            int newLeft = isLabelsSlidOut
+                ? (int)(labelsOriginalLeft + (labelsTargetLeft - labelsOriginalLeft) * progress)
+                : (int)(labelsTargetLeft - (labelsTargetLeft - labelsOriginalLeft) * progress);
+
+            foreach (Control control in Controls)
+            {
+                if (control is Label label)
+                {
+                    label.Left = newLeft;
+                }
+            }
+
+            if (progress >= 1.0)
+            {
+                labelsSlideTimer.Stop();
+            }
+        }
+
+        private void menuButton_Click(object sender, EventArgs e)
         {
             if (!transitionTimer.Enabled)
             {
                 transitionStartTime = DateTime.Now;
                 transitionTimer.Start();
                 isEnlarged = !isEnlarged;
+            }
+            if (!labelsSlideTimer.Enabled)
+            {
+                transitionStartTime = DateTime.Now;
+                labelsSlideTimer.Start();
+                isLabelsSlidOut = !isLabelsSlidOut;
             }
         }
 
@@ -220,15 +253,15 @@ namespace UiBot
             }
         }
 
-private void HideControlMenu()
-{
-    if (isControlMenuVisible)
-    {
-        this.Controls.Remove(controlMenu); // Change 'commandMenu' to 'controlMenu'
-        controlMenu.Hide(); // Change 'commandMenu' to 'controlMenu'
-        isControlMenuVisible = false;
-    }
-}
+        private void HideControlMenu()
+        {
+            if (isControlMenuVisible)
+            {
+                this.Controls.Remove(controlMenu); // Change 'commandMenu' to 'controlMenu'
+                controlMenu.Hide(); // Change 'commandMenu' to 'controlMenu'
+                isControlMenuVisible = false;
+            }
+        }
 
         // Method to hide the currently open menu
         private void HideOpenMenu()
@@ -251,6 +284,11 @@ private void HideControlMenu()
         {
             HideOpenMenu(); // Hide the current open menu, if any
             ShowControlMenu();
+        }
+
+        private void ModernMenu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

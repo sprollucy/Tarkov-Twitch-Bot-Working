@@ -11,7 +11,6 @@ using TwitchLib.Client.Models;
 using TwitchLib.Communication.Events;
 using System.Diagnostics;
 using TwitchLib.Client.Extensions;
-using System.Windows.Forms;
 
 namespace UiBot
 {

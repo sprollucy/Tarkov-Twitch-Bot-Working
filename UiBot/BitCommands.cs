@@ -93,7 +93,7 @@ namespace UiBot
                 Console.WriteLine("Bot is not connected to Twitch. Cannot send message.");
             }
         }
-
+        //load logon
         public void LoadCredentialsFromJSON()
         {
             string jsonFilePath = "Logon.json";

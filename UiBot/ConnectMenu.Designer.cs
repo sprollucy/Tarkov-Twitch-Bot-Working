@@ -34,16 +34,15 @@
             connectButton = new Button();
             disconnectButton = new Button();
             pictureBox1 = new PictureBox();
-            checkBox1 = new CheckBox();
-            checkBox2 = new CheckBox();
-            checkBox3 = new CheckBox();
-            checkBox4 = new CheckBox();
-            checkBox5 = new CheckBox();
-            checkBox6 = new CheckBox();
-            checkBox7 = new CheckBox();
             panel1 = new Panel();
             stopGoose = new Button();
             label1 = new Label();
+            oneClickCheck = new CheckBox();
+            randomTurn = new CheckBox();
+            enableRandomKey = new CheckBox();
+            chkEnableGoose = new CheckBox();
+            enableKitDrop = new CheckBox();
+            enableWiggle = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
             SuspendLayout();
@@ -96,94 +95,16 @@
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
-            // checkBox1
-            // 
-            checkBox1.AutoSize = true;
-            checkBox1.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox1.Location = new Point(31, 31);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(83, 19);
-            checkBox1.TabIndex = 5;
-            checkBox1.Text = "checkBox1";
-            checkBox1.UseVisualStyleBackColor = false;
-            // 
-            // checkBox2
-            // 
-            checkBox2.AutoSize = true;
-            checkBox2.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox2.Location = new Point(31, 56);
-            checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(83, 19);
-            checkBox2.TabIndex = 6;
-            checkBox2.Text = "checkBox2";
-            checkBox2.UseVisualStyleBackColor = false;
-            // 
-            // checkBox3
-            // 
-            checkBox3.AutoSize = true;
-            checkBox3.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox3.Location = new Point(31, 81);
-            checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(83, 19);
-            checkBox3.TabIndex = 7;
-            checkBox3.Text = "checkBox3";
-            checkBox3.UseVisualStyleBackColor = false;
-            // 
-            // checkBox4
-            // 
-            checkBox4.AutoSize = true;
-            checkBox4.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox4.Location = new Point(31, 106);
-            checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(83, 19);
-            checkBox4.TabIndex = 8;
-            checkBox4.Text = "checkBox4";
-            checkBox4.UseVisualStyleBackColor = false;
-            // 
-            // checkBox5
-            // 
-            checkBox5.AutoSize = true;
-            checkBox5.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox5.Location = new Point(31, 131);
-            checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(83, 19);
-            checkBox5.TabIndex = 9;
-            checkBox5.Text = "checkBox5";
-            checkBox5.UseVisualStyleBackColor = false;
-            // 
-            // checkBox6
-            // 
-            checkBox6.AutoSize = true;
-            checkBox6.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox6.Location = new Point(31, 156);
-            checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(83, 19);
-            checkBox6.TabIndex = 10;
-            checkBox6.Text = "checkBox6";
-            checkBox6.UseVisualStyleBackColor = false;
-            // 
-            // checkBox7
-            // 
-            checkBox7.AutoSize = true;
-            checkBox7.BackColor = Color.FromArgb(162, 123, 92);
-            checkBox7.Location = new Point(31, 181);
-            checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(83, 19);
-            checkBox7.TabIndex = 11;
-            checkBox7.Text = "checkBox7";
-            checkBox7.UseVisualStyleBackColor = false;
-            // 
             // panel1
             // 
+            panel1.Controls.Add(oneClickCheck);
             panel1.Controls.Add(stopGoose);
+            panel1.Controls.Add(randomTurn);
             panel1.Controls.Add(label1);
-            panel1.Controls.Add(checkBox7);
-            panel1.Controls.Add(checkBox1);
-            panel1.Controls.Add(checkBox5);
-            panel1.Controls.Add(checkBox3);
-            panel1.Controls.Add(checkBox4);
-            panel1.Controls.Add(checkBox2);
-            panel1.Controls.Add(checkBox6);
+            panel1.Controls.Add(enableRandomKey);
+            panel1.Controls.Add(chkEnableGoose);
+            panel1.Controls.Add(enableKitDrop);
+            panel1.Controls.Add(enableWiggle);
             panel1.Controls.Add(pictureBox1);
             panel1.Location = new Point(456, 19);
             panel1.Name = "panel1";
@@ -207,6 +128,72 @@
             label1.Size = new Size(107, 15);
             label1.TabIndex = 12;
             label1.Text = "Command Toggles";
+            // 
+            // oneClickCheck
+            // 
+            oneClickCheck.AutoSize = true;
+            oneClickCheck.BackColor = Color.FromArgb(162, 123, 92);
+            oneClickCheck.Location = new Point(9, 181);
+            oneClickCheck.Name = "oneClickCheck";
+            oneClickCheck.Size = new Size(105, 19);
+            oneClickCheck.TabIndex = 20;
+            oneClickCheck.Text = "oneClickCheck";
+            oneClickCheck.UseVisualStyleBackColor = false;
+            // 
+            // randomTurn
+            // 
+            randomTurn.AutoSize = true;
+            randomTurn.BackColor = Color.FromArgb(162, 123, 92);
+            randomTurn.Location = new Point(9, 152);
+            randomTurn.Name = "randomTurn";
+            randomTurn.Size = new Size(85, 19);
+            randomTurn.TabIndex = 21;
+            randomTurn.Text = "EnableTurn";
+            randomTurn.UseVisualStyleBackColor = false;
+            // 
+            // enableRandomKey
+            // 
+            enableRandomKey.AutoSize = true;
+            enableRandomKey.BackColor = Color.FromArgb(162, 123, 92);
+            enableRandomKey.Location = new Point(9, 121);
+            enableRandomKey.Name = "enableRandomKey";
+            enableRandomKey.Size = new Size(125, 19);
+            enableRandomKey.TabIndex = 22;
+            enableRandomKey.Text = "enableRandomKey";
+            enableRandomKey.UseVisualStyleBackColor = false;
+            // 
+            // chkEnableGoose
+            // 
+            chkEnableGoose.AutoSize = true;
+            chkEnableGoose.BackColor = Color.FromArgb(162, 123, 92);
+            chkEnableGoose.Location = new Point(9, 94);
+            chkEnableGoose.Name = "chkEnableGoose";
+            chkEnableGoose.Size = new Size(113, 19);
+            chkEnableGoose.TabIndex = 23;
+            chkEnableGoose.Text = "chkEnableGoose";
+            chkEnableGoose.UseVisualStyleBackColor = false;
+            // 
+            // enableKitDrop
+            // 
+            enableKitDrop.AutoSize = true;
+            enableKitDrop.BackColor = Color.FromArgb(162, 123, 92);
+            enableKitDrop.Location = new Point(9, 65);
+            enableKitDrop.Name = "enableKitDrop";
+            enableKitDrop.Size = new Size(101, 19);
+            enableKitDrop.TabIndex = 24;
+            enableKitDrop.Text = "enableKitDrop";
+            enableKitDrop.UseVisualStyleBackColor = false;
+            // 
+            // enableWiggle
+            // 
+            enableWiggle.AutoSize = true;
+            enableWiggle.BackColor = Color.FromArgb(162, 123, 92);
+            enableWiggle.Location = new Point(9, 36);
+            enableWiggle.Name = "enableWiggle";
+            enableWiggle.Size = new Size(98, 19);
+            enableWiggle.TabIndex = 25;
+            enableWiggle.Text = "enableWiggle";
+            enableWiggle.UseVisualStyleBackColor = false;
             // 
             // ConnectMenu
             // 
@@ -238,15 +225,14 @@
         private Button connectButton;
         private Button disconnectButton;
         private PictureBox pictureBox1;
-        private CheckBox checkBox1;
-        private CheckBox checkBox2;
-        private CheckBox checkBox3;
-        private CheckBox checkBox4;
-        private CheckBox checkBox5;
-        private CheckBox checkBox6;
-        private CheckBox checkBox7;
         private Panel panel1;
         private Label label1;
         private Button stopGoose;
+        private CheckBox oneClickCheck;
+        private CheckBox randomTurn;
+        private CheckBox enableRandomKey;
+        private CheckBox chkEnableGoose;
+        private CheckBox enableKitDrop;
+        private CheckBox enableWiggle;
     }
 }

@@ -117,7 +117,7 @@ namespace UiBot
             get { return oneClickCostBox; }
             set { oneClickCostBox = value; }
         }
-
+        //TODO make save reload on save so app doesnt have to restart
         private void saveButton_Click(object sender, EventArgs e)
         {
             // Create a dictionary to store the text from all TextBox controls

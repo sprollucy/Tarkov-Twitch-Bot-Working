@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            accessBox = new TextBox();
             label1 = new Label();
             button3 = new Button();
             label2 = new Label();
@@ -39,7 +40,6 @@
             pictureBox10 = new PictureBox();
             pictureBox1 = new PictureBox();
             helpButton = new Button();
-            accessBox = new TextBox();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -63,6 +63,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Login Info";
             // 
+            // accessBox
+            // 
+            accessBox.Location = new Point(101, 22);
+            accessBox.Name = "accessBox";
+            accessBox.Size = new Size(100, 23);
+            accessBox.TabIndex = 12;
+            accessBox.TextChanged += accessBox_TextChanged;
+            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -72,6 +80,7 @@
             label1.Size = new Size(228, 15);
             label1.TabIndex = 3;
             label1.Text = "Information will automatically reload on start";
+            label1.Click += label1_Click;
             // 
             // button3
             // 
@@ -143,7 +152,7 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Red;
-            pictureBox1.Location = new Point(1, 10);
+            pictureBox1.Location = new Point(0, 10);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(47, 47);
             pictureBox1.TabIndex = 23;
@@ -158,14 +167,6 @@
             helpButton.Text = "Help";
             helpButton.UseVisualStyleBackColor = true;
             helpButton.Click += helpButton_Click;
-            // 
-            // accessBox
-            // 
-            accessBox.Location = new Point(101, 22);
-            accessBox.Name = "accessBox";
-            accessBox.Size = new Size(100, 23);
-            accessBox.TabIndex = 12;
-            accessBox.TextChanged += accessBox_TextChanged;
             // 
             // SettingMenu
             // 

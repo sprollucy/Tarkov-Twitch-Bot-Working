@@ -86,7 +86,7 @@ namespace UiBot
                 e.Handled = true; // Prevent the Enter key from being added to the TextBox
             }
         }
-
+        //Send message though text input
         private void SendMessage()
         {
             string message = messageTextBox.Text.Trim();

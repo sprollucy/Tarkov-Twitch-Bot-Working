@@ -245,7 +245,7 @@ namespace UiBot
         }
 
 
-        //Chat Commands
+        //Chat 
         private async void Client_OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)
         {
             var traderResetInfoService = new TraderResetInfoService();

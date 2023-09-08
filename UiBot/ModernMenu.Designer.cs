@@ -40,6 +40,14 @@
             pictureBox9 = new PictureBox();
             pictureBox10 = new PictureBox();
             settingsButton = new PictureBox();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            label4 = new Label();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            label8 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)connectButton).BeginInit();
@@ -72,7 +80,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
+            pictureBox2.Click += menuButton_Click;
             // 
             // connectButton
             // 
@@ -168,6 +176,94 @@
             settingsButton.TabStop = false;
             settingsButton.Click += settingsButton_Click;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.FromArgb(63, 78, 79);
+            label1.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label1.Location = new Point(-73, 13);
+            label1.Name = "label1";
+            label1.Size = new Size(62, 23);
+            label1.TabIndex = 11;
+            label1.Text = "Menu";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(63, 78, 79);
+            label2.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label2.Location = new Point(-43, 71);
+            label2.Name = "label2";
+            label2.Size = new Size(84, 23);
+            label2.TabIndex = 12;
+            label2.Text = "Connect";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.BackColor = Color.FromArgb(63, 78, 79);
+            label3.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label3.Location = new Point(-73, 125);
+            label3.Name = "label3";
+            label3.Size = new Size(113, 23);
+            label3.TabIndex = 13;
+            label3.Text = "Commands";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.FromArgb(63, 78, 79);
+            label4.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label4.Location = new Point(-19, 181);
+            label4.Name = "label4";
+            label4.Size = new Size(64, 23);
+            label4.TabIndex = 14;
+            label4.Text = "label4";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.BackColor = Color.FromArgb(63, 78, 79);
+            label5.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label5.Location = new Point(-19, 237);
+            label5.Name = "label5";
+            label5.Size = new Size(63, 23);
+            label5.TabIndex = 15;
+            label5.Text = "label5";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.BackColor = Color.FromArgb(63, 78, 79);
+            label6.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label6.Location = new Point(-19, 293);
+            label6.Name = "label6";
+            label6.Size = new Size(64, 23);
+            label6.TabIndex = 16;
+            label6.Text = "label6";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.FromArgb(63, 78, 79);
+            label7.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label7.Location = new Point(-19, 349);
+            label7.Name = "label7";
+            label7.Size = new Size(63, 23);
+            label7.TabIndex = 17;
+            label7.Text = "label7";
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.BackColor = Color.FromArgb(63, 78, 79);
+            label8.Font = new Font("Constantia", 14.25F, FontStyle.Bold | FontStyle.Underline, GraphicsUnit.Point);
+            label8.Location = new Point(-35, 405);
+            label8.Name = "label8";
+            label8.Size = new Size(81, 23);
+            label8.TabIndex = 18;
+            label8.Text = "Settings";
+            // 
             // ModernMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -175,7 +271,6 @@
             BackColor = Color.FromArgb(220, 215, 201);
             ClientSize = new Size(800, 450);
             Controls.Add(settingsButton);
-            Controls.Add(pictureBox9);
             Controls.Add(pictureBox8);
             Controls.Add(pictureBox7);
             Controls.Add(pictureBox6);
@@ -183,11 +278,21 @@
             Controls.Add(commandMenu);
             Controls.Add(connectButton);
             Controls.Add(pictureBox2);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            Controls.Add(pictureBox9);
             Controls.Add(pictureBox1);
             Controls.Add(pictureBox10);
             Name = "ModernMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "ModernMenu";
+            Load += ModernMenu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)connectButton).EndInit();
@@ -200,6 +305,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)settingsButton).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -215,5 +321,13 @@
         private PictureBox pictureBox9;
         private PictureBox pictureBox10;
         private PictureBox settingsButton;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Label label8;
     }
 }
