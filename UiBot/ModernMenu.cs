@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
@@ -18,8 +19,10 @@ namespace UiBot
         private Point offset;
         private ConnectMenu connectMenu;
         private SettingMenu settingMenu;
+        private ControlMenu controlMenu;
         private bool isConnectMenuVisible = false;
         private bool isSettingMenuVisible = false;
+        private bool isControlMenuVisible = false;
 
         public ModernMenu()
         {
@@ -83,6 +86,25 @@ namespace UiBot
         }
 
 
+        private CounterData LoadCounterData()
+        {
+            string jsonFilePath = "Logon.json";
+            CounterData existingData = new CounterData();
+
+            if (File.Exists(jsonFilePath))
+            {
+                string json = File.ReadAllText(jsonFilePath);
+                existingData = JsonConvert.DeserializeObject<CounterData>(json) ?? new CounterData();
+            }
+
+            return existingData;
+        }
+
+        public class CounterData
+        {
+            public string ChannelName { get; set; }
+            public string BotToken { get; set; }
+        }
 
 
 
@@ -182,6 +204,31 @@ namespace UiBot
                 isSettingMenuVisible = false;
             }
         }
+        private void ShowControlMenu()
+        {
+            if (!isControlMenuVisible)
+            {
+                if (controlMenu == null || controlMenu.IsDisposed)
+                {
+                    controlMenu = new ControlMenu();
+                    controlMenu.Dock = DockStyle.Fill;
+                    controlMenu.Location = new Point(-controlMenu.Width, 0);
+                }
+                this.Controls.Add(controlMenu);
+                controlMenu.Show();
+                isControlMenuVisible = true;
+            }
+        }
+
+private void HideControlMenu()
+{
+    if (isControlMenuVisible)
+    {
+        this.Controls.Remove(controlMenu); // Change 'commandMenu' to 'controlMenu'
+        controlMenu.Hide(); // Change 'commandMenu' to 'controlMenu'
+        isControlMenuVisible = false;
+    }
+}
 
         // Method to hide the currently open menu
         private void HideOpenMenu()
@@ -194,6 +241,16 @@ namespace UiBot
             {
                 HideSettingMenu();
             }
+            else if (isControlMenuVisible)
+            {
+                HideControlMenu();
+            }
+        }
+
+        private void commandMenu_Click(object sender, EventArgs e)
+        {
+            HideOpenMenu(); // Hide the current open menu, if any
+            ShowControlMenu();
         }
     }
 }

@@ -32,7 +32,7 @@
             messageTextBox = new TextBox();
             consoleTextBox = new TextBox();
             connectButton = new Button();
-            button2 = new Button();
+            disconnectButton = new Button();
             pictureBox1 = new PictureBox();
             checkBox1 = new CheckBox();
             checkBox2 = new CheckBox();
@@ -42,6 +42,7 @@
             checkBox6 = new CheckBox();
             checkBox7 = new CheckBox();
             panel1 = new Panel();
+            stopGoose = new Button();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panel1.SuspendLayout();
@@ -53,6 +54,7 @@
             messageTextBox.Name = "messageTextBox";
             messageTextBox.Size = new Size(165, 23);
             messageTextBox.TabIndex = 0;
+            messageTextBox.TextChanged += messageTextBox_TextChanged;
             // 
             // consoleTextBox
             // 
@@ -73,14 +75,15 @@
             connectButton.UseVisualStyleBackColor = true;
             connectButton.Click += connectButton_Click;
             // 
-            // button2
+            // disconnectButton
             // 
-            button2.Location = new Point(315, 256);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 3;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            disconnectButton.Location = new Point(315, 256);
+            disconnectButton.Name = "disconnectButton";
+            disconnectButton.Size = new Size(75, 23);
+            disconnectButton.TabIndex = 3;
+            disconnectButton.Text = "Disconnect";
+            disconnectButton.UseVisualStyleBackColor = true;
+            disconnectButton.Click += disconnectButton_Click;
             // 
             // pictureBox1
             // 
@@ -88,7 +91,7 @@
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(3, 25);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(192, 206);
+            pictureBox1.Size = new Size(261, 206);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
@@ -172,6 +175,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(stopGoose);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(checkBox7);
             panel1.Controls.Add(checkBox1);
@@ -185,6 +189,15 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(301, 262);
             panel1.TabIndex = 12;
+            // 
+            // stopGoose
+            // 
+            stopGoose.Location = new Point(140, 178);
+            stopGoose.Name = "stopGoose";
+            stopGoose.Size = new Size(75, 23);
+            stopGoose.TabIndex = 13;
+            stopGoose.Text = "Kill Goose";
+            stopGoose.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -203,13 +216,14 @@
             ClientSize = new Size(800, 450);
             ControlBox = false;
             Controls.Add(panel1);
-            Controls.Add(button2);
+            Controls.Add(disconnectButton);
             Controls.Add(connectButton);
             Controls.Add(consoleTextBox);
             Controls.Add(messageTextBox);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ConnectMenu";
             Text = "ConnectMenu";
+            Load += ConnectMenu_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -222,7 +236,7 @@
         private TextBox messageTextBox;
         private TextBox consoleTextBox;
         private Button connectButton;
-        private Button button2;
+        private Button disconnectButton;
         private PictureBox pictureBox1;
         private CheckBox checkBox1;
         private CheckBox checkBox2;
@@ -233,5 +247,6 @@
         private CheckBox checkBox7;
         private Panel panel1;
         private Label label1;
+        private Button stopGoose;
     }
 }

@@ -97,6 +97,7 @@
             commandMenu.SizeMode = PictureBoxSizeMode.Zoom;
             commandMenu.TabIndex = 3;
             commandMenu.TabStop = false;
+            commandMenu.Click += commandMenu_Click;
             // 
             // pictureBox5
             // 

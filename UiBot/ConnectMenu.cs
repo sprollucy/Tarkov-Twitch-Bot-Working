@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using TwitchLib.Client.Models;
 
@@ -6,11 +7,11 @@ namespace UiBot
 {
     public partial class ConnectMenu : Form
     {
-        private Bot bot;
+        private MainBot bot;
 
         public ConnectMenu()
         {
-            bot = new Bot();
+            bot = new MainBot();
             InitializeComponent();
             InitializeConsole();
             this.TopLevel = false;
@@ -103,6 +104,26 @@ namespace UiBot
             bot.Connect();
         }
 
-        // Rest of your code
+        private void ConnectMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void disconnectButton_Click(object sender, EventArgs e)
+        {
+            bot.Disconnect();
+        }
+        private void stopGoose_Click(object sender, EventArgs e)
+        {
+            foreach (Process process in Process.GetProcessesByName("GooseDesktop"))
+            {
+                process.Kill();
+            }
+        }
+
+        private void messageTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
