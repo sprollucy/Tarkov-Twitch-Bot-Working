@@ -192,7 +192,20 @@ namespace UiBot
             Console.WriteLine("[Bot]: Connected");
         }
 
+        public void SendMessage(string message)
+        {
+            if (client.IsConnected)
+            {
+                string channelName = channelId;
 
+                // Send the message to the specified channel
+                client.SendMessage(channelName, message);
+            }
+            else
+            {
+                Console.WriteLine("Bot is not connected to Twitch. Cannot send message.");
+            }
+        }
 
         //Chat Commands
         private async void Client_OnChatCommandReceived(object sender, OnChatCommandReceivedArgs e)

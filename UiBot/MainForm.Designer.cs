@@ -50,10 +50,11 @@
             ranTurn = new CheckBox();
             helpButton = new Button();
             groupBox2 = new GroupBox();
+            popCheck = new CheckBox();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
+            button2 = new Button();
             tabPage2 = new TabPage();
-            popCheck = new CheckBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -271,6 +272,17 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Fun Commands";
             // 
+            // popCheck
+            // 
+            popCheck.AutoSize = true;
+            popCheck.Location = new Point(12, 146);
+            popCheck.Name = "popCheck";
+            popCheck.Size = new Size(58, 19);
+            popCheck.TabIndex = 19;
+            popCheck.Text = "1 shot";
+            popCheck.UseVisualStyleBackColor = true;
+            popCheck.CheckedChanged += popCheck_CheckedChanged;
+            // 
             // tabControl1
             // 
             tabControl1.Controls.Add(tabPage1);
@@ -283,6 +295,7 @@
             // 
             // tabPage1
             // 
+            tabPage1.Controls.Add(button2);
             tabPage1.Controls.Add(button4);
             tabPage1.Controls.Add(helpButton);
             tabPage1.Controls.Add(groupBox2);
@@ -297,6 +310,16 @@
             tabPage1.Text = "Bot Page";
             tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            button2.Location = new Point(13, 192);
+            button2.Name = "button2";
+            button2.Size = new Size(75, 23);
+            button2.TabIndex = 19;
+            button2.Text = "Experimental UI(possibly broken)";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
+            // 
             // tabPage2
             // 
             tabPage2.Location = new Point(4, 24);
@@ -307,17 +330,6 @@
             tabPage2.Text = "Options";
             tabPage2.UseVisualStyleBackColor = true;
             // 
-            // popCheck
-            // 
-            popCheck.AutoSize = true;
-            popCheck.Location = new Point(12, 146);
-            popCheck.Name = "popCheck";
-            popCheck.Size = new Size(58, 19);
-            popCheck.TabIndex = 19;
-            popCheck.Text = "1 shot";
-            popCheck.UseVisualStyleBackColor = true;
-            popCheck.CheckedChanged += popCheck_CheckedChanged;
-            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -327,6 +339,7 @@
             Controls.Add(tabControl1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Tarkov Sweat Bot";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
@@ -364,5 +377,6 @@
         private TabPage tabPage1;
         private TabPage tabPage2;
         private CheckBox popCheck;
+        private Button button2;
     }
 }

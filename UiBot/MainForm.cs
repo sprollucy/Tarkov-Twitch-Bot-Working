@@ -264,6 +264,12 @@ namespace UiBot
             Properties.Settings.Default.IsPopEnabled = popCheck.Checked;
             Properties.Settings.Default.Save();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ModernMenu modernMenu = new ModernMenu();
+            modernMenu.Show();
+        }
     }
 
 }
