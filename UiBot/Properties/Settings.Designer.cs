@@ -130,5 +130,17 @@ namespace UiBot.Properties {
                 this["isBitEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isNormalCommandsEnabled {
+            get {
+                return ((bool)(this["isNormalCommandsEnabled"]));
+            }
+            set {
+                this["isNormalCommandsEnabled"] = value;
+            }
+        }
     }
 }

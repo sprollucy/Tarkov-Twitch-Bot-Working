@@ -49,6 +49,7 @@ namespace UiBot
         private static TwitchPubSub pubSub;
         private static string channelId;
 
+
         //wiggle
         private Random random = new Random();
         private DateTime lastWiggleTime = DateTime.MinValue;
@@ -255,8 +256,8 @@ namespace UiBot
 
 
 
-            //Normal Commands
-            switch (e.Command.CommandText.ToLower())
+                //Normal Commands
+                switch (e.Command.CommandText.ToLower())
             {
                 // to ad "mybits"
 
@@ -451,18 +452,9 @@ namespace UiBot
 
                     break;
 
-                case "wiggle":
-                    if (Properties.Settings.Default.IsWiggleEnabled)
-                    {
-                        // Check if the user has enough bits (at least 50)
-                        requester = e.Command.ChatMessage.DisplayName;
-                        int requiredBits = 50;
-
-                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                    case "wiggle":
+                        if (Properties.Settings.Default.IsWiggleEnabled)
                         {
-                            // Deduct the bits from the user
-                            userBits[requester] -= requiredBits;
-
                             // Continue with the Wiggle command execution
                             TimeSpan remainingCooldown = GetRemainingWiggleCooldown();
                             if (remainingCooldown.TotalSeconds > 0)
@@ -480,116 +472,52 @@ namespace UiBot
                         }
                         else
                         {
-                            // User doesn't have enough bits
-                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Wiggle command.");
+                            client.SendMessage(channelId, "Wiggle command is currently disabled.");
                         }
-                    }
-                    else
-                    {
-                        client.SendMessage(channelId, "Wiggle command is currently disabled.");
-                    }
-                    break;
+                        break;
 
-                case "turn":
-                    if (Properties.Settings.Default.IsTurnEnabled)
-                    {
-                        if (int.TryParse(controlMenu.TurnCooldownTextBox.Text, out int cooldownSeconds))
+
+                    case "turn":
+                        if (Properties.Settings.Default.IsTurnEnabled)
                         {
-                            if (cooldownSeconds <= 0)
+                            if (int.TryParse(controlMenu.TurnCooldownTextBox.Text, out int cooldownSeconds))
                             {
-                                // If cooldown is 0 or negative, there's no cooldown
-                                requester = e.Command.ChatMessage.DisplayName;
-
-                                // Define the required number of bits
-                                int requiredBits = 50;
-
-                                // Check if the user has enough bits
-                                if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                                if (cooldownSeconds <= 0)
                                 {
-                                    // Deduct the bits from the user
-                                    userBits[requester] -= requiredBits;
-
-                                    // Send a message indicating the deduction
-                                    client.SendMessage(channelId, $"{requester} spent {requiredBits} bits on the turn command.");
-
+                                    // If cooldown is 0 or negative, there's no cooldown
                                     lastTurnTime = DateTime.Now; // Record the start time before wiggling
-
-                                    // Randomly decide whether to move the mouse to the right or left
+                                                                 // Randomly decide whether to move the mouse to the right or left
                                     bool moveRight = (new Random()).Next(2) == 0;
-
                                     TurnRandom(2000);
-
                                     client.SendMessage(channelId, "Turn executed.");
+                                }
+                                else if (GetRemainingWiggleCooldown().TotalSeconds > 0)
+                                {
+                                    TimeSpan remainingCooldown = GetRemainingWiggleCooldown();
+                                    client.SendMessage(channelId, $"Turn command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
                                 }
                                 else
                                 {
-                                    // User doesn't have enough bits
-                                    client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the turn command.");
+
                                 }
-                            }
-                            else if (GetRemainingWiggleCooldown().TotalSeconds > 0)
-                            {
-                                TimeSpan remainingCooldown = GetRemainingWiggleCooldown();
-                                client.SendMessage(channelId, $"Turn command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
                             }
                             else
                             {
-                                requester = e.Command.ChatMessage.DisplayName;
-
-                                // Define the required number of bits
-                                int requiredBits = 50;
-
-                                // Check if the user has enough bits
-                                if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
-                                {
-                                    // Deduct the bits from the user
-                                    userBits[requester] -= requiredBits;
-
-                                    // Send a message indicating the deduction
-                                    client.SendMessage(channelId, $"{requester} spent {requiredBits} bits on the turn command.");
-
-                                    lastWiggleTime = DateTime.Now; // Record the start time before wiggling
-
-                                    // Randomly decide whether to move the mouse to the right or left
-                                    bool moveRight = (new Random()).Next(2) == 0;
-
-                                    TurnRandom(2000);
-
-                                    TimeSpan remainingCooldown = GetRemainingWiggleCooldown(); // Recalculate remaining cooldown
-                                    client.SendMessage(channelId, $"Turn is on cooldown for {remainingCooldown.TotalSeconds} seconds");
-                                }
-                                else
-                                {
-                                    // User doesn't have enough bits
-                                    client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the turn command.");
-                                }
+                                client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
                             }
                         }
                         else
                         {
-                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                            client.SendMessage(channelId, "Turn command is currently disabled.");
                         }
-                    }
-                    else
-                    {
-                        client.SendMessage(channelId, "Turn command is currently disabled.");
-                    }
-                    break;
+                        break;
 
 
-                case "randomkeys":
-                    // Check if the command is enabled
-                    if (Properties.Settings.Default.IsKeyEnabled)
-                    {
-                        // Check if the user has enough bits (at least 50)
-                        requester = e.Command.ChatMessage.DisplayName;
-                        int requiredBits = 50;
 
-                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                    case "randomkeys":
+                        // Check if the command is enabled
+                        if (Properties.Settings.Default.IsKeyEnabled)
                         {
-                            // Deduct the bits from the user
-                            userBits[requester] -= requiredBits;
-
                             if (int.TryParse(controlMenu.RandomKeyCooldownTextBox.Text, out int cooldownSeconds))
                             {
                                 if (cooldownSeconds <= 0)
@@ -622,30 +550,16 @@ namespace UiBot
                         }
                         else
                         {
-                            // User doesn't have enough bits
-                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Randomkeys command.");
+                            client.SendMessage(channelId, "The random keypresses command is currently disabled.");
                         }
-                    }
-                    else
-                    {
-                        client.SendMessage(channelId, "The random keypresses command is currently disabled.");
-                    }
-                    break;
+                        break;
 
 
 
-                case "drop":
-                    if (Properties.Settings.Default.IsDropEnabled)
-                    {
-                        // Check if the user has enough bits (at least 50)
-                        requester = e.Command.ChatMessage.DisplayName;
-                        int requiredBits = 50;
 
-                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                    case "drop":
+                        if (Properties.Settings.Default.IsDropEnabled)
                         {
-                            // Deduct the bits from the user
-                            userBits[requester] -= requiredBits;
-
                             if (int.TryParse(controlMenu.DropCooldownTextBox.Text, out int cooldownSeconds))
                             {
                                 if (cooldownSeconds <= 0)
@@ -678,28 +592,14 @@ namespace UiBot
                         }
                         else
                         {
-                            // User doesn't have enough bits
-                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Drop command.");
+                            client.SendMessage(channelId, "The drop command is currently disabled.");
                         }
-                    }
-                    else
-                    {
-                        client.SendMessage(channelId, "The drop command is currently disabled.");
-                    }
-                    break;
+                        break;
 
-                case "pop":
-                    if (Properties.Settings.Default.IsPopEnabled)
-                    {
-                        // Check if the user has enough bits (at least 50)
-                        requester = e.Command.ChatMessage.DisplayName;
-                        int requiredBits = 50;
 
-                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                    case "pop":
+                        if (Properties.Settings.Default.IsPopEnabled)
                         {
-                            // Deduct the bits from the user
-                            userBits[requester] -= requiredBits;
-
                             if (int.TryParse(controlMenu.OneClickCooldownTextBox.Text, out int cooldownSeconds))
                             {
                                 if (cooldownSeconds <= 0)
@@ -732,6 +632,218 @@ namespace UiBot
                         }
                         else
                         {
+                            client.SendMessage(channelId, "The pop command is currently disabled.");
+                        }
+                        break;
+
+                //bitcommands
+
+
+                case "bitgoose":
+                    if (!Properties.Settings.Default.IsGooseEnabled && Properties.Settings.Default.isBitEnabled)
+                    {
+                        client.SendMessage(channelId, "Goose command is currently disabled.");
+                    }
+                    else if (gname.Length > 0)
+                    {
+                        client.SendMessage(channelId, "Goose is already running!");
+                    }
+                    else
+                    {
+
+                        // Get the directory where the executable is located
+                        string exeDirectory = AppDomain.CurrentDomain.BaseDirectory;
+
+                        // Combine the directory with the "Goose" folder and the filename to get the full path to GooseDesktop.exe
+                        string gooseExePath = Path.Combine(exeDirectory, "Goose", "GooseDesktop.exe");
+
+                        if (File.Exists(gooseExePath))
+                        {
+                            // Generate a random runtime between 2 and 5 minutes.
+                            Random random = new Random();
+                            int runtimeMinutes = random.Next(2, 6); // Adjust the range as needed
+                            TimeSpan runtime = TimeSpan.FromMinutes(runtimeMinutes);
+
+                            // Start the Goose process and store it in the gooseProcess variable.
+                            gooseProcess = Process.Start(gooseExePath);
+                            lastGooseCommandTime = DateTime.Now;
+
+                            // Send a message indicating how long the Goose will run
+                            client.SendMessage(channelId, $"Goose is running for {runtimeMinutes} minutes!");
+
+                            // Schedule a task to stop the Goose process after the random runtime.
+                            Task.Run(() =>
+                            {
+                                Thread.Sleep(runtime);
+                                if (!gooseProcess.HasExited)
+                                {
+                                    gooseProcess.Kill(); // Terminate the Goose process.
+                                    client.SendMessage(channelId, "Goose has been terminated.");
+                                }
+                            });
+                        }
+
+                        client.SendMessage(channelId, "GooseDesktop.exe not found in the 'Goose' folder. Please make sure it's in the correct location.");
+
+                    }
+                    break;
+
+                case "bitwiggle":
+                    if (Properties.Settings.Default.IsWiggleEnabled && Properties.Settings.Default.isBitEnabled)
+                    {
+                        // Check if the user has enough bits (at least 50)
+                        requester = e.Command.ChatMessage.DisplayName;
+                        int requiredBits = 50;
+
+                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                        {
+                            // Deduct the bits from the user
+                            userBits[requester] -= requiredBits;
+
+                            lastWiggleTime = DateTime.Now; // Record the start time before wiggling
+                                                           //format is turns, distance in px, delay between move
+                            WiggleMouse(3, 10, 50);
+                            client.SendMessage(channelId, $"Mouse wiggle!");
+
+                        }
+                        else
+                        {
+                            // User doesn't have enough bits
+                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Wiggle command.");
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(channelId, "Wiggle command is currently disabled.");
+                    }
+                    break;
+
+                case "bitturn":
+                    if (Properties.Settings.Default.IsTurnEnabled && Properties.Settings.Default.isBitEnabled)
+                    {
+
+                        // If cooldown is 0 or negative, there's no cooldown
+                        requester = e.Command.ChatMessage.DisplayName;
+
+                        // Define the required number of bits
+                        int requiredBits = 50;
+
+                        // Check if the user has enough bits
+                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                        {
+                            // Deduct the bits from the user
+                            userBits[requester] -= requiredBits;
+
+                            // Send a message indicating the deduction
+                            client.SendMessage(channelId, $"{requester} spent {requiredBits} bits on the turn command.");
+
+                            lastTurnTime = DateTime.Now; // Record the start time before wiggling
+
+                            // Randomly decide whether to move the mouse to the right or left
+                            bool moveRight = (new Random()).Next(2) == 0;
+
+                            TurnRandom(2000);
+
+                            client.SendMessage(channelId, "Turn executed.");
+                        }
+                        else
+                        {
+                            // User doesn't have enough bits
+                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the turn command.");
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(channelId, "Turn command is currently disabled.");
+                    }
+                    break;
+
+
+                case "bitrandomkeys":
+                    // Check if the command is enabled
+                    if (Properties.Settings.Default.IsKeyEnabled && Properties.Settings.Default.isBitEnabled)
+                    {
+                        // Check if the user has enough bits (at least 50)
+                        requester = e.Command.ChatMessage.DisplayName;
+                        int requiredBits = 50;
+
+                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                        {
+                            // Deduct the bits from the user
+                            userBits[requester] -= requiredBits;
+
+
+                            SendRandomKeyPresses();
+                            client.SendMessage(channelId, "Hold that key!");
+                            lastRandomKeyPressesTime = DateTime.Now;
+
+                        }
+
+                        else
+                        {
+                            // User doesn't have enough bits
+                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Randomkeys command.");
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(channelId, "The random keypresses command is currently disabled.");
+                    }
+                    break;
+
+
+
+                case "bitdrop":
+                    if (Properties.Settings.Default.IsDropEnabled && Properties.Settings.Default.isBitEnabled)
+                    {
+                        // Check if the user has enough bits (at least 50)
+                        requester = e.Command.ChatMessage.DisplayName;
+                        int requiredBits = 50;
+
+                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                        {
+                            // Deduct the bits from the user
+                            userBits[requester] -= requiredBits;
+
+
+                            // If cooldown is 0 or negative, there's no cooldown
+                            SimulateButtonPressAndMouseMovement();
+                            client.SendMessage(channelId, "Simulated button press and mouse movement.");
+                            lastDropCommandTime = DateTime.Now; // Update the last command time
+                        }
+
+
+                        else
+                        {
+                            // User doesn't have enough bits
+                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Drop command.");
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(channelId, "The drop command is currently disabled.");
+                    }
+                    break;
+
+                case "bitpop":
+                    if (Properties.Settings.Default.IsPopEnabled && Properties.Settings.Default.isBitEnabled)
+                    {
+                        // Check if the user has enough bits (at least 50)
+                        requester = e.Command.ChatMessage.DisplayName;
+                        int requiredBits = 50;
+
+                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                        {
+                            // Deduct the bits from the user
+                            userBits[requester] -= requiredBits;
+
+                            PopShot();
+                            client.SendMessage(channelId, $"Oops misclick!");
+                            lastPopCommandTime = DateTime.Now;
+
+                        }
+                        else
+                        {
                             // User doesn't have enough bits
                             client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Pop command.");
                         }
@@ -741,8 +853,8 @@ namespace UiBot
                         client.SendMessage(channelId, "The pop command is currently disabled.");
                     }
                     break;
-
             }
+
 
             //Mod Commands
             if (e.Command.ChatMessage.IsModerator)
@@ -789,62 +901,63 @@ namespace UiBot
                 }
             }
 
-            //Channel owner chat
-            if (e.Command.ChatMessage.IsBroadcaster)
-            {
-
-
-                switch (e.Command.CommandText.ToLower())
+                //Channel owner chat
+                if (e.Command.ChatMessage.IsBroadcaster)
                 {
-                    case "help":
-                        client.SendMessage(channelId, "!hi, !goose, !killgoose, !death, !escape, !resetdeath, !resetallstats");
-                        break;
-                    case "hi":
-                        client.SendMessage(channelId, "Hi Boss");
-                        break;
-                    //start windows proccesses 
-                    case "note":
-                        if (pname.Length > 0)
-                        {
+
+
+                    switch (e.Command.CommandText.ToLower())
+                    {
+                        case "help":
+                            client.SendMessage(channelId, "!hi, !goose, !killgoose, !death, !escape, !resetdeath, !resetallstats");
                             break;
-                        }
-                        else
-                        {
-                            Process notePad = new Process();
-                            notePad.StartInfo.FileName = "notepad.exe";
-                            notePad.Start();
-                        }
+                        case "hi":
+                            client.SendMessage(channelId, "Hi Boss");
+                            break;
+                        //start windows proccesses 
+                        case "note":
+                            if (pname.Length > 0)
+                            {
+                                break;
+                            }
+                            else
+                            {
+                                Process notePad = new Process();
+                                notePad.StartInfo.FileName = "notepad.exe";
+                                notePad.Start();
+                            }
 
-                        break;
+                            break;
 
-                    case "death":
-                        deathCount = deathCount + 1;
-                        counter.IncrementAllDeath();
-                        client.SendMessage(channelId, $"Sprollucy has died {deathCount} times");
-                        client.SendMessage(channelId, $"Deaths this wipe: {counter.AllDeath}");
-                        break;
+                        case "death":
+                            deathCount = deathCount + 1;
+                            counter.IncrementAllDeath();
+                            client.SendMessage(channelId, $"Sprollucy has died {deathCount} times");
+                            client.SendMessage(channelId, $"Deaths this wipe: {counter.AllDeath}");
+                            break;
 
-                    case "resetdeath":
-                        client.SendMessage(channelId, $"Deaths Reset");
-                        deathCount = 0;
-                        break;
+                        case "resetdeath":
+                            client.SendMessage(channelId, $"Deaths Reset");
+                            deathCount = 0;
+                            break;
 
-                    case "escape":
-                        counter.IncrementSurvivalCount();
-                        client.SendMessage(channelId, $"Sprollucy has escaped {counter.SurvivalCount} times");
-                        break;
+                        case "escape":
+                            counter.IncrementSurvivalCount();
+                            client.SendMessage(channelId, $"Sprollucy has escaped {counter.SurvivalCount} times");
+                            break;
 
-                    case "resetallstats":
-                        client.SendMessage(channelId, "All stats reset!");
-                        counter.ResetAllDeath();
-                        counter.ResetSurvivalCount();
-                        deathCount = 0;
-                        break;
+                        case "resetallstats":
+                            client.SendMessage(channelId, "All stats reset!");
+                            counter.ResetAllDeath();
+                            counter.ResetSurvivalCount();
+                            deathCount = 0;
+                            break;
 
 
+                    }
                 }
             }
-        }
+        
 
 
 

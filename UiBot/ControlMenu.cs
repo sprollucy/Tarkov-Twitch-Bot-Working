@@ -28,6 +28,7 @@ namespace UiBot
             enableKitDrop.Checked = Properties.Settings.Default.IsDropEnabled;
             randomTurn.Checked = Properties.Settings.Default.IsTurnEnabled;
             oneClickCheck.Checked = Properties.Settings.Default.IsPopEnabled;
+            enableBits.Checked = Properties.Settings.Default.isBitEnabled;
         }
 
         private void ControlMenu_load(object sender, EventArgs e)
@@ -209,10 +210,12 @@ namespace UiBot
 
         private void enableBits_CheckedChanged(object sender, EventArgs e)
         {
+
+            // Update the isBitEnabled setting
             Properties.Settings.Default.isBitEnabled = enableBits.Checked;
+
+            // Save the updated settings
             Properties.Settings.Default.Save();
-
-
 
         }
 
