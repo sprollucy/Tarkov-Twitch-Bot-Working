@@ -35,10 +35,10 @@
             disconnectButton = new Button();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            stopGoose = new Button();
-            label1 = new Label();
             oneClickCheck = new CheckBox();
+            stopGoose = new Button();
             randomTurn = new CheckBox();
+            label1 = new Label();
             enableRandomKey = new CheckBox();
             chkEnableGoose = new CheckBox();
             enableKitDrop = new CheckBox();
@@ -57,11 +57,12 @@
             // 
             // consoleTextBox
             // 
+            consoleTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             consoleTextBox.Location = new Point(63, 28);
             consoleTextBox.Multiline = true;
             consoleTextBox.Name = "consoleTextBox";
             consoleTextBox.ReadOnly = true;
-            consoleTextBox.Size = new Size(391, 222);
+            consoleTextBox.Size = new Size(434, 222);
             consoleTextBox.TabIndex = 1;
             // 
             // connectButton
@@ -106,28 +107,10 @@
             panel1.Controls.Add(enableKitDrop);
             panel1.Controls.Add(enableWiggle);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(456, 19);
+            panel1.Location = new Point(500, 189);
             panel1.Name = "panel1";
             panel1.Size = new Size(301, 262);
             panel1.TabIndex = 12;
-            // 
-            // stopGoose
-            // 
-            stopGoose.Location = new Point(140, 178);
-            stopGoose.Name = "stopGoose";
-            stopGoose.Size = new Size(75, 23);
-            stopGoose.TabIndex = 13;
-            stopGoose.Text = "Kill Goose";
-            stopGoose.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 7);
-            label1.Name = "label1";
-            label1.Size = new Size(107, 15);
-            label1.TabIndex = 12;
-            label1.Text = "Command Toggles";
             // 
             // oneClickCheck
             // 
@@ -140,6 +123,15 @@
             oneClickCheck.Text = "oneClickCheck";
             oneClickCheck.UseVisualStyleBackColor = false;
             // 
+            // stopGoose
+            // 
+            stopGoose.Location = new Point(140, 178);
+            stopGoose.Name = "stopGoose";
+            stopGoose.Size = new Size(75, 23);
+            stopGoose.TabIndex = 13;
+            stopGoose.Text = "Kill Goose";
+            stopGoose.UseVisualStyleBackColor = true;
+            // 
             // randomTurn
             // 
             randomTurn.AutoSize = true;
@@ -150,6 +142,15 @@
             randomTurn.TabIndex = 21;
             randomTurn.Text = "EnableTurn";
             randomTurn.UseVisualStyleBackColor = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 7);
+            label1.Name = "label1";
+            label1.Size = new Size(107, 15);
+            label1.TabIndex = 12;
+            label1.Text = "Command Toggles";
             // 
             // enableRandomKey
             // 
