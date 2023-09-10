@@ -35,7 +35,7 @@ namespace UiBot
             this.FormBorderStyle = FormBorderStyle.None;
             // Create a GraphicsPath with rounded corners
             GraphicsPath path = new GraphicsPath();
-            int radius = 20; // Adjust the radius as needed
+            int radius = 10; // Adjust the radius as needed
             Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
             path.AddArc(rect.Left, rect.Top, radius * 2, radius * 2, 180, 90);
             path.AddArc(rect.Right - (radius * 2), rect.Top, radius * 2, radius * 2, 270, 90);
