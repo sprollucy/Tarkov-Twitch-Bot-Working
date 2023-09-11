@@ -723,11 +723,12 @@
             // disableSound
             // 
             disableSound.AutoSize = true;
-            disableSound.Location = new Point(863, 404);
+            disableSound.Location = new Point(823, 410);
             disableSound.Name = "disableSound";
-            disableSound.Size = new Size(83, 19);
+            disableSound.RightToLeft = RightToLeft.No;
+            disableSound.Size = new Size(120, 19);
             disableSound.TabIndex = 43;
-            disableSound.Text = "checkBox1";
+            disableSound.Text = "Mute Notification";
             disableSound.UseVisualStyleBackColor = true;
             disableSound.CheckedChanged += disableSound_CheckedChanged;
             // 

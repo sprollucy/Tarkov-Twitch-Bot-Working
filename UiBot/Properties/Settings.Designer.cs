@@ -142,5 +142,29 @@ namespace UiBot.Properties {
                 this["isNormalCommandsEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsAutoMessageEnabled {
+            get {
+                return ((bool)(this["IsAutoMessageEnabled"]));
+            }
+            set {
+                this["IsAutoMessageEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public string AutoSendTime {
+            get {
+                return ((string)(this["AutoSendTime"]));
+            }
+            set {
+                this["AutoSendTime"] = value;
+            }
+        }
     }
 }

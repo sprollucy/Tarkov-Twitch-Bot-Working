@@ -52,14 +52,18 @@
             enableWiggle = new CheckBox();
             panel1 = new Panel();
             checkBox1 = new CheckBox();
+            pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox10 = new PictureBox();
             imageList1 = new ImageList(components);
-            pictureBox2 = new PictureBox();
+            autoMessageBox = new TextBox();
+            autoSendMessageCD = new TextBox();
+            autoMessageLabel = new Label();
+            enableAutoMessageCheck = new CheckBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // wiggleCooldownTextBox
@@ -284,6 +288,16 @@
             checkBox1.Text = "Enable Trader Timer Updates";
             checkBox1.UseVisualStyleBackColor = false;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(409, 385);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 21;
+            pictureBox2.TabStop = false;
+            // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Red;
@@ -308,15 +322,42 @@
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
-            // pictureBox2
+            // autoMessageBox
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(409, 385);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 21;
-            pictureBox2.TabStop = false;
+            autoMessageBox.Location = new Point(639, 58);
+            autoMessageBox.Multiline = true;
+            autoMessageBox.Name = "autoMessageBox";
+            autoMessageBox.Size = new Size(140, 60);
+            autoMessageBox.TabIndex = 23;
+            autoMessageBox.Text = "Default";
+            // 
+            // autoSendMessageCD
+            // 
+            autoSendMessageCD.Location = new Point(579, 58);
+            autoSendMessageCD.Name = "autoSendMessageCD";
+            autoSendMessageCD.Size = new Size(54, 23);
+            autoSendMessageCD.TabIndex = 24;
+            autoSendMessageCD.Text = "0";
+            // 
+            // autoMessageLabel
+            // 
+            autoMessageLabel.AutoSize = true;
+            autoMessageLabel.Location = new Point(522, 23);
+            autoMessageLabel.Name = "autoMessageLabel";
+            autoMessageLabel.Size = new Size(111, 15);
+            autoMessageLabel.TabIndex = 25;
+            autoMessageLabel.Text = "Auto Send Message";
+            // 
+            // enableAutoMessageCheck
+            // 
+            enableAutoMessageCheck.AutoSize = true;
+            enableAutoMessageCheck.Location = new Point(641, 24);
+            enableAutoMessageCheck.Name = "enableAutoMessageCheck";
+            enableAutoMessageCheck.Size = new Size(139, 19);
+            enableAutoMessageCheck.TabIndex = 26;
+            enableAutoMessageCheck.Text = "Enable Auto Message";
+            enableAutoMessageCheck.UseVisualStyleBackColor = true;
+            enableAutoMessageCheck.CheckedChanged += enableAutoMessageCheck_CheckedChanged;
             // 
             // ControlMenu
             // 
@@ -325,6 +366,10 @@
             BackColor = Color.FromArgb(220, 215, 201);
             ClientSize = new Size(1058, 487);
             ControlBox = false;
+            Controls.Add(enableAutoMessageCheck);
+            Controls.Add(autoMessageLabel);
+            Controls.Add(autoSendMessageCD);
+            Controls.Add(autoMessageBox);
             Controls.Add(pictureBox10);
             Controls.Add(pictureBox1);
             Controls.Add(saveButton);
@@ -334,10 +379,11 @@
             Text = "ControlMenu";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -368,5 +414,9 @@
         private CheckBox checkBox1;
         private ImageList imageList1;
         private PictureBox pictureBox2;
+        private TextBox autoMessageBox;
+        private TextBox autoSendMessageCD;
+        private Label autoMessageLabel;
+        private CheckBox enableAutoMessageCheck;
     }
 }

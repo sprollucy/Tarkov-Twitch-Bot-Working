@@ -13,6 +13,9 @@ namespace UiBot
         string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string soundFileName = Path.Combine("Sounds", "notification.wav");
         private bool isSoundEnabled = true;
+        private System.Threading.Timer timer1; // Timer for CheckTraderResetTimes
+        private System.Threading.Timer timer2; // Timer for CheckStart
+
 
         public TraderMenu()
         {
@@ -24,7 +27,6 @@ namespace UiBot
             InitializeComponent();
             StartTraderResetTimer();
             this.TopLevel = false;
-            player.Play();
         }
 
 
@@ -48,8 +50,8 @@ namespace UiBot
         public void StartTraderResetTimer()
         {
             // Create a Timer object to run the method every 5 minutes
-            System.Threading.Timer timer = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            System.Threading.Timer timer2 = new System.Threading.Timer(CheckStart, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+            timer1 = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            timer2 = new System.Threading.Timer(CheckStart, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
         }
 
         public void CheckStart(object state)

@@ -19,12 +19,17 @@ namespace UiBot
     {
         //bit dictionary 
         private static Dictionary<string, int> userBits = new Dictionary<string, int>();
+        //command dictionary
+        private Dictionary<string, string> commandConfigData;
+        public int autoSendMessageCD; // Timer interval in seconds
+
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
 
         [DllImport("kernel32.dll")]
         private static extern bool FreeConsole();
+
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
@@ -143,7 +148,6 @@ namespace UiBot
                 InitializeTwitchClient();
                 InitializePubSub();
                 StartTraderResetTimer();
-
             }
         }
 
@@ -1173,6 +1177,8 @@ namespace UiBot
             System.Threading.Timer timer = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
         }
 
+
+
         public void CheckTraderResetTimes(object state)
         {
             var traderResetInfoService = new TraderResetInfoService();
@@ -1229,9 +1235,62 @@ namespace UiBot
                     }
                 }
             }
+        }
+        public void LoadCommandConfigData()
+        {
+            try
+            {
+                string jsonFilePath = "CommandConfigData.json";
 
+                if (File.Exists(jsonFilePath))
+                {
+                    string jsonData = File.ReadAllText(jsonFilePath);
+                    commandConfigData = JsonConvert.DeserializeObject<Dictionary<string, string>>(jsonData);
+
+                    if (commandConfigData.ContainsKey("autoSendMessageCD") && int.TryParse(commandConfigData["autoSendMessageCD"], out int cd))
+                    {
+                        autoSendMessageCD = cd;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid or missing 'autoSendMessageCD' value in CommandConfigData.json.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("CommandConfigData.json not found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading CommandConfigData: {ex.Message}");
+            }
         }
 
+        public void StartAutoMessage()
+        {
+            // Create a Timer object to run the method every 5 minutes
+            System.Threading.Timer timer2 = new System.Threading.Timer(AutoMessageSender, null, TimeSpan.Zero, TimeSpan.FromSeconds(autoSendMessageCD));
+        }
+
+        public void AutoMessageSender(object state)
+        {
+            if (!Properties.Settings.Default.IsAutoMessageEnabled)
+            {
+                // Ensure that commandConfigData is loaded
+                if (commandConfigData == null)
+                {
+                    LoadCommandConfigData();
+                }
+
+                if (commandConfigData != null && commandConfigData.ContainsKey("autoMessageBox"))
+                {
+                    string autoMessageBox = commandConfigData["autoMessageBox"];
+                    client.SendMessage(channelId, autoMessageBox);
+                    Console.WriteLine(autoMessageBox);
+                }
+            }
+        }
 
 
     }

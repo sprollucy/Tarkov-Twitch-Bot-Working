@@ -47,6 +47,8 @@ namespace UiBot
             textBoxes["gooseCooldown"] = gooseCooldownTextBox;
             textBoxes["randomKeyCooldown"] = randomKeyCooldownTextBox;
             textBoxes["oneClickCooldown"] = oneClickCooldownTextBox;
+            textBoxes["autoMessageBox"] = autoMessageBox;
+            textBoxes["autoSendMessageCD"] = autoSendMessageCD;
 
             // Add cost text boxes to the dictionary with unique keys
             textBoxes["wiggleCost"] = wiggleCostBox;
@@ -117,6 +119,16 @@ namespace UiBot
         {
             get { return oneClickCostBox; }
             set { oneClickCostBox = value; }
+        }
+        public TextBox AutoMessageBox
+        {
+            get { return autoMessageBox; }
+            set { autoMessageBox = value; }
+        }
+        public TextBox AutoSendMessageCD
+        {
+            get { return autoSendMessageCD; }
+            set { autoSendMessageCD = value; }
         }
         //TODO make save reload on save so app doesnt have to restart
         private void saveButton_Click(object sender, EventArgs e)
@@ -234,6 +246,11 @@ namespace UiBot
 
         private void gooseCooldownTextBox_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void enableAutoMessageCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
