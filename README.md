@@ -82,6 +82,12 @@ Broadcaster Commands:
 
 ## Changelog
 
+1.0.0.03-alpha hotfix 09-11-2023  
+-Added catch for crashing if you connect without putting login info in  
+-Fixed trader menu timers to keep the timers in memory and not be cleared out as long as they run  
+-Started working on a automessage system - it will send and save a message, but not resend messages  
+-Added notification system for trader timer updates    
+
 1.0.0.3-alpha 09-10-2023
 -Rebuild Commands and unified most of the timer systems
 -Added in adjustable timers for each of the commands(currently you have to restart to update all the cooldowns)
