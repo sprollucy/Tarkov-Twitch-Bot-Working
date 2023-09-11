@@ -35,6 +35,7 @@
             disconnectButton = new Button();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
+            toggleAll = new Button();
             oneClickCheck = new CheckBox();
             stopGoose = new Button();
             randomTurn = new CheckBox();
@@ -49,9 +50,9 @@
             // 
             // messageTextBox
             // 
-            messageTextBox.Location = new Point(63, 256);
+            messageTextBox.Location = new Point(63, 334);
             messageTextBox.Name = "messageTextBox";
-            messageTextBox.Size = new Size(165, 23);
+            messageTextBox.Size = new Size(574, 23);
             messageTextBox.TabIndex = 0;
             messageTextBox.TextChanged += messageTextBox_TextChanged;
             // 
@@ -62,12 +63,12 @@
             consoleTextBox.Multiline = true;
             consoleTextBox.Name = "consoleTextBox";
             consoleTextBox.ReadOnly = true;
-            consoleTextBox.Size = new Size(434, 222);
+            consoleTextBox.Size = new Size(574, 300);
             consoleTextBox.TabIndex = 1;
             // 
             // connectButton
             // 
-            connectButton.Location = new Point(234, 256);
+            connectButton.Location = new Point(63, 363);
             connectButton.Name = "connectButton";
             connectButton.Size = new Size(75, 23);
             connectButton.TabIndex = 2;
@@ -77,7 +78,7 @@
             // 
             // disconnectButton
             // 
-            disconnectButton.Location = new Point(315, 256);
+            disconnectButton.Location = new Point(144, 363);
             disconnectButton.Name = "disconnectButton";
             disconnectButton.Size = new Size(75, 23);
             disconnectButton.TabIndex = 3;
@@ -89,15 +90,16 @@
             // 
             pictureBox1.BackColor = Color.Transparent;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(3, 25);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(261, 206);
+            pictureBox1.Size = new Size(254, 249);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 4;
             pictureBox1.TabStop = false;
             // 
             // panel1
             // 
+            panel1.Controls.Add(toggleAll);
             panel1.Controls.Add(oneClickCheck);
             panel1.Controls.Add(stopGoose);
             panel1.Controls.Add(randomTurn);
@@ -107,27 +109,38 @@
             panel1.Controls.Add(enableKitDrop);
             panel1.Controls.Add(enableWiggle);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(500, 189);
+            panel1.Location = new Point(654, 152);
             panel1.Name = "panel1";
             panel1.Size = new Size(301, 262);
             panel1.TabIndex = 12;
             // 
+            // toggleAll
+            // 
+            toggleAll.Location = new Point(133, 54);
+            toggleAll.Name = "toggleAll";
+            toggleAll.Size = new Size(103, 23);
+            toggleAll.TabIndex = 26;
+            toggleAll.Text = "Toggle All Off";
+            toggleAll.UseVisualStyleBackColor = true;
+            toggleAll.Click += toggleAll_Click;
+            // 
             // oneClickCheck
             // 
             oneClickCheck.AutoSize = true;
-            oneClickCheck.BackColor = Color.FromArgb(162, 123, 92);
-            oneClickCheck.Location = new Point(9, 181);
+            oneClickCheck.BackColor = Color.FromArgb(181, 176, 163);
+            oneClickCheck.Location = new Point(9, 199);
             oneClickCheck.Name = "oneClickCheck";
             oneClickCheck.Size = new Size(105, 19);
             oneClickCheck.TabIndex = 20;
             oneClickCheck.Text = "oneClickCheck";
             oneClickCheck.UseVisualStyleBackColor = false;
+            oneClickCheck.CheckedChanged += oneClickCheck_CheckedChanged;
             // 
             // stopGoose
             // 
-            stopGoose.Location = new Point(140, 178);
+            stopGoose.Location = new Point(133, 83);
             stopGoose.Name = "stopGoose";
-            stopGoose.Size = new Size(75, 23);
+            stopGoose.Size = new Size(103, 23);
             stopGoose.TabIndex = 13;
             stopGoose.Text = "Kill Goose";
             stopGoose.UseVisualStyleBackColor = true;
@@ -135,66 +148,73 @@
             // randomTurn
             // 
             randomTurn.AutoSize = true;
-            randomTurn.BackColor = Color.FromArgb(162, 123, 92);
-            randomTurn.Location = new Point(9, 152);
+            randomTurn.BackColor = Color.FromArgb(181, 176, 163);
+            randomTurn.Location = new Point(9, 170);
             randomTurn.Name = "randomTurn";
             randomTurn.Size = new Size(85, 19);
             randomTurn.TabIndex = 21;
             randomTurn.Text = "EnableTurn";
             randomTurn.UseVisualStyleBackColor = false;
+            randomTurn.CheckedChanged += randomTurn_CheckedChanged;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(3, 7);
+            label1.BackColor = Color.FromArgb(162, 123, 92);
+            label1.Font = new Font("Constantia", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.Location = new Point(0, 10);
             label1.Name = "label1";
-            label1.Size = new Size(107, 15);
+            label1.Size = new Size(175, 23);
             label1.TabIndex = 12;
             label1.Text = "Command Toggles";
             // 
             // enableRandomKey
             // 
             enableRandomKey.AutoSize = true;
-            enableRandomKey.BackColor = Color.FromArgb(162, 123, 92);
-            enableRandomKey.Location = new Point(9, 121);
+            enableRandomKey.BackColor = Color.FromArgb(181, 176, 163);
+            enableRandomKey.Location = new Point(9, 139);
             enableRandomKey.Name = "enableRandomKey";
             enableRandomKey.Size = new Size(125, 19);
             enableRandomKey.TabIndex = 22;
             enableRandomKey.Text = "enableRandomKey";
             enableRandomKey.UseVisualStyleBackColor = false;
+            enableRandomKey.CheckedChanged += enableRandomKey_CheckedChanged;
             // 
             // chkEnableGoose
             // 
             chkEnableGoose.AutoSize = true;
-            chkEnableGoose.BackColor = Color.FromArgb(162, 123, 92);
-            chkEnableGoose.Location = new Point(9, 94);
+            chkEnableGoose.BackColor = Color.FromArgb(181, 176, 163);
+            chkEnableGoose.Location = new Point(9, 112);
             chkEnableGoose.Name = "chkEnableGoose";
             chkEnableGoose.Size = new Size(113, 19);
             chkEnableGoose.TabIndex = 23;
             chkEnableGoose.Text = "chkEnableGoose";
             chkEnableGoose.UseVisualStyleBackColor = false;
+            chkEnableGoose.CheckedChanged += chkEnableGoose_CheckedChanged;
             // 
             // enableKitDrop
             // 
             enableKitDrop.AutoSize = true;
-            enableKitDrop.BackColor = Color.FromArgb(162, 123, 92);
-            enableKitDrop.Location = new Point(9, 65);
+            enableKitDrop.BackColor = Color.FromArgb(181, 176, 163);
+            enableKitDrop.Location = new Point(9, 83);
             enableKitDrop.Name = "enableKitDrop";
             enableKitDrop.Size = new Size(101, 19);
             enableKitDrop.TabIndex = 24;
             enableKitDrop.Text = "enableKitDrop";
             enableKitDrop.UseVisualStyleBackColor = false;
+            enableKitDrop.CheckedChanged += enableKitDrop_CheckedChanged;
             // 
             // enableWiggle
             // 
             enableWiggle.AutoSize = true;
-            enableWiggle.BackColor = Color.FromArgb(162, 123, 92);
-            enableWiggle.Location = new Point(9, 36);
+            enableWiggle.BackColor = Color.FromArgb(181, 176, 163);
+            enableWiggle.Location = new Point(9, 54);
             enableWiggle.Name = "enableWiggle";
             enableWiggle.Size = new Size(98, 19);
             enableWiggle.TabIndex = 25;
             enableWiggle.Text = "enableWiggle";
             enableWiggle.UseVisualStyleBackColor = false;
+            enableWiggle.CheckedChanged += enableWiggle_CheckedChanged;
             // 
             // ConnectMenu
             // 
@@ -235,5 +255,6 @@
         private CheckBox chkEnableGoose;
         private CheckBox enableKitDrop;
         private CheckBox enableWiggle;
+        private Button toggleAll;
     }
 }

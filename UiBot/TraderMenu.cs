@@ -107,12 +107,12 @@ namespace UiBot
             // Set the labels with the trader information
             labels.nameLabel.Invoke((MethodInvoker)delegate
             {
-                labels.nameLabel.Text = "Trader Name: " + traderName;
+                labels.nameLabel.Text = traderName;
             });
 
             labels.resetLabel.Invoke((MethodInvoker)delegate
             {
-                labels.resetLabel.Text = "Reset Time: " + localResetTime.ToString();
+                labels.resetLabel.Text = "Reset: " + localResetTime.ToString();
             });
 
             labels.remainingLabel.Invoke((MethodInvoker)delegate

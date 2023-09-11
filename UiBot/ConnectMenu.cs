@@ -11,13 +11,21 @@ namespace UiBot
 
         public ConnectMenu()
         {
+            ControlMenu controlMenu = new ControlMenu();
             bot = new MainBot();
             InitializeComponent();
             InitializeConsole();
+            controlMenu.LoadSettings();
             this.TopLevel = false;
 
             // Hook up the KeyPress event for the messageTextBox
             messageTextBox.KeyPress += MessageTextBox_KeyPress;
+            chkEnableGoose.Checked = Properties.Settings.Default.IsGooseEnabled;
+            enableWiggle.Checked = Properties.Settings.Default.IsWiggleEnabled;
+            enableRandomKey.Checked = Properties.Settings.Default.IsKeyEnabled;
+            enableKitDrop.Checked = Properties.Settings.Default.IsDropEnabled;
+            randomTurn.Checked = Properties.Settings.Default.IsTurnEnabled;
+            oneClickCheck.Checked = Properties.Settings.Default.IsPopEnabled;
         }
 
         private void InitializeConsole()
@@ -123,6 +131,54 @@ namespace UiBot
 
         private void messageTextBox_TextChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void enableWiggle_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsWiggleEnabled = enableWiggle.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void enableKitDrop_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsDropEnabled = enableKitDrop.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void chkEnableGoose_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsGooseEnabled = chkEnableGoose.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void enableRandomKey_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsKeyEnabled = enableRandomKey.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void randomTurn_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsTurnEnabled = randomTurn.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void oneClickCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsPopEnabled = oneClickCheck.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void toggleAll_Click(object sender, EventArgs e)
+        {
+            chkEnableGoose.Checked = false;
+            enableWiggle.Checked = false;
+            enableRandomKey.Checked = false;
+            enableKitDrop.Checked = false;
+            randomTurn.Checked = false;
+            oneClickCheck.Checked = false;
+            Properties.Settings.Default.Save();
 
         }
     }

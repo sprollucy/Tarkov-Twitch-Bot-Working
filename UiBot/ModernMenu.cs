@@ -164,7 +164,10 @@ namespace UiBot
             {
                 if (control is Label label)
                 {
-                    label.Left = newLeft;
+                    if (label.Name == "label1" || label.Name == "label2" || label.Name == "label3" || label.Name == "label3" || label.Name == "label4" || label.Name == "label5" || label.Name == "label6" || label.Name == "label6" || label.Name == "label7" || label.Name == "label8")
+                    {
+                        label.Left = newLeft;
+                    }
                 }
             }
 
@@ -173,6 +176,7 @@ namespace UiBot
                 labelsSlideTimer.Stop();
             }
         }
+
 
         private void menuButton_Click(object sender, EventArgs e)
         {
@@ -221,6 +225,7 @@ namespace UiBot
                 this.Controls.Add(connectMenu);
                 connectMenu.Show();
                 isConnectMenuVisible = true;
+                currentTab.Text = "Connection Menu";
             }
         }
 
@@ -247,6 +252,7 @@ namespace UiBot
                 this.Controls.Add(settingMenu);
                 settingMenu.Show();
                 isSettingMenuVisible = true;
+                currentTab.Text = "Settings Menu";
             }
         }
 
@@ -272,6 +278,8 @@ namespace UiBot
                 this.Controls.Add(traderMenu);
                 traderMenu.Show();
                 isTraderMenuVisible = true;
+                currentTab.Text = "Trader Menu";
+
             }
         }
 
@@ -297,6 +305,8 @@ namespace UiBot
                 this.Controls.Add(controlMenu);
                 controlMenu.Show();
                 isControlMenuVisible = true;
+                currentTab.Text = "Controls Menu";
+
             }
         }
 
@@ -325,7 +335,7 @@ namespace UiBot
             {
                 HideControlMenu();
             }
-            else if(isTraderMenuVisible)
+            else if (isTraderMenuVisible)
             {
                 HideTraderMenu();
             }

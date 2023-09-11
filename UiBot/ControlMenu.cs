@@ -142,7 +142,7 @@ namespace UiBot
         }
 
         // Load settings from JSON on startup
-        private void LoadSettings()
+        public void LoadSettings()
         {
             // Check if the JSON file exists
             if (File.Exists("CommandConfigData.json"))

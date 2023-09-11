@@ -43,5 +43,10 @@ namespace UiBot
                 UseShellExecute = true
             });
         }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

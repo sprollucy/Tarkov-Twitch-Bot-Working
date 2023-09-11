@@ -48,6 +48,7 @@
             label6 = new Label();
             label7 = new Label();
             label8 = new Label();
+            currentTab = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)connectButton).BeginInit();
@@ -233,6 +234,7 @@
             label5.Size = new Size(63, 23);
             label5.TabIndex = 15;
             label5.Text = "label5";
+            label5.Visible = false;
             // 
             // label6
             // 
@@ -244,6 +246,7 @@
             label6.Size = new Size(64, 23);
             label6.TabIndex = 16;
             label6.Text = "label6";
+            label6.Visible = false;
             // 
             // label7
             // 
@@ -255,6 +258,7 @@
             label7.Size = new Size(63, 23);
             label7.TabIndex = 17;
             label7.Text = "label7";
+            label7.Visible = false;
             // 
             // label8
             // 
@@ -267,12 +271,24 @@
             label8.TabIndex = 18;
             label8.Text = "Settings";
             // 
+            // currentTab
+            // 
+            currentTab.AutoSize = true;
+            currentTab.BackColor = Color.FromArgb(162, 123, 92);
+            currentTab.Font = new Font("Cambria", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            currentTab.Location = new Point(0, -2);
+            currentTab.Name = "currentTab";
+            currentTab.Size = new Size(105, 22);
+            currentTab.TabIndex = 19;
+            currentTab.Text = "Start Menu";
+            // 
             // ModernMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(220, 215, 201);
             ClientSize = new Size(951, 448);
+            Controls.Add(currentTab);
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox10);
             Controls.Add(settingsButton);
@@ -332,5 +348,6 @@
         private Label label6;
         private Label label7;
         private Label label8;
+        private Label currentTab;
     }
 }

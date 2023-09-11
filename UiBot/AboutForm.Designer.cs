@@ -119,6 +119,7 @@
             textBox3.Size = new Size(309, 334);
             textBox3.TabIndex = 1;
             textBox3.Text = resources.GetString("textBox3.Text");
+            textBox3.TextChanged += textBox3_TextChanged;
             // 
             // label1
             // 
