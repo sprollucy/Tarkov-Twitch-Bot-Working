@@ -64,7 +64,6 @@ namespace UiBot
         private TimeSpan randomKeyCooldown;
 
 
-        char nl = Convert.ToChar(11);
         private int deathCount = 0;
         Counter counter = new Counter();
 
@@ -130,11 +129,7 @@ namespace UiBot
                 // Unsubscribe from events
                 client.OnConnected -= Client_OnConnected;
                 client.OnError -= Client_OnError;
-                // Unsubscribe from other events
-
-                // Unsubscribe from PubSub events
                 pubSub.OnFollow -= PubSub_OnFollow;
-                // Unsubscribe from other PubSub events
 
                 isBotConnected = false;
             }
@@ -158,18 +153,32 @@ namespace UiBot
         {
             if (!isBotConnected)
             {
-                client = new TwitchClient();
-                client.Initialize(creds, channelId);
-                client.OnConnected += Client_OnConnected;
-                client.OnError += Client_OnError;
-                client.OnMessageReceived += Client_OnMessageReceived;
-                client.OnChatCommandReceived += Client_OnChatCommandReceived;
-                client.AddChatCommandIdentifier('$');
-                client.OnConnected += (sender, e) => isBotConnected = true;
-                client.Connect();
+                if (string.IsNullOrEmpty(Properties.Settings.Default.AccessToken) || string.IsNullOrEmpty(Properties.Settings.Default.ChannelName))
+                {
+                    MessageBox.Show("Please enter token access and channel name in the Settings Menu");
+                    Console.WriteLine("[Bot]: Disconnected");
+                    return; // Don't proceed further
+                }
 
+                try
+                {
+                    client = new TwitchClient();
+                    client.Initialize(creds, channelId);
+                    client.OnConnected += Client_OnConnected;
+                    client.OnError += Client_OnError;
+                    client.OnMessageReceived += Client_OnMessageReceived;
+                    client.OnChatCommandReceived += Client_OnChatCommandReceived;
+                    client.AddChatCommandIdentifier('$');
+                    client.OnConnected += (sender, e) => isBotConnected = true;
+                    client.Connect();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred during Twitch client initialization: {ex.Message}");
+                }
             }
         }
+
 
         private void InitializePubSub()
         {
@@ -1220,6 +1229,7 @@ namespace UiBot
                     }
                 }
             }
+
         }
 
 

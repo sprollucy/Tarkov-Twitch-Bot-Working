@@ -1,19 +1,30 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Linq;
-using System.Windows.Forms;
+using System.Media;
+using System.IO;
+using System.Numerics;
+
 
 namespace UiBot
 {
     public partial class TraderMenu : Form
     {
+        private Dictionary<string, bool> traderSoundPlayed = new Dictionary<string, bool>(); // Add this dictionary
+
+        string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        string soundFileName = Path.Combine("Sounds", "notification.wav");
+        private bool isSoundEnabled = true;
 
         public TraderMenu()
         {
+            // Combine the application directory and the sound file path
+            string soundFilePath = Path.Combine(appDirectory, soundFileName);
+
+            SoundPlayer player = new SoundPlayer(soundFilePath);
+
             InitializeComponent();
             StartTraderResetTimer();
             this.TopLevel = false;
-
+            player.Play();
         }
 
 
@@ -118,7 +129,35 @@ namespace UiBot
             labels.remainingLabel.Invoke((MethodInvoker)delegate
             {
                 labels.remainingLabel.Text = "Time Remaining: " + timeRemaining.ToString("hh\\:mm\\:ss");
+
+                // Check if timeRemaining is less than 5 minutes (300 seconds), the sound is enabled, and the sound hasn't been played for this trader
+                if (timeRemaining.TotalSeconds < 300 && isSoundEnabled && !traderSoundPlayed.ContainsKey(traderName))
+                {
+                    // Play the notification sound
+                    PlayNotificationSound();
+
+                    // Mark the sound as played for this trader
+                    traderSoundPlayed[traderName] = true;
+                }
             });
+        }
+
+
+        private void PlayNotificationSound()
+        {
+            // Create a SoundPlayer and specify the notification sound file path
+            string notificationSoundFilePath = Path.Combine(appDirectory, soundFileName);
+            SoundPlayer player = new SoundPlayer(notificationSoundFilePath);
+
+            // Play the notification sound
+            player.Play();
+        }
+
+        private void disableSound_CheckedChanged(object sender, EventArgs e)
+        {
+            // Toggle the sound state
+            isSoundEnabled = !isSoundEnabled;
+
         }
 
     }

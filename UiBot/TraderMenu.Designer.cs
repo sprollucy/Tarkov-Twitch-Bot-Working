@@ -41,59 +41,51 @@
             pictureBox9 = new PictureBox();
             pictureBox11 = new PictureBox();
             panel1 = new Panel();
-            resetAlert = new Label();
             praporRemainingTime = new Label();
             praporResetLabel = new Label();
             praporLabel = new Label();
             pictureBox12 = new PictureBox();
             panel2 = new Panel();
-            label1 = new Label();
             therapistRemainingTime = new Label();
             therapistResetLabel = new Label();
             therapistLabel = new Label();
             pictureBox13 = new PictureBox();
             panel3 = new Panel();
-            label5 = new Label();
             peacekeeperRemainingTime = new Label();
             peacekeeperResetLabel = new Label();
             peacekeeperLabel = new Label();
             pictureBox14 = new PictureBox();
             panel4 = new Panel();
-            label9 = new Label();
             ragmanRemainingTime = new Label();
             ragmanResetLabel = new Label();
             ragmanLabel = new Label();
             pictureBox15 = new PictureBox();
             panel5 = new Panel();
-            label13 = new Label();
             fenceRemainingTime = new Label();
             fenceResetLabel = new Label();
             fenceLabel = new Label();
             pictureBox16 = new PictureBox();
             panel6 = new Panel();
-            label17 = new Label();
             mechanicRemainingTime = new Label();
             mechanicResetLabel = new Label();
             mechanicLabel = new Label();
             pictureBox17 = new PictureBox();
             panel7 = new Panel();
-            label21 = new Label();
             lightkeeperRemainingTime = new Label();
             lightkeeperResetLabel = new Label();
             lightkeeperLabel = new Label();
             pictureBox20 = new PictureBox();
             panel8 = new Panel();
-            label25 = new Label();
             jaegerRemainingTime = new Label();
             jaegerResetLabel = new Label();
             jaegerLabel = new Label();
             pictureBox19 = new PictureBox();
             panel9 = new Panel();
-            label29 = new Label();
             skierRemainingTime = new Label();
             skierResetLabel = new Label();
             skierLabel = new Label();
             pictureBox18 = new PictureBox();
+            disableSound = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -244,7 +236,6 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(resetAlert);
             panel1.Controls.Add(praporRemainingTime);
             panel1.Controls.Add(praporResetLabel);
             panel1.Controls.Add(praporLabel);
@@ -253,17 +244,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(220, 123);
             panel1.TabIndex = 34;
-            // 
-            // resetAlert
-            // 
-            resetAlert.AutoSize = true;
-            resetAlert.BackColor = Color.FromArgb(181, 176, 163);
-            resetAlert.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            resetAlert.Location = new Point(3, 94);
-            resetAlert.Name = "resetAlert";
-            resetAlert.Size = new Size(77, 21);
-            resetAlert.TabIndex = 3;
-            resetAlert.Text = "resetAlert";
             // 
             // praporRemainingTime
             // 
@@ -310,7 +290,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(label1);
             panel2.Controls.Add(therapistRemainingTime);
             panel2.Controls.Add(therapistResetLabel);
             panel2.Controls.Add(therapistLabel);
@@ -319,17 +298,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(220, 123);
             panel2.TabIndex = 35;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.FromArgb(181, 176, 163);
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(3, 94);
-            label1.Name = "label1";
-            label1.Size = new Size(52, 21);
-            label1.TabIndex = 3;
-            label1.Text = "label1";
             // 
             // therapistRemainingTime
             // 
@@ -376,7 +344,6 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(label5);
             panel3.Controls.Add(peacekeeperRemainingTime);
             panel3.Controls.Add(peacekeeperResetLabel);
             panel3.Controls.Add(peacekeeperLabel);
@@ -385,17 +352,6 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(220, 123);
             panel3.TabIndex = 36;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.BackColor = Color.FromArgb(181, 176, 163);
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(3, 94);
-            label5.Name = "label5";
-            label5.Size = new Size(52, 21);
-            label5.TabIndex = 3;
-            label5.Text = "label5";
             // 
             // peacekeeperRemainingTime
             // 
@@ -442,7 +398,6 @@
             // 
             // panel4
             // 
-            panel4.Controls.Add(label9);
             panel4.Controls.Add(ragmanRemainingTime);
             panel4.Controls.Add(ragmanResetLabel);
             panel4.Controls.Add(ragmanLabel);
@@ -451,17 +406,6 @@
             panel4.Name = "panel4";
             panel4.Size = new Size(220, 123);
             panel4.TabIndex = 39;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.BackColor = Color.FromArgb(181, 176, 163);
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label9.Location = new Point(3, 94);
-            label9.Name = "label9";
-            label9.Size = new Size(52, 21);
-            label9.TabIndex = 3;
-            label9.Text = "label9";
             // 
             // ragmanRemainingTime
             // 
@@ -508,7 +452,6 @@
             // 
             // panel5
             // 
-            panel5.Controls.Add(label13);
             panel5.Controls.Add(fenceRemainingTime);
             panel5.Controls.Add(fenceResetLabel);
             panel5.Controls.Add(fenceLabel);
@@ -517,17 +460,6 @@
             panel5.Name = "panel5";
             panel5.Size = new Size(220, 123);
             panel5.TabIndex = 38;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.BackColor = Color.FromArgb(181, 176, 163);
-            label13.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label13.Location = new Point(3, 94);
-            label13.Name = "label13";
-            label13.Size = new Size(61, 21);
-            label13.TabIndex = 3;
-            label13.Text = "label13";
             // 
             // fenceRemainingTime
             // 
@@ -574,7 +506,6 @@
             // 
             // panel6
             // 
-            panel6.Controls.Add(label17);
             panel6.Controls.Add(mechanicRemainingTime);
             panel6.Controls.Add(mechanicResetLabel);
             panel6.Controls.Add(mechanicLabel);
@@ -583,17 +514,6 @@
             panel6.Name = "panel6";
             panel6.Size = new Size(220, 123);
             panel6.TabIndex = 37;
-            // 
-            // label17
-            // 
-            label17.AutoSize = true;
-            label17.BackColor = Color.FromArgb(181, 176, 163);
-            label17.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label17.Location = new Point(3, 94);
-            label17.Name = "label17";
-            label17.Size = new Size(61, 21);
-            label17.TabIndex = 3;
-            label17.Text = "label17";
             // 
             // mechanicRemainingTime
             // 
@@ -640,7 +560,6 @@
             // 
             // panel7
             // 
-            panel7.Controls.Add(label21);
             panel7.Controls.Add(lightkeeperRemainingTime);
             panel7.Controls.Add(lightkeeperResetLabel);
             panel7.Controls.Add(lightkeeperLabel);
@@ -649,17 +568,6 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(220, 123);
             panel7.TabIndex = 42;
-            // 
-            // label21
-            // 
-            label21.AutoSize = true;
-            label21.BackColor = Color.FromArgb(181, 176, 163);
-            label21.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label21.Location = new Point(3, 94);
-            label21.Name = "label21";
-            label21.Size = new Size(61, 21);
-            label21.TabIndex = 3;
-            label21.Text = "label21";
             // 
             // lightkeeperRemainingTime
             // 
@@ -706,7 +614,6 @@
             // 
             // panel8
             // 
-            panel8.Controls.Add(label25);
             panel8.Controls.Add(jaegerRemainingTime);
             panel8.Controls.Add(jaegerResetLabel);
             panel8.Controls.Add(jaegerLabel);
@@ -715,17 +622,6 @@
             panel8.Name = "panel8";
             panel8.Size = new Size(220, 123);
             panel8.TabIndex = 41;
-            // 
-            // label25
-            // 
-            label25.AutoSize = true;
-            label25.BackColor = Color.FromArgb(181, 176, 163);
-            label25.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label25.Location = new Point(3, 94);
-            label25.Name = "label25";
-            label25.Size = new Size(61, 21);
-            label25.TabIndex = 3;
-            label25.Text = "label25";
             // 
             // jaegerRemainingTime
             // 
@@ -772,7 +668,6 @@
             // 
             // panel9
             // 
-            panel9.Controls.Add(label29);
             panel9.Controls.Add(skierRemainingTime);
             panel9.Controls.Add(skierResetLabel);
             panel9.Controls.Add(skierLabel);
@@ -781,17 +676,6 @@
             panel9.Name = "panel9";
             panel9.Size = new Size(220, 123);
             panel9.TabIndex = 40;
-            // 
-            // label29
-            // 
-            label29.AutoSize = true;
-            label29.BackColor = Color.FromArgb(181, 176, 163);
-            label29.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label29.Location = new Point(3, 94);
-            label29.Name = "label29";
-            label29.Size = new Size(61, 21);
-            label29.TabIndex = 3;
-            label29.Text = "label29";
             // 
             // skierRemainingTime
             // 
@@ -836,6 +720,17 @@
             pictureBox18.TabIndex = 10;
             pictureBox18.TabStop = false;
             // 
+            // disableSound
+            // 
+            disableSound.AutoSize = true;
+            disableSound.Location = new Point(863, 404);
+            disableSound.Name = "disableSound";
+            disableSound.Size = new Size(83, 19);
+            disableSound.TabIndex = 43;
+            disableSound.Text = "checkBox1";
+            disableSound.UseVisualStyleBackColor = true;
+            disableSound.CheckedChanged += disableSound_CheckedChanged;
+            // 
             // TraderMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -843,6 +738,7 @@
             BackColor = Color.FromArgb(220, 215, 201);
             ClientSize = new Size(967, 487);
             ControlBox = false;
+            Controls.Add(disableSound);
             Controls.Add(panel7);
             Controls.Add(panel4);
             Controls.Add(panel8);
@@ -906,6 +802,7 @@
             panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox18).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -924,45 +821,36 @@
         private Panel panel1;
         private Label praporLabel;
         private Label praporResetLabel;
-        private Label resetAlert;
         private Label praporRemainingTime;
         private Panel panel2;
-        private Label label1;
         private Label therapistRemainingTime;
         private Label therapistResetLabel;
         private Label therapistLabel;
         private Panel panel3;
-        private Label label5;
         private Label peacekeeperRemainingTime;
         private Label peacekeeperResetLabel;
         private Label peacekeeperLabel;
         private Panel panel4;
-        private Label label9;
         private Label ragmanRemainingTime;
         private Label ragmanResetLabel;
         private Label ragmanLabel;
         private Panel panel5;
-        private Label label13;
         private Label fenceRemainingTime;
         private Label fenceResetLabel;
         private Label fenceLabel;
         private Panel panel6;
-        private Label label17;
         private Label mechanicRemainingTime;
         private Label mechanicResetLabel;
         private Label mechanicLabel;
         private Panel panel7;
-        private Label label21;
         private Label lightkeeperRemainingTime;
         private Label lightkeeperResetLabel;
         private Label lightkeeperLabel;
         private Panel panel8;
-        private Label label25;
         private Label jaegerRemainingTime;
         private Label jaegerResetLabel;
         private Label jaegerLabel;
         private Panel panel9;
-        private Label label29;
         private Label skierRemainingTime;
         private Label skierResetLabel;
         private Label skierLabel;
@@ -975,5 +863,6 @@
         private PictureBox pictureBox20;
         private PictureBox pictureBox19;
         private PictureBox pictureBox18;
+        private CheckBox disableSound;
     }
 }

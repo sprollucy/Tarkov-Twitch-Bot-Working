@@ -58,6 +58,7 @@
             // 
             // consoleTextBox
             // 
+            consoleTextBox.BackColor = Color.FromArgb(181, 176, 163);
             consoleTextBox.Font = new Font("Arial", 12F, FontStyle.Regular, GraphicsUnit.Point);
             consoleTextBox.Location = new Point(63, 28);
             consoleTextBox.Multiline = true;
@@ -109,7 +110,7 @@
             panel1.Controls.Add(enableKitDrop);
             panel1.Controls.Add(enableWiggle);
             panel1.Controls.Add(pictureBox1);
-            panel1.Location = new Point(654, 152);
+            panel1.Location = new Point(643, 78);
             panel1.Name = "panel1";
             panel1.Size = new Size(301, 262);
             panel1.TabIndex = 12;

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlMenu));
             wiggleCooldownTextBox = new TextBox();
             dropCooldownTextBox = new TextBox();
             gooseCooldownTextBox = new TextBox();
@@ -52,14 +54,17 @@
             checkBox1 = new CheckBox();
             pictureBox1 = new PictureBox();
             pictureBox10 = new PictureBox();
+            imageList1 = new ImageList(components);
+            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // wiggleCooldownTextBox
             // 
-            wiggleCooldownTextBox.Location = new Point(149, 32);
+            wiggleCooldownTextBox.Location = new Point(144, 72);
             wiggleCooldownTextBox.Name = "wiggleCooldownTextBox";
             wiggleCooldownTextBox.Size = new Size(100, 23);
             wiggleCooldownTextBox.TabIndex = 0;
@@ -68,7 +73,7 @@
             // 
             // dropCooldownTextBox
             // 
-            dropCooldownTextBox.Location = new Point(149, 61);
+            dropCooldownTextBox.Location = new Point(144, 101);
             dropCooldownTextBox.Name = "dropCooldownTextBox";
             dropCooldownTextBox.Size = new Size(100, 23);
             dropCooldownTextBox.TabIndex = 1;
@@ -76,7 +81,7 @@
             // 
             // gooseCooldownTextBox
             // 
-            gooseCooldownTextBox.Location = new Point(149, 90);
+            gooseCooldownTextBox.Location = new Point(144, 130);
             gooseCooldownTextBox.Name = "gooseCooldownTextBox";
             gooseCooldownTextBox.Size = new Size(100, 23);
             gooseCooldownTextBox.TabIndex = 2;
@@ -84,21 +89,21 @@
             // 
             // randomKeyCooldownTextBox
             // 
-            randomKeyCooldownTextBox.Location = new Point(149, 119);
+            randomKeyCooldownTextBox.Location = new Point(144, 159);
             randomKeyCooldownTextBox.Name = "randomKeyCooldownTextBox";
             randomKeyCooldownTextBox.Size = new Size(100, 23);
             randomKeyCooldownTextBox.TabIndex = 3;
             // 
             // turnCooldownTextBox
             // 
-            turnCooldownTextBox.Location = new Point(149, 148);
+            turnCooldownTextBox.Location = new Point(144, 188);
             turnCooldownTextBox.Name = "turnCooldownTextBox";
             turnCooldownTextBox.Size = new Size(100, 23);
             turnCooldownTextBox.TabIndex = 4;
             // 
             // oneClickCooldownTextBox
             // 
-            oneClickCooldownTextBox.Location = new Point(149, 177);
+            oneClickCooldownTextBox.Location = new Point(144, 217);
             oneClickCooldownTextBox.Name = "oneClickCooldownTextBox";
             oneClickCooldownTextBox.Size = new Size(100, 23);
             oneClickCooldownTextBox.TabIndex = 5;
@@ -116,52 +121,53 @@
             // enableBits
             // 
             enableBits.AutoSize = true;
-            enableBits.Location = new Point(255, 7);
+            enableBits.BackColor = Color.FromArgb(181, 176, 163);
+            enableBits.Location = new Point(250, 47);
             enableBits.Name = "enableBits";
             enableBits.Size = new Size(83, 19);
             enableBits.TabIndex = 7;
             enableBits.Text = "Enable Bits";
-            enableBits.UseVisualStyleBackColor = true;
+            enableBits.UseVisualStyleBackColor = false;
             enableBits.CheckedChanged += enableBits_CheckedChanged;
             // 
             // wiggleCostBox
             // 
-            wiggleCostBox.Location = new Point(255, 32);
+            wiggleCostBox.Location = new Point(250, 72);
             wiggleCostBox.Name = "wiggleCostBox";
             wiggleCostBox.Size = new Size(100, 23);
             wiggleCostBox.TabIndex = 8;
             // 
             // dropCostBox
             // 
-            dropCostBox.Location = new Point(255, 61);
+            dropCostBox.Location = new Point(250, 101);
             dropCostBox.Name = "dropCostBox";
             dropCostBox.Size = new Size(100, 23);
             dropCostBox.TabIndex = 9;
             // 
             // gooseCostBox
             // 
-            gooseCostBox.Location = new Point(255, 90);
+            gooseCostBox.Location = new Point(250, 130);
             gooseCostBox.Name = "gooseCostBox";
             gooseCostBox.Size = new Size(100, 23);
             gooseCostBox.TabIndex = 10;
             // 
             // randomKeyCostBox
             // 
-            randomKeyCostBox.Location = new Point(255, 119);
+            randomKeyCostBox.Location = new Point(250, 159);
             randomKeyCostBox.Name = "randomKeyCostBox";
             randomKeyCostBox.Size = new Size(100, 23);
             randomKeyCostBox.TabIndex = 11;
             // 
             // turnCostBox
             // 
-            turnCostBox.Location = new Point(255, 148);
+            turnCostBox.Location = new Point(250, 188);
             turnCostBox.Name = "turnCostBox";
             turnCostBox.Size = new Size(100, 23);
             turnCostBox.TabIndex = 12;
             // 
             // oneClickCostBox
             // 
-            oneClickCostBox.Location = new Point(255, 177);
+            oneClickCostBox.Location = new Point(250, 217);
             oneClickCostBox.Name = "oneClickCostBox";
             oneClickCostBox.Size = new Size(100, 23);
             oneClickCostBox.TabIndex = 13;
@@ -169,67 +175,73 @@
             // oneClickCheck
             // 
             oneClickCheck.AutoSize = true;
-            oneClickCheck.Location = new Point(20, 181);
+            oneClickCheck.BackColor = Color.FromArgb(181, 176, 163);
+            oneClickCheck.Location = new Point(15, 221);
             oneClickCheck.Name = "oneClickCheck";
             oneClickCheck.Size = new Size(105, 19);
             oneClickCheck.TabIndex = 14;
             oneClickCheck.Text = "oneClickCheck";
-            oneClickCheck.UseVisualStyleBackColor = true;
+            oneClickCheck.UseVisualStyleBackColor = false;
             oneClickCheck.CheckedChanged += oneClickCheck_CheckedChanged;
             // 
             // randomTurn
             // 
             randomTurn.AutoSize = true;
-            randomTurn.Location = new Point(20, 152);
+            randomTurn.BackColor = Color.FromArgb(181, 176, 163);
+            randomTurn.Location = new Point(15, 192);
             randomTurn.Name = "randomTurn";
             randomTurn.Size = new Size(85, 19);
             randomTurn.TabIndex = 15;
             randomTurn.Text = "EnableTurn";
-            randomTurn.UseVisualStyleBackColor = true;
+            randomTurn.UseVisualStyleBackColor = false;
             randomTurn.CheckedChanged += randomTurn_CheckedChanged;
             // 
             // enableRandomKey
             // 
             enableRandomKey.AutoSize = true;
-            enableRandomKey.Location = new Point(20, 121);
+            enableRandomKey.BackColor = Color.FromArgb(181, 176, 163);
+            enableRandomKey.Location = new Point(15, 161);
             enableRandomKey.Name = "enableRandomKey";
             enableRandomKey.Size = new Size(125, 19);
             enableRandomKey.TabIndex = 16;
             enableRandomKey.Text = "enableRandomKey";
-            enableRandomKey.UseVisualStyleBackColor = true;
+            enableRandomKey.UseVisualStyleBackColor = false;
             enableRandomKey.CheckedChanged += enableRandomKey_CheckedChanged;
             // 
             // chkEnableGoose
             // 
             chkEnableGoose.AutoSize = true;
-            chkEnableGoose.Location = new Point(20, 94);
+            chkEnableGoose.BackColor = Color.FromArgb(181, 176, 163);
+            chkEnableGoose.Location = new Point(15, 134);
             chkEnableGoose.Name = "chkEnableGoose";
             chkEnableGoose.Size = new Size(113, 19);
             chkEnableGoose.TabIndex = 17;
             chkEnableGoose.Text = "chkEnableGoose";
-            chkEnableGoose.UseVisualStyleBackColor = true;
+            chkEnableGoose.UseVisualStyleBackColor = false;
             chkEnableGoose.CheckedChanged += chkEnableGoose_CheckedChanged;
             // 
             // enableKitDrop
             // 
             enableKitDrop.AutoSize = true;
-            enableKitDrop.Location = new Point(20, 65);
+            enableKitDrop.BackColor = Color.FromArgb(181, 176, 163);
+            enableKitDrop.Location = new Point(15, 105);
             enableKitDrop.Name = "enableKitDrop";
             enableKitDrop.Size = new Size(101, 19);
             enableKitDrop.TabIndex = 18;
             enableKitDrop.Text = "enableKitDrop";
-            enableKitDrop.UseVisualStyleBackColor = true;
+            enableKitDrop.UseVisualStyleBackColor = false;
             enableKitDrop.CheckedChanged += enableKitDrop_CheckedChanged;
             // 
             // enableWiggle
             // 
             enableWiggle.AutoSize = true;
-            enableWiggle.Location = new Point(20, 36);
+            enableWiggle.BackColor = Color.FromArgb(181, 176, 163);
+            enableWiggle.Location = new Point(15, 76);
             enableWiggle.Name = "enableWiggle";
             enableWiggle.Size = new Size(98, 19);
             enableWiggle.TabIndex = 19;
             enableWiggle.Text = "enableWiggle";
-            enableWiggle.UseVisualStyleBackColor = true;
+            enableWiggle.UseVisualStyleBackColor = false;
             enableWiggle.CheckedChanged += enableWiggle_CheckedChanged;
             // 
             // panel1
@@ -254,7 +266,8 @@
             panel1.Controls.Add(dropCostBox);
             panel1.Controls.Add(enableBits);
             panel1.Controls.Add(wiggleCostBox);
-            panel1.Location = new Point(53, 17);
+            panel1.Controls.Add(pictureBox2);
+            panel1.Location = new Point(51, 23);
             panel1.Name = "panel1";
             panel1.Size = new Size(409, 388);
             panel1.TabIndex = 20;
@@ -263,17 +276,18 @@
             // checkBox1
             // 
             checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(20, 206);
+            checkBox1.BackColor = Color.FromArgb(181, 176, 163);
+            checkBox1.Location = new Point(15, 246);
             checkBox1.Name = "checkBox1";
             checkBox1.Size = new Size(175, 19);
             checkBox1.TabIndex = 20;
             checkBox1.Text = "Enable Trader Timer Updates";
-            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.UseVisualStyleBackColor = false;
             // 
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Red;
-            pictureBox1.Location = new Point(-2, 8);
+            pictureBox1.Location = new Point(-5, 8);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(47, 47);
             pictureBox1.TabIndex = 21;
@@ -287,6 +301,22 @@
             pictureBox10.Size = new Size(757, 20);
             pictureBox10.TabIndex = 22;
             pictureBox10.TabStop = false;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageSize = new Size(16, 16);
+            imageList1.TransparentColor = Color.Transparent;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(409, 385);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 21;
+            pictureBox2.TabStop = false;
             // 
             // ControlMenu
             // 
@@ -306,6 +336,7 @@
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -335,5 +366,7 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox10;
         private CheckBox checkBox1;
+        private ImageList imageList1;
+        private PictureBox pictureBox2;
     }
 }

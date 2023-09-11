@@ -38,24 +38,24 @@ namespace UiBot.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string TextBox1Text {
+        public string AccessToken {
             get {
-                return ((string)(this["TextBox1Text"]));
+                return ((string)(this["AccessToken"]));
             }
             set {
-                this["TextBox1Text"] = value;
+                this["AccessToken"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string TextBox2Text {
+        public string ChannelName {
             get {
-                return ((string)(this["TextBox2Text"]));
+                return ((string)(this["ChannelName"]));
             }
             set {
-                this["TextBox2Text"] = value;
+                this["ChannelName"] = value;
             }
         }
         

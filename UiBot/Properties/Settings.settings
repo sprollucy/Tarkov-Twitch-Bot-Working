@@ -5,10 +5,10 @@
     <Setting Name="IsGooseEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="TextBox1Text" Type="System.String" Scope="User">
+    <Setting Name="AccessToken" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="TextBox2Text" Type="System.String" Scope="User">
+    <Setting Name="ChannelName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="IsWiggleEnabled" Type="System.Boolean" Scope="User">

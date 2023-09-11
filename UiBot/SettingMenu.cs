@@ -1,20 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Newtonsoft.Json;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Reflection.Emit;
-using System.Runtime.InteropServices;
+﻿using Newtonsoft.Json;
 using System.Diagnostics;
-using Microsoft.Win32;
+
+
 namespace UiBot
 {
     public partial class SettingMenu : Form
@@ -47,13 +34,13 @@ namespace UiBot
 
         private void accessBox_TextChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.TextBox1Text = accessBox.Text;
+            Properties.Settings.Default.AccessToken = accessBox.Text;
             Properties.Settings.Default.Save();
         }
 
         private void channelBox2_TextChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.TextBox2Text = channelBox2.Text;
+            Properties.Settings.Default.ChannelName = channelBox2.Text;
             Properties.Settings.Default.Save();
         }
 

@@ -274,13 +274,17 @@
             // currentTab
             // 
             currentTab.AutoSize = true;
-            currentTab.BackColor = Color.FromArgb(162, 123, 92);
+            currentTab.BackColor = Color.FromArgb(44, 54, 57);
             currentTab.Font = new Font("Cambria", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            currentTab.Image = (Image)resources.GetObject("currentTab.Image");
+            currentTab.ImageAlign = ContentAlignment.MiddleRight;
             currentTab.Location = new Point(0, -2);
             currentTab.Name = "currentTab";
+            currentTab.RightToLeft = RightToLeft.No;
             currentTab.Size = new Size(105, 22);
             currentTab.TabIndex = 19;
             currentTab.Text = "Start Menu";
+            currentTab.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // ModernMenu
             // 
