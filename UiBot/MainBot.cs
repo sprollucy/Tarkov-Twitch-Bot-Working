@@ -1164,7 +1164,7 @@ namespace UiBot
             System.Threading.Timer timer = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
         }
 
-        private void CheckTraderResetTimes(object state)
+        public void CheckTraderResetTimes(object state)
         {
             var traderResetInfoService = new TraderResetInfoService();
 

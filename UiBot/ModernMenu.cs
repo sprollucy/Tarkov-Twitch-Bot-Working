@@ -21,9 +21,11 @@ namespace UiBot
         private ConnectMenu connectMenu;
         private SettingMenu settingMenu;
         private ControlMenu controlMenu;
+        private TraderMenu traderMenu;
         private bool isConnectMenuVisible = false;
         private bool isSettingMenuVisible = false;
         private bool isControlMenuVisible = false;
+        private bool isTraderMenuVisible = false;
         private bool isLabelsSlidOut = false;
         private int labelsOriginalLeft;
         private int labelsTargetLeft;
@@ -101,8 +103,15 @@ namespace UiBot
             setMouseEvents(pictureBox7);
             setMouseEvents(pictureBox8);
             setMouseEvents(settingsButton);
+            CheckStart();
         }
 
+        public void CheckStart()
+        {
+            var traderResetInfoService = new TraderResetInfoService();
+            traderResetInfoService.GetAndSaveTraderResetInfoWithLatest();
+
+        }
 
         private CounterData LoadCounterData()
         {
@@ -250,6 +259,31 @@ namespace UiBot
                 isSettingMenuVisible = false;
             }
         }
+        private void ShowTraderMenu()
+        {
+            if (!isTraderMenuVisible)
+            {
+                if (traderMenu == null || traderMenu.IsDisposed)
+                {
+                    traderMenu = new TraderMenu();
+                    traderMenu.Dock = DockStyle.Fill;
+                    traderMenu.Location = new Point(-traderMenu.Width, 0);
+                }
+                this.Controls.Add(traderMenu);
+                traderMenu.Show();
+                isTraderMenuVisible = true;
+            }
+        }
+
+        private void HideTraderMenu()
+        {
+            if (isTraderMenuVisible)
+            {
+                this.Controls.Remove(traderMenu);
+                traderMenu.Hide();
+                isTraderMenuVisible = false;
+            }
+        }
         private void ShowControlMenu()
         {
             if (!isControlMenuVisible)
@@ -291,6 +325,10 @@ namespace UiBot
             {
                 HideControlMenu();
             }
+            else if(isTraderMenuVisible)
+            {
+                HideTraderMenu();
+            }
         }
 
         private void commandMenu_Click(object sender, EventArgs e)
@@ -302,6 +340,12 @@ namespace UiBot
         private void ModernMenu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void pictureBox5_Click(object sender, EventArgs e)
+        {
+            HideOpenMenu();
+            ShowTraderMenu();
         }
     }
 }

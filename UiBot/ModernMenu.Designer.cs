@@ -110,11 +110,14 @@
             // pictureBox5
             // 
             pictureBox5.BackColor = Color.FromArgb(63, 78, 79);
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
             pictureBox5.Location = new Point(0, 182);
             pictureBox5.Name = "pictureBox5";
             pictureBox5.Size = new Size(47, 50);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox5.TabIndex = 4;
             pictureBox5.TabStop = false;
+            pictureBox5.Click += pictureBox5_Click;
             // 
             // pictureBox6
             // 
@@ -147,7 +150,7 @@
             // 
             pictureBox9.BackColor = Color.FromArgb(192, 0, 0);
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(780, 0);
+            pictureBox9.Location = new Point(931, 0);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(20, 20);
             pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
@@ -160,7 +163,7 @@
             pictureBox10.BackColor = Color.FromArgb(44, 54, 57);
             pictureBox10.Location = new Point(0, 0);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(802, 20);
+            pictureBox10.Size = new Size(952, 20);
             pictureBox10.TabIndex = 9;
             pictureBox10.TabStop = false;
             // 
@@ -214,11 +217,11 @@
             label4.AutoSize = true;
             label4.BackColor = Color.FromArgb(63, 78, 79);
             label4.Font = new Font("Constantia", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(-19, 195);
+            label4.Location = new Point(-33, 195);
             label4.Name = "label4";
-            label4.Size = new Size(64, 23);
+            label4.Size = new Size(78, 23);
             label4.TabIndex = 14;
-            label4.Text = "label4";
+            label4.Text = "Traders";
             // 
             // label5
             // 
@@ -269,7 +272,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(220, 215, 201);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(951, 448);
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox10);
             Controls.Add(settingsButton);
