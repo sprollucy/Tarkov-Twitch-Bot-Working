@@ -38,7 +38,7 @@ namespace UiBot
         private const int MOUSEEVENTF_LEFTDOWN = 0x02;
         private const int MOUSEEVENTF_LEFTUP = 0x04;
         private const int MOUSEEVENTF_MOVE = 0x0001;
-        ControlMenu controlMenu = new ControlMenu(); // You may need to initialize it accordingly
+        ControlMenu controlMenu = new ControlMenu();
 
         // Handles connection
         private ConnectionCredentials creds;
