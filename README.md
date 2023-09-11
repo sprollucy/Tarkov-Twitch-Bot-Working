@@ -4,9 +4,10 @@ This is my simple to use and open source twitch bot designed to be used with tar
 It features chat commands to interact with you as you play. Only a few right now but more are coming. It also includes a trader reset screen for the true sweats to track exactly when traders reset and twitch chat reminders for it also!  
 Readme and other info currently incomplete. This app has zero error exception handling so if it crashes, it may lock up!
 
+### Download Here
+[1.0.0.03a](https://github.com/sprollucy/Tarkov-Twitch-Bot-Working/releases/tag/1.0.0.03a)
 
-
-# How To Use
+## How To Use
 1. First step is to create a account on Twitch.tv that you want to use as the bot account
 2. Go to your Twitch chat and mod the bot you have created
 3. Go to a website or use twitches tool to generate a Access Token that has all the permissions you want the bot to have
@@ -24,7 +25,7 @@ https://samperson.itch.io/desktop-goose
 1. Once the game is downloaded all the files inside the folder named "Goose"
 2. Once the files are in there, delete the folder called "FOR MOD-MAKERS" as it opens a pop up everytime the command runs
 
-# Commands
+## Commands
 Normal Commands:
 
 !mybits
@@ -79,7 +80,7 @@ Broadcaster Commands:
 
 
 
-# Changelog
+## Changelog
 
 1.0.0.3-alpha 09-10-2023
 -Rebuild Commands and unified most of the timer systems
