@@ -27,6 +27,10 @@ namespace UiBot
             InitializeComponent();
             StartTraderResetTimer();
             this.TopLevel = false;
+
+            disableSound.Checked = Properties.Settings.Default.isTraderMuted;
+
+
         }
 
 
@@ -152,13 +156,19 @@ namespace UiBot
             SoundPlayer player = new SoundPlayer(notificationSoundFilePath);
 
             // Play the notification sound
-            player.Play();
+            Thread.Sleep(1000);
+            if (!Properties.Settings.Default.isTraderMuted)
+            {
+                player.Play();
+            }
         }
 
         private void disableSound_CheckedChanged(object sender, EventArgs e)
         {
+            Properties.Settings.Default.isTraderMuted = disableSound.Checked;
             // Toggle the sound state
             isSoundEnabled = !isSoundEnabled;
+            Properties.Settings.Default.Save();
 
         }
 

@@ -21,8 +21,8 @@ namespace UiBot
         private static Dictionary<string, int> userBits = new Dictionary<string, int>();
         //command dictionary
         private Dictionary<string, string> commandConfigData;
-        public int autoSendMessageCD; // Timer interval in seconds
 
+        public int autoSendMessageCD; 
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int dwData, int dwExtraInfo);
@@ -49,8 +49,6 @@ namespace UiBot
         private ConnectionCredentials creds;
         TwitchClient client;
         private bool isBotConnected = false;
-
-
         private static TwitchPubSub pubSub;
         private static string channelId;
 
@@ -66,6 +64,7 @@ namespace UiBot
         //drop
         private DateTime lastDropCommandTime = DateTime.MinValue;
         private TimeSpan dropCommandCooldown;
+
         private TimeSpan randomKeyCooldown;
 
 
@@ -83,13 +82,12 @@ namespace UiBot
         internal MainBot()
         {
             LoadCredentialsFromJSON();
-
         }
 
         public void Dispose()
         {
             // Dispose of any resources here
-            Disconnect(); // Ensure the bot is disconnected
+            Disconnect();
         }
 
         public void LoadCredentialsFromJSON()
@@ -148,6 +146,8 @@ namespace UiBot
                 InitializeTwitchClient();
                 InitializePubSub();
                 StartTraderResetTimer();
+                StartAutoMessage();
+
             }
         }
 
@@ -504,9 +504,9 @@ namespace UiBot
                                     TurnRandom(2000);
                                     client.SendMessage(channelId, "Turn executed.");
                                 }
-                                else if (GetRemainingWiggleCooldown().TotalSeconds > 0)
+                                else if (GetRemainingTurnCooldown().TotalSeconds > 0)
                                 {
-                                    TimeSpan remainingCooldown = GetRemainingWiggleCooldown();
+                                    TimeSpan remainingCooldown = GetRemainingTurnCooldown();
                                     client.SendMessage(channelId, $"Turn command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
                                 }
                                 else
@@ -1173,8 +1173,11 @@ namespace UiBot
 
         public void StartTraderResetTimer()
         {
-            // Create a Timer object to run the method every 5 minutes
-            System.Threading.Timer timer = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+            if (Properties.Settings.Default.IsAutoTraderEnabled)
+            {
+                // Create a Timer object to run the method every 5 minutes
+                System.Threading.Timer timer = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
+            }
         }
 
 
@@ -1236,6 +1239,7 @@ namespace UiBot
                 }
             }
         }
+
         public void LoadCommandConfigData()
         {
             try
@@ -1267,30 +1271,56 @@ namespace UiBot
             }
         }
 
+        private System.Threading.Timer timer;
+
         public void StartAutoMessage()
         {
-            // Create a Timer object to run the method every 5 minutes
-            System.Threading.Timer timer2 = new System.Threading.Timer(AutoMessageSender, null, TimeSpan.Zero, TimeSpan.FromSeconds(autoSendMessageCD));
+            // Convert the interval to milliseconds
+            int intervalMilliseconds = autoSendMessageCD * 1000;
+
+            // Create a Timer object to run the method immediately and then reschedule it
+            timer = new System.Threading.Timer(AutoMessageSender, null, 0, intervalMilliseconds);
         }
+
 
         public void AutoMessageSender(object state)
         {
-            if (!Properties.Settings.Default.IsAutoMessageEnabled)
+            try
             {
-                // Ensure that commandConfigData is loaded
-                if (commandConfigData == null)
+                if (Properties.Settings.Default.IsAutoMessageEnabled)
                 {
-                    LoadCommandConfigData();
-                }
+                    // Ensure that commandConfigData is loaded
+                    if (commandConfigData == null)
+                    {
+                        LoadCommandConfigData();
+                    }
 
-                if (commandConfigData != null && commandConfigData.ContainsKey("autoMessageBox"))
-                {
-                    string autoMessageBox = commandConfigData["autoMessageBox"];
-                    client.SendMessage(channelId, autoMessageBox);
-                    Console.WriteLine(autoMessageBox);
+                    if (commandConfigData != null && commandConfigData.ContainsKey("autoMessageBox"))
+                    {
+                        string autoMessageBox = commandConfigData["autoMessageBox"];
+
+                        // Split the message by '\\'
+                        string[] messageParts = autoMessageBox.Split(new string[] { "\\\\" }, StringSplitOptions.None);
+
+                        // Send each part as a separate message
+                        foreach (string messagePart in messageParts)
+                        {
+                            if (!string.IsNullOrEmpty(messagePart.Trim()))
+                            {
+                                client.SendMessage(channelId, messagePart);
+                                Console.WriteLine(messagePart);
+                            }
+                        }
+                    }
+                    timer.Change(autoSendMessageCD * 1000, Timeout.Infinite);
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error in AutoMessageSender: {ex.Message}");
+            }
         }
+
 
 
     }

@@ -166,5 +166,29 @@ namespace UiBot.Properties {
                 this["AutoSendTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsAutoTraderEnabled {
+            get {
+                return ((bool)(this["IsAutoTraderEnabled"]));
+            }
+            set {
+                this["IsAutoTraderEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderMuted {
+            get {
+                return ((bool)(this["isTraderMuted"]));
+            }
+            set {
+                this["isTraderMuted"] = value;
+            }
+        }
     }
 }

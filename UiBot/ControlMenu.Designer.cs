@@ -51,7 +51,14 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
-            checkBox1 = new CheckBox();
+            pictureBox9 = new PictureBox();
+            pictureBox8 = new PictureBox();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            pictureBox4 = new PictureBox();
+            label1 = new Label();
+            enableTraderCheck = new CheckBox();
             pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox10 = new PictureBox();
@@ -60,57 +67,70 @@
             autoSendMessageCD = new TextBox();
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
+            pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             SuspendLayout();
             // 
             // wiggleCooldownTextBox
             // 
-            wiggleCooldownTextBox.Location = new Point(144, 72);
+            wiggleCooldownTextBox.Location = new Point(190, 72);
             wiggleCooldownTextBox.Name = "wiggleCooldownTextBox";
             wiggleCooldownTextBox.Size = new Size(100, 23);
             wiggleCooldownTextBox.TabIndex = 0;
-            wiggleCooldownTextBox.Text = "50";
+            wiggleCooldownTextBox.Text = "300";
             wiggleCooldownTextBox.TextChanged += wiggleCooldownTextBox_TextChanged;
             // 
             // dropCooldownTextBox
             // 
-            dropCooldownTextBox.Location = new Point(144, 101);
+            dropCooldownTextBox.Location = new Point(190, 101);
             dropCooldownTextBox.Name = "dropCooldownTextBox";
             dropCooldownTextBox.Size = new Size(100, 23);
             dropCooldownTextBox.TabIndex = 1;
+            dropCooldownTextBox.Text = "300";
             dropCooldownTextBox.TextChanged += dropCooldownTextBox_TextChanged;
             // 
             // gooseCooldownTextBox
             // 
-            gooseCooldownTextBox.Location = new Point(144, 130);
+            gooseCooldownTextBox.Location = new Point(190, 130);
             gooseCooldownTextBox.Name = "gooseCooldownTextBox";
             gooseCooldownTextBox.Size = new Size(100, 23);
             gooseCooldownTextBox.TabIndex = 2;
+            gooseCooldownTextBox.Text = "300";
             gooseCooldownTextBox.TextChanged += gooseCooldownTextBox_TextChanged;
             // 
             // randomKeyCooldownTextBox
             // 
-            randomKeyCooldownTextBox.Location = new Point(144, 159);
+            randomKeyCooldownTextBox.Location = new Point(190, 159);
             randomKeyCooldownTextBox.Name = "randomKeyCooldownTextBox";
             randomKeyCooldownTextBox.Size = new Size(100, 23);
             randomKeyCooldownTextBox.TabIndex = 3;
+            randomKeyCooldownTextBox.Text = "300";
             // 
             // turnCooldownTextBox
             // 
-            turnCooldownTextBox.Location = new Point(144, 188);
+            turnCooldownTextBox.Location = new Point(190, 188);
             turnCooldownTextBox.Name = "turnCooldownTextBox";
             turnCooldownTextBox.Size = new Size(100, 23);
             turnCooldownTextBox.TabIndex = 4;
+            turnCooldownTextBox.Text = "300";
             // 
             // oneClickCooldownTextBox
             // 
-            oneClickCooldownTextBox.Location = new Point(144, 217);
+            oneClickCooldownTextBox.Location = new Point(190, 217);
             oneClickCooldownTextBox.Name = "oneClickCooldownTextBox";
             oneClickCooldownTextBox.Size = new Size(100, 23);
             oneClickCooldownTextBox.TabIndex = 5;
+            oneClickCooldownTextBox.Text = "300";
             // 
             // saveButton
             // 
@@ -126,7 +146,7 @@
             // 
             enableBits.AutoSize = true;
             enableBits.BackColor = Color.FromArgb(181, 176, 163);
-            enableBits.Location = new Point(250, 47);
+            enableBits.Location = new Point(296, 47);
             enableBits.Name = "enableBits";
             enableBits.Size = new Size(83, 19);
             enableBits.TabIndex = 7;
@@ -136,42 +156,42 @@
             // 
             // wiggleCostBox
             // 
-            wiggleCostBox.Location = new Point(250, 72);
+            wiggleCostBox.Location = new Point(296, 72);
             wiggleCostBox.Name = "wiggleCostBox";
             wiggleCostBox.Size = new Size(100, 23);
             wiggleCostBox.TabIndex = 8;
             // 
             // dropCostBox
             // 
-            dropCostBox.Location = new Point(250, 101);
+            dropCostBox.Location = new Point(296, 101);
             dropCostBox.Name = "dropCostBox";
             dropCostBox.Size = new Size(100, 23);
             dropCostBox.TabIndex = 9;
             // 
             // gooseCostBox
             // 
-            gooseCostBox.Location = new Point(250, 130);
+            gooseCostBox.Location = new Point(296, 130);
             gooseCostBox.Name = "gooseCostBox";
             gooseCostBox.Size = new Size(100, 23);
             gooseCostBox.TabIndex = 10;
             // 
             // randomKeyCostBox
             // 
-            randomKeyCostBox.Location = new Point(250, 159);
+            randomKeyCostBox.Location = new Point(296, 159);
             randomKeyCostBox.Name = "randomKeyCostBox";
             randomKeyCostBox.Size = new Size(100, 23);
             randomKeyCostBox.TabIndex = 11;
             // 
             // turnCostBox
             // 
-            turnCostBox.Location = new Point(250, 188);
+            turnCostBox.Location = new Point(296, 188);
             turnCostBox.Name = "turnCostBox";
             turnCostBox.Size = new Size(100, 23);
             turnCostBox.TabIndex = 12;
             // 
             // oneClickCostBox
             // 
-            oneClickCostBox.Location = new Point(250, 217);
+            oneClickCostBox.Location = new Point(296, 217);
             oneClickCostBox.Name = "oneClickCostBox";
             oneClickCostBox.Size = new Size(100, 23);
             oneClickCostBox.TabIndex = 13;
@@ -180,7 +200,7 @@
             // 
             oneClickCheck.AutoSize = true;
             oneClickCheck.BackColor = Color.FromArgb(181, 176, 163);
-            oneClickCheck.Location = new Point(15, 221);
+            oneClickCheck.Location = new Point(15, 217);
             oneClickCheck.Name = "oneClickCheck";
             oneClickCheck.Size = new Size(105, 19);
             oneClickCheck.TabIndex = 14;
@@ -192,7 +212,7 @@
             // 
             randomTurn.AutoSize = true;
             randomTurn.BackColor = Color.FromArgb(181, 176, 163);
-            randomTurn.Location = new Point(15, 192);
+            randomTurn.Location = new Point(15, 188);
             randomTurn.Name = "randomTurn";
             randomTurn.Size = new Size(85, 19);
             randomTurn.TabIndex = 15;
@@ -204,7 +224,7 @@
             // 
             enableRandomKey.AutoSize = true;
             enableRandomKey.BackColor = Color.FromArgb(181, 176, 163);
-            enableRandomKey.Location = new Point(15, 161);
+            enableRandomKey.Location = new Point(15, 159);
             enableRandomKey.Name = "enableRandomKey";
             enableRandomKey.Size = new Size(125, 19);
             enableRandomKey.TabIndex = 16;
@@ -216,7 +236,7 @@
             // 
             chkEnableGoose.AutoSize = true;
             chkEnableGoose.BackColor = Color.FromArgb(181, 176, 163);
-            chkEnableGoose.Location = new Point(15, 134);
+            chkEnableGoose.Location = new Point(15, 130);
             chkEnableGoose.Name = "chkEnableGoose";
             chkEnableGoose.Size = new Size(113, 19);
             chkEnableGoose.TabIndex = 17;
@@ -228,7 +248,7 @@
             // 
             enableKitDrop.AutoSize = true;
             enableKitDrop.BackColor = Color.FromArgb(181, 176, 163);
-            enableKitDrop.Location = new Point(15, 105);
+            enableKitDrop.Location = new Point(15, 101);
             enableKitDrop.Name = "enableKitDrop";
             enableKitDrop.Size = new Size(101, 19);
             enableKitDrop.TabIndex = 18;
@@ -240,7 +260,7 @@
             // 
             enableWiggle.AutoSize = true;
             enableWiggle.BackColor = Color.FromArgb(181, 176, 163);
-            enableWiggle.Location = new Point(15, 76);
+            enableWiggle.Location = new Point(15, 72);
             enableWiggle.Name = "enableWiggle";
             enableWiggle.Size = new Size(98, 19);
             enableWiggle.TabIndex = 19;
@@ -250,7 +270,14 @@
             // 
             // panel1
             // 
-            panel1.Controls.Add(checkBox1);
+            panel1.Controls.Add(pictureBox9);
+            panel1.Controls.Add(pictureBox8);
+            panel1.Controls.Add(pictureBox7);
+            panel1.Controls.Add(pictureBox6);
+            panel1.Controls.Add(pictureBox5);
+            panel1.Controls.Add(pictureBox4);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(enableTraderCheck);
             panel1.Controls.Add(oneClickCheck);
             panel1.Controls.Add(randomTurn);
             panel1.Controls.Add(enableRandomKey);
@@ -277,16 +304,93 @@
             panel1.TabIndex = 20;
             panel1.Paint += panel1_Paint;
             // 
-            // checkBox1
+            // pictureBox9
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.BackColor = Color.FromArgb(181, 176, 163);
-            checkBox1.Location = new Point(15, 246);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(175, 19);
-            checkBox1.TabIndex = 20;
-            checkBox1.Text = "Enable Trader Timer Updates";
-            checkBox1.UseVisualStyleBackColor = false;
+            pictureBox9.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
+            pictureBox9.Location = new Point(164, 216);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(20, 20);
+            pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox9.TabIndex = 34;
+            pictureBox9.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
+            pictureBox8.Location = new Point(164, 188);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(20, 20);
+            pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox8.TabIndex = 33;
+            pictureBox8.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(164, 159);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(20, 20);
+            pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox7.TabIndex = 32;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(164, 130);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(20, 20);
+            pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox6.TabIndex = 31;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(164, 101);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(20, 20);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 30;
+            pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(164, 72);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(20, 20);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 29;
+            pictureBox4.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(15, 300);
+            label1.Name = "label1";
+            label1.Size = new Size(370, 30);
+            label1.TabIndex = 28;
+            label1.Text = "Bits are untested\r\nThey also do not have cooldowns currently or a way to turn them on!";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // enableTraderCheck
+            // 
+            enableTraderCheck.AutoSize = true;
+            enableTraderCheck.BackColor = Color.FromArgb(181, 176, 163);
+            enableTraderCheck.Location = new Point(15, 246);
+            enableTraderCheck.Name = "enableTraderCheck";
+            enableTraderCheck.Size = new Size(175, 19);
+            enableTraderCheck.TabIndex = 20;
+            enableTraderCheck.Text = "Enable Trader Timer Updates";
+            enableTraderCheck.UseVisualStyleBackColor = false;
+            enableTraderCheck.CheckedChanged += enableTraderCheck_CheckedChanged;
             // 
             // pictureBox2
             // 
@@ -324,16 +428,16 @@
             // 
             // autoMessageBox
             // 
-            autoMessageBox.Location = new Point(639, 58);
+            autoMessageBox.Location = new Point(627, 99);
             autoMessageBox.Multiline = true;
             autoMessageBox.Name = "autoMessageBox";
-            autoMessageBox.Size = new Size(140, 60);
+            autoMessageBox.Size = new Size(228, 106);
             autoMessageBox.TabIndex = 23;
             autoMessageBox.Text = "Default";
             // 
             // autoSendMessageCD
             // 
-            autoSendMessageCD.Location = new Point(579, 58);
+            autoSendMessageCD.Location = new Point(550, 70);
             autoSendMessageCD.Name = "autoSendMessageCD";
             autoSendMessageCD.Size = new Size(54, 23);
             autoSendMessageCD.TabIndex = 24;
@@ -342,7 +446,7 @@
             // autoMessageLabel
             // 
             autoMessageLabel.AutoSize = true;
-            autoMessageLabel.Location = new Point(522, 23);
+            autoMessageLabel.Location = new Point(493, 40);
             autoMessageLabel.Name = "autoMessageLabel";
             autoMessageLabel.Size = new Size(111, 15);
             autoMessageLabel.TabIndex = 25;
@@ -351,13 +455,23 @@
             // enableAutoMessageCheck
             // 
             enableAutoMessageCheck.AutoSize = true;
-            enableAutoMessageCheck.Location = new Point(641, 24);
+            enableAutoMessageCheck.Location = new Point(628, 70);
             enableAutoMessageCheck.Name = "enableAutoMessageCheck";
             enableAutoMessageCheck.Size = new Size(139, 19);
             enableAutoMessageCheck.TabIndex = 26;
             enableAutoMessageCheck.Text = "Enable Auto Message";
             enableAutoMessageCheck.UseVisualStyleBackColor = true;
             enableAutoMessageCheck.CheckedChanged += enableAutoMessageCheck_CheckedChanged;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(479, 23);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(402, 211);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 27;
+            pictureBox3.TabStop = false;
             // 
             // ControlMenu
             // 
@@ -374,14 +488,22 @@
             Controls.Add(pictureBox1);
             Controls.Add(saveButton);
             Controls.Add(panel1);
+            Controls.Add(pictureBox3);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ControlMenu";
             Text = "ControlMenu";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -411,12 +533,20 @@
         private Panel panel1;
         private PictureBox pictureBox1;
         private PictureBox pictureBox10;
-        private CheckBox checkBox1;
+        private CheckBox enableTraderCheck;
         private ImageList imageList1;
         private PictureBox pictureBox2;
         private TextBox autoMessageBox;
         private TextBox autoSendMessageCD;
         private Label autoMessageLabel;
         private CheckBox enableAutoMessageCheck;
+        private PictureBox pictureBox3;
+        private Label label1;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox9;
+        private PictureBox pictureBox8;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox6;
+        private PictureBox pictureBox5;
     }
 }

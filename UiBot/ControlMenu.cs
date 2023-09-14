@@ -29,6 +29,8 @@ namespace UiBot
             randomTurn.Checked = Properties.Settings.Default.IsTurnEnabled;
             oneClickCheck.Checked = Properties.Settings.Default.IsPopEnabled;
             enableBits.Checked = Properties.Settings.Default.isBitEnabled;
+            enableAutoMessageCheck.Checked = Properties.Settings.Default.IsAutoMessageEnabled;
+            enableTraderCheck.Checked = Properties.Settings.Default.IsAutoTraderEnabled;
         }
 
         private void ControlMenu_load(object sender, EventArgs e)
@@ -250,7 +252,45 @@ namespace UiBot
 
         private void enableAutoMessageCheck_CheckedChanged(object sender, EventArgs e)
         {
+            Properties.Settings.Default.IsAutoMessageEnabled = enableAutoMessageCheck.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void enableTraderCheck_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.IsAutoTraderEnabled = enableTraderCheck.Checked;
+            Properties.Settings.Default.Save();
+        }
+
+        private void wiggleConfig_Click(object sender, EventArgs e)
+        {
 
         }
+
+        private void dropConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void gooseConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void randomKeyConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void turnConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void oneClickConfig_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
