@@ -15,6 +15,10 @@ using System.Windows.Forms;
 
 namespace UiBot
 {
+    public class ConfigData
+    {
+        public string RandomKeyInputs { get; set; }
+    }
     internal class MainBot : IDisposable
     {
         //bit dictionary 
@@ -1005,18 +1009,18 @@ namespace UiBot
                 System.Threading.Thread.Sleep(holdDuration);
             }
         }
-        private void SendRandomKeyPresses()
+        private static void SendRandomKeyPresses()
         {
             // Load the keys from CommandConfigData.json
             string configFilePath = "CommandConfigData.json"; // Adjust the file path as needed
-            string[] keysToSend;
+            string keysInput;
 
             try
             {
                 // Read the JSON file and parse it to extract the keys
                 string json = File.ReadAllText(configFilePath);
                 var configData = JsonConvert.DeserializeObject<ConfigData>(json);
-                keysToSend = configData?.RandomKeyInputs ?? new string[0];
+                keysInput = configData?.RandomKeyInputs;
             }
             catch (Exception ex)
             {
@@ -1025,22 +1029,24 @@ namespace UiBot
                 return;
             }
 
-            Random random = new Random();
-
-            foreach (string key in keysToSend)
+            if (string.IsNullOrEmpty(keysInput))
             {
-                SendKeys.SendWait(key);
+                Console.WriteLine("No keys to send.");
+                return;
+            }
+
+            Random random = new Random();
+            string[] keys = keysInput.Split(',');
+
+            foreach (string key in keys)
+            {
+                string cleanedKey = key.Trim(); // Remove any leading/trailing spaces
+                SendKeys.SendWait(cleanedKey);
 
                 // Apply a random hold duration between 250ms and 1000ms
                 int holdDuration = random.Next(250, 1001);
-                System.Threading.Thread.Sleep(holdDuration);
+                Thread.Sleep(holdDuration);
             }
-        }
-
-        // Define a class to represent the JSON structure
-        public class ConfigData
-        {
-            public string[] RandomKeyInputs { get; set; }
         }
         private TimeSpan GetRemainingWiggleCooldown()
         {
@@ -1332,7 +1338,7 @@ namespace UiBot
                                 // Add more cases for other traders here...
                         }
                         // Process the trader if isTwitchTradersEnabled is off or if the trader is enabled individually
-                        if (!Properties.Settings.Default.isTwitchTradersEnabled || isTraderEnabled)
+                        if (Properties.Settings.Default.isTwitchTradersEnabled || isTraderEnabled)
                         {
                             string resetTime = trader.ResetTime;
 

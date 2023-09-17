@@ -11,8 +11,8 @@
     <Platforms>AnyCPU;x64</Platforms>
     <ApplicationIcon>icon.ico</ApplicationIcon>
     <AssemblyName>Tarkov Sweat Bot</AssemblyName>
-    <Version>1.0.0.3-alpha</Version>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
+    <Version>1.0.0.5-alpha</Version>
+    <AssemblyVersion>1.0.0.5</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -71,7 +71,7 @@
 
   <ItemGroup>
     <None Update="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>

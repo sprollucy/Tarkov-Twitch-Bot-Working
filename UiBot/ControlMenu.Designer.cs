@@ -51,6 +51,7 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            randomKeyInputs = new TextBox();
             pictureBox9 = new PictureBox();
             pictureBox8 = new PictureBox();
             pictureBox7 = new PictureBox();
@@ -68,7 +69,6 @@
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
-            randomKeyInputs = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
@@ -306,6 +306,15 @@
             panel1.TabIndex = 20;
             panel1.Paint += panel1_Paint;
             // 
+            // randomKeyInputs
+            // 
+            randomKeyInputs.Location = new Point(190, 188);
+            randomKeyInputs.Name = "randomKeyInputs";
+            randomKeyInputs.Size = new Size(206, 23);
+            randomKeyInputs.TabIndex = 35;
+            randomKeyInputs.Text = "W,A,S,D,E,Q,C,{TAB},G,2,3";
+            randomKeyInputs.TextChanged += randomKeyInputs_TextChanged;
+            // 
             // pictureBox9
             // 
             pictureBox9.BackColor = Color.FromArgb(181, 176, 163);
@@ -435,7 +444,7 @@
             autoMessageBox.Name = "autoMessageBox";
             autoMessageBox.Size = new Size(228, 106);
             autoMessageBox.TabIndex = 23;
-            autoMessageBox.Text = "Default";
+            autoMessageBox.Text = "Send auto messages to chat! use \\\\ to send seperate messages";
             // 
             // autoSendMessageCD
             // 
@@ -443,7 +452,7 @@
             autoSendMessageCD.Name = "autoSendMessageCD";
             autoSendMessageCD.Size = new Size(54, 23);
             autoSendMessageCD.TabIndex = 24;
-            autoSendMessageCD.Text = "0";
+            autoSendMessageCD.Text = "300";
             // 
             // autoMessageLabel
             // 
@@ -474,15 +483,6 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
-            // 
-            // randomKeyInputs
-            // 
-            randomKeyInputs.Location = new Point(190, 188);
-            randomKeyInputs.Name = "randomKeyInputs";
-            randomKeyInputs.Size = new Size(206, 23);
-            randomKeyInputs.TabIndex = 35;
-            randomKeyInputs.Text = "W,A,S,D,E,Q,C,{TAB},G,2,3";
-            randomKeyInputs.TextChanged += randomKeyInputs_TextChanged;
             // 
             // ControlMenu
             // 

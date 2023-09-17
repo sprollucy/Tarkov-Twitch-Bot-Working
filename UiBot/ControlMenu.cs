@@ -162,6 +162,7 @@ namespace UiBot
 
         }
 
+
         // Load settings from JSON on startup
         public void LoadSettings()
         {
@@ -301,7 +302,7 @@ namespace UiBot
 
         private void randomKeyInputs_TextChanged(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
