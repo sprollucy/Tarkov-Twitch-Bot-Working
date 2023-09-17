@@ -5,7 +5,7 @@ It features chat commands to interact with you as you play. Only a few right now
 Readme and other info currently incomplete. This app has zero error exception handling so if it crashes, it may lock up!  
 
 ## Features
--Some bitbot cloned features
+-Some bitbot cloned features  
 -A trader reset timer that tracks when items are restocked for the real sweats  
 -Twitch chat incorporation  
 -Twitch Bits for commands(UNTESTED)  
