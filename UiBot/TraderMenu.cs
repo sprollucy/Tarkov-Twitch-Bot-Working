@@ -139,11 +139,49 @@ namespace UiBot
                 // Check if timeRemaining is less than 5 minutes (300 seconds), the sound is enabled, and the sound hasn't been played for this trader
                 if (timeRemaining.TotalSeconds < 300 && isSoundEnabled && !traderSoundPlayed.ContainsKey(traderName))
                 {
-                    // Play the notification sound
-                    PlayNotificationSound();
-
+                    if (Properties.Settings.Default.isTraderPraporEnabled && traderName == "Prapor")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderTherapistEnabled && traderName == "Therapist")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderPeacekeeperEnabled && traderName == "Peacekeeper")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderMechanicEnabled && traderName == "Mechanic")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderFenceEnabled && traderName == "Fence")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderRagmanEnabled && traderName == "Ragman")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderSkierEnabled && traderName == "Skier")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderJaegerEnabled && traderName == "Jaeger")
+                    {
+                        PlayNotificationSound();
+                    }
+                    if (Properties.Settings.Default.isTraderLightkeeperEnabled && traderName == "Lightkeeper")
+                    {
+                        PlayNotificationSound();
+                    }
                     // Mark the sound as played for this trader
                     traderSoundPlayed[traderName] = true;
+                }
+
+                if (timeRemaining.TotalSeconds < 0)
+                {
+                    traderSoundPlayed[traderName] = false;
                 }
             });
         }
@@ -172,5 +210,11 @@ namespace UiBot
 
         }
 
+        private void configTraderButton_Click(object sender, EventArgs e)
+        {
+            TraderMenuConfig traderMenuConfig = new TraderMenuConfig();
+
+            traderMenuConfig.Show();
+        }
     }
 }

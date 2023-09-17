@@ -146,12 +146,12 @@ namespace UiBot.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsAutoMessageEnabled {
+        public bool isAutoMessageEnabled {
             get {
-                return ((bool)(this["IsAutoMessageEnabled"]));
+                return ((bool)(this["isAutoMessageEnabled"]));
             }
             set {
-                this["IsAutoMessageEnabled"] = value;
+                this["isAutoMessageEnabled"] = value;
             }
         }
         
@@ -170,12 +170,12 @@ namespace UiBot.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool IsAutoTraderEnabled {
+        public bool isAutoTraderEnabled {
             get {
-                return ((bool)(this["IsAutoTraderEnabled"]));
+                return ((bool)(this["isAutoTraderEnabled"]));
             }
             set {
-                this["IsAutoTraderEnabled"] = value;
+                this["isAutoTraderEnabled"] = value;
             }
         }
         
@@ -188,6 +188,138 @@ namespace UiBot.Properties {
             }
             set {
                 this["isTraderMuted"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderPraporEnabled {
+            get {
+                return ((bool)(this["isTraderPraporEnabled"]));
+            }
+            set {
+                this["isTraderPraporEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderTherapistEnabled {
+            get {
+                return ((bool)(this["isTraderTherapistEnabled"]));
+            }
+            set {
+                this["isTraderTherapistEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderPeacekeeperEnabled {
+            get {
+                return ((bool)(this["isTraderPeacekeeperEnabled"]));
+            }
+            set {
+                this["isTraderPeacekeeperEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderMechanicEnabled {
+            get {
+                return ((bool)(this["isTraderMechanicEnabled"]));
+            }
+            set {
+                this["isTraderMechanicEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderSkierEnabled {
+            get {
+                return ((bool)(this["isTraderSkierEnabled"]));
+            }
+            set {
+                this["isTraderSkierEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderRagmanEnabled {
+            get {
+                return ((bool)(this["isTraderRagmanEnabled"]));
+            }
+            set {
+                this["isTraderRagmanEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderFenceEnabled {
+            get {
+                return ((bool)(this["isTraderFenceEnabled"]));
+            }
+            set {
+                this["isTraderFenceEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderJaegerEnabled {
+            get {
+                return ((bool)(this["isTraderJaegerEnabled"]));
+            }
+            set {
+                this["isTraderJaegerEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTraderLightkeeperEnabled {
+            get {
+                return ((bool)(this["isTraderLightkeeperEnabled"]));
+            }
+            set {
+                this["isTraderLightkeeperEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isTwitchTradersEnabled {
+            get {
+                return ((bool)(this["isTwitchTradersEnabled"]));
+            }
+            set {
+                this["isTwitchTradersEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string keyToSend {
+            get {
+                return ((string)(this["keyToSend"]));
+            }
+            set {
+                this["keyToSend"] = value;
             }
         }
     }

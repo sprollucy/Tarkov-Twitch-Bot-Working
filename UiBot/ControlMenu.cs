@@ -29,8 +29,8 @@ namespace UiBot
             randomTurn.Checked = Properties.Settings.Default.IsTurnEnabled;
             oneClickCheck.Checked = Properties.Settings.Default.IsPopEnabled;
             enableBits.Checked = Properties.Settings.Default.isBitEnabled;
-            enableAutoMessageCheck.Checked = Properties.Settings.Default.IsAutoMessageEnabled;
-            enableTraderCheck.Checked = Properties.Settings.Default.IsAutoTraderEnabled;
+            enableAutoMessageCheck.Checked = Properties.Settings.Default.isAutoMessageEnabled;
+            enableTraderCheck.Checked = Properties.Settings.Default.isAutoTraderEnabled;
         }
 
         private void ControlMenu_load(object sender, EventArgs e)
@@ -49,6 +49,7 @@ namespace UiBot
             textBoxes["gooseCooldown"] = gooseCooldownTextBox;
             textBoxes["randomKeyCooldown"] = randomKeyCooldownTextBox;
             textBoxes["oneClickCooldown"] = oneClickCooldownTextBox;
+            textBoxes["randomKeyInputs"] = randomKeyInputs;
             textBoxes["autoMessageBox"] = autoMessageBox;
             textBoxes["autoSendMessageCD"] = autoSendMessageCD;
 
@@ -89,6 +90,11 @@ namespace UiBot
         {
             get { return oneClickCooldownTextBox; }
             set { oneClickCooldownTextBox = value; }
+        }
+        public TextBox RandomKeyInputs
+        {
+            get { return randomKeyInputs; }
+            set { randomKeyInputs = value; }
         }
 
         // Bit Cost Boxes
@@ -132,6 +138,7 @@ namespace UiBot
             get { return autoSendMessageCD; }
             set { autoSendMessageCD = value; }
         }
+
         //TODO make save reload on save so app doesnt have to restart
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -252,13 +259,13 @@ namespace UiBot
 
         private void enableAutoMessageCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.IsAutoMessageEnabled = enableAutoMessageCheck.Checked;
+            Properties.Settings.Default.isAutoMessageEnabled = enableAutoMessageCheck.Checked;
             Properties.Settings.Default.Save();
         }
 
         private void enableTraderCheck_CheckedChanged(object sender, EventArgs e)
         {
-            Properties.Settings.Default.IsAutoTraderEnabled = enableTraderCheck.Checked;
+            Properties.Settings.Default.isAutoTraderEnabled = enableTraderCheck.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -292,5 +299,9 @@ namespace UiBot
 
         }
 
+        private void randomKeyInputs_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

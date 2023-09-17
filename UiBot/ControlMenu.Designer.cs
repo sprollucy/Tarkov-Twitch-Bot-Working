@@ -68,6 +68,7 @@
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
+            randomKeyInputs = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
@@ -118,7 +119,7 @@
             // 
             // turnCooldownTextBox
             // 
-            turnCooldownTextBox.Location = new Point(190, 188);
+            turnCooldownTextBox.Location = new Point(190, 218);
             turnCooldownTextBox.Name = "turnCooldownTextBox";
             turnCooldownTextBox.Size = new Size(100, 23);
             turnCooldownTextBox.TabIndex = 4;
@@ -126,7 +127,7 @@
             // 
             // oneClickCooldownTextBox
             // 
-            oneClickCooldownTextBox.Location = new Point(190, 217);
+            oneClickCooldownTextBox.Location = new Point(190, 247);
             oneClickCooldownTextBox.Name = "oneClickCooldownTextBox";
             oneClickCooldownTextBox.Size = new Size(100, 23);
             oneClickCooldownTextBox.TabIndex = 5;
@@ -184,14 +185,14 @@
             // 
             // turnCostBox
             // 
-            turnCostBox.Location = new Point(296, 188);
+            turnCostBox.Location = new Point(296, 218);
             turnCostBox.Name = "turnCostBox";
             turnCostBox.Size = new Size(100, 23);
             turnCostBox.TabIndex = 12;
             // 
             // oneClickCostBox
             // 
-            oneClickCostBox.Location = new Point(296, 217);
+            oneClickCostBox.Location = new Point(296, 247);
             oneClickCostBox.Name = "oneClickCostBox";
             oneClickCostBox.Size = new Size(100, 23);
             oneClickCostBox.TabIndex = 13;
@@ -200,7 +201,7 @@
             // 
             oneClickCheck.AutoSize = true;
             oneClickCheck.BackColor = Color.FromArgb(181, 176, 163);
-            oneClickCheck.Location = new Point(15, 217);
+            oneClickCheck.Location = new Point(15, 247);
             oneClickCheck.Name = "oneClickCheck";
             oneClickCheck.Size = new Size(105, 19);
             oneClickCheck.TabIndex = 14;
@@ -212,7 +213,7 @@
             // 
             randomTurn.AutoSize = true;
             randomTurn.BackColor = Color.FromArgb(181, 176, 163);
-            randomTurn.Location = new Point(15, 188);
+            randomTurn.Location = new Point(15, 218);
             randomTurn.Name = "randomTurn";
             randomTurn.Size = new Size(85, 19);
             randomTurn.TabIndex = 15;
@@ -270,6 +271,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(randomKeyInputs);
             panel1.Controls.Add(pictureBox9);
             panel1.Controls.Add(pictureBox8);
             panel1.Controls.Add(pictureBox7);
@@ -308,7 +310,7 @@
             // 
             pictureBox9.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(164, 216);
+            pictureBox9.Location = new Point(164, 246);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(20, 20);
             pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -319,7 +321,7 @@
             // 
             pictureBox8.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(164, 188);
+            pictureBox8.Location = new Point(164, 218);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(20, 20);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -373,7 +375,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 300);
+            label1.Location = new Point(15, 307);
             label1.Name = "label1";
             label1.Size = new Size(370, 30);
             label1.TabIndex = 28;
@@ -384,7 +386,7 @@
             // 
             enableTraderCheck.AutoSize = true;
             enableTraderCheck.BackColor = Color.FromArgb(181, 176, 163);
-            enableTraderCheck.Location = new Point(15, 246);
+            enableTraderCheck.Location = new Point(15, 276);
             enableTraderCheck.Name = "enableTraderCheck";
             enableTraderCheck.Size = new Size(175, 19);
             enableTraderCheck.TabIndex = 20;
@@ -473,6 +475,15 @@
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
             // 
+            // randomKeyInputs
+            // 
+            randomKeyInputs.Location = new Point(190, 188);
+            randomKeyInputs.Name = "randomKeyInputs";
+            randomKeyInputs.Size = new Size(206, 23);
+            randomKeyInputs.TabIndex = 35;
+            randomKeyInputs.Text = "W,A,S,D,E,Q,C,{TAB},G,2,3";
+            randomKeyInputs.TextChanged += randomKeyInputs_TextChanged;
+            // 
             // ControlMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -548,5 +559,6 @@
         private PictureBox pictureBox7;
         private PictureBox pictureBox6;
         private PictureBox pictureBox5;
+        private TextBox randomKeyInputs;
     }
 }

@@ -86,6 +86,7 @@
             skierLabel = new Label();
             pictureBox18 = new PictureBox();
             disableSound = new CheckBox();
+            configTraderButton = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
@@ -732,6 +733,16 @@
             disableSound.UseVisualStyleBackColor = true;
             disableSound.CheckedChanged += disableSound_CheckedChanged;
             // 
+            // configTraderButton
+            // 
+            configTraderButton.Location = new Point(625, 410);
+            configTraderButton.Name = "configTraderButton";
+            configTraderButton.Size = new Size(178, 23);
+            configTraderButton.TabIndex = 44;
+            configTraderButton.Text = "Configure Trader Notification";
+            configTraderButton.UseVisualStyleBackColor = true;
+            configTraderButton.Click += configTraderButton_Click;
+            // 
             // TraderMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -739,6 +750,7 @@
             BackColor = Color.FromArgb(220, 215, 201);
             ClientSize = new Size(967, 487);
             ControlBox = false;
+            Controls.Add(configTraderButton);
             Controls.Add(disableSound);
             Controls.Add(panel7);
             Controls.Add(panel4);
@@ -865,5 +877,6 @@
         private PictureBox pictureBox19;
         private PictureBox pictureBox18;
         private CheckBox disableSound;
+        private Button configTraderButton;
     }
 }
