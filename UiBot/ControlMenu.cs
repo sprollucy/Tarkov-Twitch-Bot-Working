@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
+/* TODO **
+ * Finish writing bits cost and saving system
+ * Add extra customization into commands like how long the action goes on for
+ * Custom scripting for custom commands?
+ * Add multiple messages that can be sent at different times
+*/
 namespace UiBot
 {
     public partial class ControlMenu : Form
@@ -31,6 +37,8 @@ namespace UiBot
             enableBits.Checked = Properties.Settings.Default.isBitEnabled;
             enableAutoMessageCheck.Checked = Properties.Settings.Default.isAutoMessageEnabled;
             enableTraderCheck.Checked = Properties.Settings.Default.isAutoTraderEnabled;
+            enableGrenade.Checked = Properties.Settings.Default.isGrenadeEnabled;
+
         }
 
         private void ControlMenu_load(object sender, EventArgs e)
@@ -52,6 +60,7 @@ namespace UiBot
             textBoxes["randomKeyInputs"] = randomKeyInputs;
             textBoxes["autoMessageBox"] = autoMessageBox;
             textBoxes["autoSendMessageCD"] = autoSendMessageCD;
+            textBoxes["grenadeCooldown"] = grenadeCooldownTextBox;
 
             // Add cost text boxes to the dictionary with unique keys
             textBoxes["wiggleCost"] = wiggleCostBox;
@@ -95,6 +104,11 @@ namespace UiBot
         {
             get { return randomKeyInputs; }
             set { randomKeyInputs = value; }
+        }
+        public TextBox GrenadeCooldownTextBox
+        {
+            get { return grenadeCooldownTextBox; }
+            set { grenadeCooldownTextBox = value; }
         }
 
         // Bit Cost Boxes
@@ -234,10 +248,10 @@ namespace UiBot
         {
 
             // Update the isBitEnabled setting
-            Properties.Settings.Default.isBitEnabled = enableBits.Checked;
+            //  Properties.Settings.Default.isBitEnabled = enableBits.Checked;
 
             // Save the updated settings
-            Properties.Settings.Default.Save();
+           // Properties.Settings.Default.Save();
 
         }
 
@@ -257,6 +271,10 @@ namespace UiBot
         private void gooseCooldownTextBox_TextChanged(object sender, EventArgs e)
         {
         }
+        private void grenadeCostBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
 
         private void enableAutoMessageCheck_CheckedChanged(object sender, EventArgs e)
         {
@@ -267,6 +285,11 @@ namespace UiBot
         private void enableTraderCheck_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.isAutoTraderEnabled = enableTraderCheck.Checked;
+            Properties.Settings.Default.Save();
+        }
+        private void enableGrenade_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.isGrenadeEnabled = enableGrenade.Checked;
             Properties.Settings.Default.Save();
         }
 
@@ -304,5 +327,12 @@ namespace UiBot
         {
 
         }
+
+        private void ControlMenu_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

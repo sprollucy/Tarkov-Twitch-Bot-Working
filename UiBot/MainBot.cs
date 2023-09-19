@@ -12,6 +12,15 @@ using TwitchLib.Communication.Events;
 using System.Diagnostics;
 using TwitchLib.Client.Extensions;
 using System.Windows.Forms;
+using System.Media;
+
+/* TODO **
+ * Change bit commands to read saved cost data from controlmenu
+ * Move commands to seperate script. Its slightly overwhelming
+ * Add bitgrenade sound and volume control
+ * update help
+ * 
+ */
 
 namespace UiBot
 {
@@ -81,6 +90,10 @@ namespace UiBot
         private DateTime lastGooseCommandTime = DateTime.MinValue;
         private Process gooseProcess; // Declare a Process variable to store the Goose process.
 
+        private DateTime lastnadeCommandTime = DateTime.MinValue;
+        private TimeSpan grenadeCommandCooldown;
+        string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        string soundFileName = Path.Combine("Sounds", "grenade.wav");
 
 
         internal MainBot()
@@ -653,8 +666,46 @@ namespace UiBot
                     }
                     break;
 
-                //bitcommands
+                case "grenade":
+                    if (Properties.Settings.Default.isGrenadeEnabled)
+                    {
+                        if (int.TryParse(controlMenu.GrenadeCooldownTextBox.Text, out int cooldownSeconds))
+                        {
+                            if (cooldownSeconds <= 0)
+                            {
+                                // If cooldown is 0 or negative, there's no cooldown
+                                client.SendMessage(channelId, $"Grenade incoming!");
+                                GrenadeSound();
+                                lastnadeCommandTime = DateTime.Now;
+                            }
+                            else if (DateTime.Now - lastnadeCommandTime < grenadeCommandCooldown)
+                            {
+                                TimeSpan remainingCooldown = grenadeCommandCooldown - (DateTime.Now - lastPopCommandTime);
+                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds} seconds.");
+                            }
+                            else
+                            {    
+                                client.SendMessage(channelId, $"Grenade incoming!");
+                                GrenadeSound();
+                                lastnadeCommandTime = DateTime.Now;
 
+                                // Set the cooldown duration based on the TextBox value in seconds
+                                int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
+                                grenadeCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
+                            }
+                        }
+                        else
+                        {
+                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(channelId, "The Grenade command is currently disabled.");
+                    }
+                    break;
+
+                //bitcommands
 
                 case "bitgoose":
                     if (!Properties.Settings.Default.IsGooseEnabled && Properties.Settings.Default.isBitEnabled)
@@ -1200,6 +1251,18 @@ namespace UiBot
             // Simulate a left mouse button click
             mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
             mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+        }
+
+        public void GrenadeSound()
+        {
+            // Create a SoundPlayer and specify the notification sound file path
+            string notificationSoundFilePath = Path.Combine(appDirectory, soundFileName);
+            SoundPlayer player = new SoundPlayer(notificationSoundFilePath);
+
+            // Play the notification sound
+            Thread.Sleep(1000);        
+                player.Play();
+
         }
 
         private int RndInt(int min, int max)

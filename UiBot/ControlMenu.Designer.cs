@@ -51,6 +51,10 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            pictureBox11 = new PictureBox();
+            enableGrenade = new CheckBox();
+            grenadeCostBox = new TextBox();
+            grenadeCooldownTextBox = new TextBox();
             randomKeyInputs = new TextBox();
             pictureBox9 = new PictureBox();
             pictureBox8 = new PictureBox();
@@ -70,6 +74,7 @@
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
@@ -271,6 +276,10 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox11);
+            panel1.Controls.Add(enableGrenade);
+            panel1.Controls.Add(grenadeCostBox);
+            panel1.Controls.Add(grenadeCooldownTextBox);
             panel1.Controls.Add(randomKeyInputs);
             panel1.Controls.Add(pictureBox9);
             panel1.Controls.Add(pictureBox8);
@@ -302,9 +311,48 @@
             panel1.Controls.Add(pictureBox2);
             panel1.Location = new Point(51, 23);
             panel1.Name = "panel1";
-            panel1.Size = new Size(409, 388);
+            panel1.Size = new Size(409, 415);
             panel1.TabIndex = 20;
             panel1.Paint += panel1_Paint;
+            // 
+            // pictureBox11
+            // 
+            pictureBox11.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
+            pictureBox11.Location = new Point(164, 275);
+            pictureBox11.Name = "pictureBox11";
+            pictureBox11.Size = new Size(20, 20);
+            pictureBox11.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox11.TabIndex = 39;
+            pictureBox11.TabStop = false;
+            // 
+            // enableGrenade
+            // 
+            enableGrenade.AutoSize = true;
+            enableGrenade.BackColor = Color.FromArgb(181, 176, 163);
+            enableGrenade.Location = new Point(15, 279);
+            enableGrenade.Name = "enableGrenade";
+            enableGrenade.Size = new Size(108, 19);
+            enableGrenade.TabIndex = 38;
+            enableGrenade.Text = "Enable Grenade";
+            enableGrenade.UseVisualStyleBackColor = false;
+            enableGrenade.CheckedChanged += enableGrenade_CheckedChanged;
+            // 
+            // grenadeCostBox
+            // 
+            grenadeCostBox.Location = new Point(296, 275);
+            grenadeCostBox.Name = "grenadeCostBox";
+            grenadeCostBox.Size = new Size(100, 23);
+            grenadeCostBox.TabIndex = 37;
+            grenadeCostBox.TextChanged += grenadeCostBox_TextChanged;
+            // 
+            // grenadeCooldownTextBox
+            // 
+            grenadeCooldownTextBox.Location = new Point(190, 275);
+            grenadeCooldownTextBox.Name = "grenadeCooldownTextBox";
+            grenadeCooldownTextBox.Size = new Size(100, 23);
+            grenadeCooldownTextBox.TabIndex = 36;
+            grenadeCooldownTextBox.Text = "300";
             // 
             // randomKeyInputs
             // 
@@ -384,18 +432,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(15, 307);
+            label1.Location = new Point(15, 343);
             label1.Name = "label1";
-            label1.Size = new Size(370, 30);
+            label1.Size = new Size(384, 30);
             label1.TabIndex = 28;
-            label1.Text = "Bits are untested\r\nThey also do not have cooldowns currently or a way to turn them on!";
+            label1.Text = "Bits are not fully incorporated yet and do not work\r\nCurrently you need to restart the app after changing any of these values";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // enableTraderCheck
             // 
             enableTraderCheck.AutoSize = true;
             enableTraderCheck.BackColor = Color.FromArgb(181, 176, 163);
-            enableTraderCheck.Location = new Point(15, 276);
+            enableTraderCheck.Location = new Point(15, 312);
             enableTraderCheck.Name = "enableTraderCheck";
             enableTraderCheck.Size = new Size(175, 19);
             enableTraderCheck.TabIndex = 20;
@@ -408,7 +456,7 @@
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
             pictureBox2.Location = new Point(0, 0);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(409, 385);
+            pictureBox2.Size = new Size(409, 412);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 21;
             pictureBox2.TabStop = false;
@@ -503,8 +551,10 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ControlMenu";
             Text = "ControlMenu";
+            Load += ControlMenu_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
@@ -560,5 +610,9 @@
         private PictureBox pictureBox6;
         private PictureBox pictureBox5;
         private TextBox randomKeyInputs;
+        private PictureBox pictureBox11;
+        private CheckBox enableGrenade;
+        private TextBox grenadeCostBox;
+        private TextBox grenadeCooldownTextBox;
     }
 }

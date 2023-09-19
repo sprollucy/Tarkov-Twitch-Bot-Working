@@ -322,5 +322,17 @@ namespace UiBot.Properties {
                 this["keyToSend"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isGrenadeEnabled {
+            get {
+                return ((bool)(this["isGrenadeEnabled"]));
+            }
+            set {
+                this["isGrenadeEnabled"] = value;
+            }
+        }
     }
 }

@@ -4,6 +4,11 @@ using System.IO;
 using System.Numerics;
 
 
+/*
+ *  TODO **
+ *  Have the sounds wait before the trader menu is done loading
+ */
+
 namespace UiBot
 {
     public partial class TraderMenu : Form
@@ -19,11 +24,6 @@ namespace UiBot
 
         public TraderMenu()
         {
-            // Combine the application directory and the sound file path
-            string soundFilePath = Path.Combine(appDirectory, soundFileName);
-
-            SoundPlayer player = new SoundPlayer(soundFilePath);
-
             InitializeComponent();
             StartTraderResetTimer();
             this.TopLevel = false;
@@ -106,6 +106,92 @@ namespace UiBot
             }
         }
 
+        private async void UpdateTraderLabel((Label nameLabel, Label resetLabel, Label remainingLabel) labels, TraderResetInfoService.TraderResetInfo trader)
+        {
+            string traderName = trader.Name;
+            DateTime localResetTime = trader.GetLocalResetTime();
+
+            // Calculate the time remaining until the reset time
+            TimeSpan timeRemaining = localResetTime - DateTime.Now;
+
+            // Check if the time remaining is negative
+            if (timeRemaining < TimeSpan.Zero)
+            {
+                // The reset time has passed; set the time remaining to zero
+                timeRemaining = TimeSpan.Zero;
+            }
+
+            // Use Control.Invoke to update UI controls from a separate thread
+            labels.nameLabel.Invoke((MethodInvoker)delegate
+            {
+                labels.nameLabel.Text = traderName;
+            });
+
+            labels.resetLabel.Invoke((MethodInvoker)delegate
+            {
+                labels.resetLabel.Text = "Reset: " + localResetTime.ToString();
+            });
+
+            labels.remainingLabel.Invoke((MethodInvoker)async delegate
+            {
+                labels.remainingLabel.Text = "Time Remaining: " + timeRemaining.ToString("hh\\:mm\\:ss");
+
+                // Check if timeRemaining is less than 5 minutes (300 seconds), the sound is enabled, and the sound hasn't been played for this trader
+                if (timeRemaining.TotalSeconds < 300 && isSoundEnabled && !traderSoundPlayed.ContainsKey(traderName))
+                {
+                    await Task.Run(() =>
+                    {
+                        if (Properties.Settings.Default.isTraderPraporEnabled && traderName == "Prapor")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderTherapistEnabled && traderName == "Therapist")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderPeacekeeperEnabled && traderName == "Peacekeeper")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderMechanicEnabled && traderName == "Mechanic")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderFenceEnabled && traderName == "Fence")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderRagmanEnabled && traderName == "Ragman")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderSkierEnabled && traderName == "Skier")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderJaegerEnabled && traderName == "Jaeger")
+                        {
+                            PlayNotificationSound();
+                        }
+                        if (Properties.Settings.Default.isTraderLightkeeperEnabled && traderName == "Lightkeeper")
+                        {
+                            PlayNotificationSound();
+                        }
+                    });
+
+                    // Mark the sound as played for this trader
+                    traderSoundPlayed[traderName] = true;
+                }
+
+                if (timeRemaining.TotalSeconds < 0)
+                {
+                    traderSoundPlayed[traderName] = false;
+                }
+            });
+        }
+
+
+        /*
         private void UpdateTraderLabel((Label nameLabel, Label resetLabel, Label remainingLabel) labels, TraderResetInfoService.TraderResetInfo trader)
         {
             string traderName = trader.Name;
@@ -185,6 +271,7 @@ namespace UiBot
                 }
             });
         }
+        */
 
 
         private void PlayNotificationSound()
@@ -204,7 +291,6 @@ namespace UiBot
         private void disableSound_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.isTraderMuted = disableSound.Checked;
-            // Toggle the sound state
             isSoundEnabled = !isSoundEnabled;
             Properties.Settings.Default.Save();
 
