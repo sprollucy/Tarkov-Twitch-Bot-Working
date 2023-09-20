@@ -297,7 +297,7 @@ namespace UiBot
                     Console.WriteLine($"[Bot]: {msg}");
                     break;
                 case "help":
-                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop\nMost of these commands have random length cooldowns so use them wisely");
+                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop, !grenade\n Some commands may be broken!");
                     break;
                 case "stats":
                     client.SendMessage(channelId, $"Sprollucy has died {deathCount} times today, and has escaped {counter.SurvivalCount} times");
