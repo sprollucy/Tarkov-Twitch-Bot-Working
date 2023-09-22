@@ -9,6 +9,7 @@ using System.Windows.Forms;
  * Add extra customization into commands like how long the action goes on for
  * Custom scripting for custom commands?
  * Add multiple messages that can be sent at different times
+ * Finish adding cost boxes 
 */
 namespace UiBot
 {
@@ -38,7 +39,7 @@ namespace UiBot
             enableAutoMessageCheck.Checked = Properties.Settings.Default.isAutoMessageEnabled;
             enableTraderCheck.Checked = Properties.Settings.Default.isAutoTraderEnabled;
             enableGrenade.Checked = Properties.Settings.Default.isGrenadeEnabled;
-
+            enableBagDrop.Checked = Properties.Settings.Default.isDropBagEnabled;
         }
 
         private void ControlMenu_load(object sender, EventArgs e)
@@ -61,6 +62,7 @@ namespace UiBot
             textBoxes["autoMessageBox"] = autoMessageBox;
             textBoxes["autoSendMessageCD"] = autoSendMessageCD;
             textBoxes["grenadeCooldown"] = grenadeCooldownTextBox;
+            textBoxes["dropbagCooldown"] = dropbagCooldownTextBox;
 
             // Add cost text boxes to the dictionary with unique keys
             textBoxes["wiggleCost"] = wiggleCostBox;
@@ -109,6 +111,11 @@ namespace UiBot
         {
             get { return grenadeCooldownTextBox; }
             set { grenadeCooldownTextBox = value; }
+        }
+        public TextBox DropBagCooldownTextBox
+        {
+            get { return dropbagCooldownTextBox; }
+            set { dropbagCooldownTextBox = value; }
         }
 
         // Bit Cost Boxes
@@ -251,7 +258,7 @@ namespace UiBot
             //  Properties.Settings.Default.isBitEnabled = enableBits.Checked;
 
             // Save the updated settings
-           // Properties.Settings.Default.Save();
+            // Properties.Settings.Default.Save();
 
         }
 
@@ -293,6 +300,12 @@ namespace UiBot
             Properties.Settings.Default.Save();
         }
 
+        private void enableBagDrop_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.isDropBagEnabled = enableBagDrop.Checked;
+            Properties.Settings.Default.Save();
+        }
+
         private void wiggleConfig_Click(object sender, EventArgs e)
         {
 
@@ -329,6 +342,11 @@ namespace UiBot
         }
 
         private void ControlMenu_Load_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dropbagCooldownTextBox_TextChanged(object sender, EventArgs e)
         {
 
         }

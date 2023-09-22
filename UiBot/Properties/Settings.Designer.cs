@@ -334,5 +334,17 @@ namespace UiBot.Properties {
                 this["isGrenadeEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isDropBagEnabled {
+            get {
+                return ((bool)(this["isDropBagEnabled"]));
+            }
+            set {
+                this["isDropBagEnabled"] = value;
+            }
+        }
     }
 }

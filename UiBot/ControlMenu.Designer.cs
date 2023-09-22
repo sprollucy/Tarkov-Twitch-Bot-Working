@@ -51,6 +51,10 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            pictureBox12 = new PictureBox();
+            enableBagDrop = new CheckBox();
+            dropbagCostBox = new TextBox();
+            dropbagCooldownTextBox = new TextBox();
             pictureBox11 = new PictureBox();
             enableGrenade = new CheckBox();
             grenadeCostBox = new TextBox();
@@ -62,9 +66,9 @@
             pictureBox6 = new PictureBox();
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
-            label1 = new Label();
             enableTraderCheck = new CheckBox();
             pictureBox2 = new PictureBox();
+            label1 = new Label();
             pictureBox1 = new PictureBox();
             pictureBox10 = new PictureBox();
             imageList1 = new ImageList(components);
@@ -74,6 +78,7 @@
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
@@ -276,6 +281,10 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBox12);
+            panel1.Controls.Add(enableBagDrop);
+            panel1.Controls.Add(dropbagCostBox);
+            panel1.Controls.Add(dropbagCooldownTextBox);
             panel1.Controls.Add(pictureBox11);
             panel1.Controls.Add(enableGrenade);
             panel1.Controls.Add(grenadeCostBox);
@@ -287,7 +296,6 @@
             panel1.Controls.Add(pictureBox6);
             panel1.Controls.Add(pictureBox5);
             panel1.Controls.Add(pictureBox4);
-            panel1.Controls.Add(label1);
             panel1.Controls.Add(enableTraderCheck);
             panel1.Controls.Add(oneClickCheck);
             panel1.Controls.Add(randomTurn);
@@ -314,6 +322,45 @@
             panel1.Size = new Size(409, 415);
             panel1.TabIndex = 20;
             panel1.Paint += panel1_Paint;
+            // 
+            // pictureBox12
+            // 
+            pictureBox12.BackColor = Color.FromArgb(181, 176, 163);
+            pictureBox12.Image = (Image)resources.GetObject("pictureBox12.Image");
+            pictureBox12.Location = new Point(163, 304);
+            pictureBox12.Name = "pictureBox12";
+            pictureBox12.Size = new Size(20, 20);
+            pictureBox12.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox12.TabIndex = 43;
+            pictureBox12.TabStop = false;
+            // 
+            // enableBagDrop
+            // 
+            enableBagDrop.AutoSize = true;
+            enableBagDrop.BackColor = Color.FromArgb(181, 176, 163);
+            enableBagDrop.Location = new Point(14, 308);
+            enableBagDrop.Name = "enableBagDrop";
+            enableBagDrop.Size = new Size(113, 19);
+            enableBagDrop.TabIndex = 42;
+            enableBagDrop.Text = "Enable Bag Drop";
+            enableBagDrop.UseVisualStyleBackColor = false;
+            enableBagDrop.CheckedChanged += enableBagDrop_CheckedChanged;
+            // 
+            // dropbagCostBox
+            // 
+            dropbagCostBox.Location = new Point(295, 304);
+            dropbagCostBox.Name = "dropbagCostBox";
+            dropbagCostBox.Size = new Size(100, 23);
+            dropbagCostBox.TabIndex = 41;
+            // 
+            // dropbagCooldownTextBox
+            // 
+            dropbagCooldownTextBox.Location = new Point(189, 304);
+            dropbagCooldownTextBox.Name = "dropbagCooldownTextBox";
+            dropbagCooldownTextBox.Size = new Size(100, 23);
+            dropbagCooldownTextBox.TabIndex = 40;
+            dropbagCooldownTextBox.Text = "300";
+            dropbagCooldownTextBox.TextChanged += dropbagCooldownTextBox_TextChanged;
             // 
             // pictureBox11
             // 
@@ -429,21 +476,11 @@
             pictureBox4.TabIndex = 29;
             pictureBox4.TabStop = false;
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(15, 343);
-            label1.Name = "label1";
-            label1.Size = new Size(384, 30);
-            label1.TabIndex = 28;
-            label1.Text = "Bits are not fully incorporated yet and do not work\r\nCurrently you need to restart the app after changing any of these values";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // enableTraderCheck
             // 
             enableTraderCheck.AutoSize = true;
             enableTraderCheck.BackColor = Color.FromArgb(181, 176, 163);
-            enableTraderCheck.Location = new Point(15, 312);
+            enableTraderCheck.Location = new Point(9, 369);
             enableTraderCheck.Name = "enableTraderCheck";
             enableTraderCheck.Size = new Size(175, 19);
             enableTraderCheck.TabIndex = 20;
@@ -460,6 +497,16 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 21;
             pictureBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(497, 293);
+            label1.Name = "label1";
+            label1.Size = new Size(384, 30);
+            label1.TabIndex = 28;
+            label1.Text = "Bits are not fully incorporated yet and do not work\r\nCurrently you need to restart the app after changing any of these values";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -548,12 +595,14 @@
             Controls.Add(saveButton);
             Controls.Add(panel1);
             Controls.Add(pictureBox3);
+            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ControlMenu";
             Text = "ControlMenu";
             Load += ControlMenu_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
@@ -614,5 +663,9 @@
         private CheckBox enableGrenade;
         private TextBox grenadeCostBox;
         private TextBox grenadeCooldownTextBox;
+        private PictureBox pictureBox12;
+        private CheckBox enableBagDrop;
+        private TextBox dropbagCostBox;
+        private TextBox dropbagCooldownTextBox;
     }
 }

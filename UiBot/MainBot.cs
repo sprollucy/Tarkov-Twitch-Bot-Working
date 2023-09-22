@@ -95,6 +95,9 @@ namespace UiBot
         string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string soundFileName = Path.Combine("Sounds", "grenade.wav");
 
+        private DateTime lastdropbagTime = DateTime.MinValue;
+        private TimeSpan dropbagCommandCooldown;
+
 
         internal MainBot()
         {
@@ -297,7 +300,7 @@ namespace UiBot
                     Console.WriteLine($"[Bot]: {msg}");
                     break;
                 case "help":
-                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop, !grenade\n Some commands may be broken!");
+                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop, !grenade, !dropbag\n Some commands may be broken!");
                     break;
                 case "stats":
                     client.SendMessage(channelId, $"Sprollucy has died {deathCount} times today, and has escaped {counter.SurvivalCount} times");
@@ -394,8 +397,27 @@ namespace UiBot
                     }
                     break;
 
-
-
+                case "dropbag":
+                    if (Properties.Settings.Default.isDropBagEnabled)
+                    {
+                        TimeSpan remainingCooldown = GetRemainingDropBagCooldown();
+                        if (remainingCooldown.TotalSeconds > 0)
+                        {
+                            client.SendMessage(channelId, $"Drop Bag command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
+                        }
+                        else
+                        {
+                            lastdropbagTime = DateTime.Now; 
+                            BagDrop();
+                            remainingCooldown = GetRemainingDropBagCooldown();
+                            client.SendMessage(channelId, $"Drop that bag!");
+                        }
+                    }
+                    else
+                    {
+                        client.SendMessage(channelId, "Drop Bag command is currently disabled.");
+                    }
+                    break;
 
                 case "goose":
                     if (!Properties.Settings.Default.IsGooseEnabled)
@@ -411,7 +433,7 @@ namespace UiBot
                         // Parse the cooldown time from the gooseCooldownTextBox
                         if (int.TryParse(controlMenu.GooseCooldownTextBox.Text, out int cooldownSeconds))
                         {
-                            TimeSpan gooseCooldown = TimeSpan.FromMinutes(cooldownSeconds);
+                            TimeSpan gooseCooldown = TimeSpan.FromSeconds(cooldownSeconds);
 
                             if (DateTime.Now - lastGooseCommandTime < gooseCooldown)
                             {
@@ -494,8 +516,7 @@ namespace UiBot
                         else
                         {
                             lastWiggleTime = DateTime.Now; // Record the start time before wiggling
-                                                           //format is turns, distance in px, delay between move
-                            WiggleMouse(3, 10, 50);
+                            WiggleMouse(4, 30, 50); //format is turns, distance in px, delay between move
                             remainingCooldown = GetRemainingWiggleCooldown(); // Recalculate remaining cooldown
                             client.SendMessage(channelId, $"Mouse wiggle!");
                         }
@@ -514,9 +535,7 @@ namespace UiBot
                         {
                             if (cooldownSeconds <= 0)
                             {
-                                // If cooldown is 0 or negative, there's no cooldown
-                                lastTurnTime = DateTime.Now; // Record the start time before wiggling
-                                                             // Randomly decide whether to move the mouse to the right or left
+                                lastTurnTime = DateTime.Now; 
                                 bool moveRight = (new Random()).Next(2) == 0;
                                 TurnRandom(2000);
                                 client.SendMessage(channelId, "Turn executed.");
@@ -525,10 +544,6 @@ namespace UiBot
                             {
                                 TimeSpan remainingCooldown = GetRemainingTurnCooldown();
                                 client.SendMessage(channelId, $"Turn command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
-                            }
-                            else
-                            {
-
                             }
                         }
                         else
@@ -759,25 +774,33 @@ namespace UiBot
                 case "bitwiggle":
                     if (Properties.Settings.Default.IsWiggleEnabled && Properties.Settings.Default.isBitEnabled)
                     {
-                        // Check if the user has enough bits (at least 50)
+                        // Check if the user has enough bits (at least the required amount from wigglecostbox)
                         requester = e.Command.ChatMessage.DisplayName;
-                        int requiredBits = 50;
 
-                        if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                        int requiredBits;
+
+                        if (int.TryParse(controlMenu.WiggleCostBox.Text, out requiredBits))
                         {
-                            // Deduct the bits from the user
-                            userBits[requester] -= requiredBits;
+                            if (userBits.ContainsKey(requester) && userBits[requester] >= requiredBits)
+                            {
+                                // Deduct the bits from the user
+                                userBits[requester] -= requiredBits;
 
-                            lastWiggleTime = DateTime.Now; // Record the start time before wiggling
-                                                           //format is turns, distance in px, delay between move
-                            WiggleMouse(3, 10, 50);
-                            client.SendMessage(channelId, $"Mouse wiggle!");
-
+                                lastWiggleTime = DateTime.Now; // Record the start time before wiggling
+                                                               // format is turns, distance in px, delay between move
+                                WiggleMouse(4, 30, 50);
+                                client.SendMessage(channelId, $"Mouse wiggle!");
+                            }
+                            else
+                            {
+                                // User doesn't have enough bits
+                                client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Wiggle command.");
+                            }
                         }
                         else
                         {
-                            // User doesn't have enough bits
-                            client.SendMessage(channelId, $"{requester}, you need at least {requiredBits} bits to use the Wiggle command.");
+                            // Failed to parse requiredBits from the textbox
+                            client.SendMessage(channelId, "Invalid bit cost entered.");
                         }
                     }
                     else
@@ -1046,20 +1069,6 @@ namespace UiBot
             return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
         }
 
-        private void SendRandomKeyPresses1()
-        {
-            string[] keysToSend = { "W", "A", "S", "D", "E", "Q", "C", "{TAB}", "G", "2", "3" };
-            Random random = new Random();
-
-            foreach (string key in keysToSend)
-            {
-                SendKeys.SendWait(key);
-
-                // Apply a random hold duration between 250ms and 1000ms
-                int holdDuration = random.Next(250, 1001);
-                System.Threading.Thread.Sleep(holdDuration);
-            }
-        }
         private static void SendRandomKeyPresses()
         {
             // Load the keys from CommandConfigData.json
@@ -1120,6 +1129,29 @@ namespace UiBot
                 return TimeSpan.Zero; // You can return a default value or handle the error as needed
             }
         }
+
+        private TimeSpan GetRemainingDropBagCooldown()
+        {
+
+            // Instantiate ControlMenu class to access the text box's text
+            TextBox dropbagCooldownTextBox = controlMenu.DropBagCooldownTextBox;
+
+
+            if (int.TryParse(dropbagCooldownTextBox.Text, out int cooldownSeconds))
+            {
+                TimeSpan cooldownDuration = TimeSpan.FromSeconds(cooldownSeconds);
+                DateTime cooldownEndTime = lastdropbagTime.Add(cooldownDuration);
+                TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
+
+                return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
+            }
+            else
+            {
+                // Invalid input from the text box, use a default value or handle the error
+                return TimeSpan.Zero; // You can return a default value or handle the error as needed
+            }
+        }
+
         private TimeSpan GetRemainingTurnCooldown()
         {
 
@@ -1246,6 +1278,24 @@ namespace UiBot
 
         }
 
+        private void BagDrop()
+        {
+                    // Simulate button presses
+                    string[] keyPresses = new string[] { "{Z}", "{Z}" };
+                    int[] sleepDurations = new int[] { 150, 150 }; // Corresponding sleep durations in milliseconds
+
+                    for (int i = 0; i < keyPresses.Length; i++)
+                    {
+                        SendKeys.SendWait(keyPresses[i]);
+
+                        // Sleep only if necessary
+                        if (sleepDurations[i] > 0)
+                            Thread.Sleep(sleepDurations[i]);
+                    }
+
+  
+        }
+
         public static void PopShot()
         {
             // Simulate a left mouse button click
@@ -1284,66 +1334,6 @@ namespace UiBot
                 System.Threading.Timer timer = new System.Threading.Timer(CheckTraderResetTimes, null, TimeSpan.Zero, TimeSpan.FromMinutes(5));
             }
         }
-
-        //Old check trader
-        /*
-        public void CheckTraderResetTimes(object state)
-        {
-            var traderResetInfoService = new TraderResetInfoService();
-
-            // Update the resetTime.json file with the latest reset info
-            traderResetInfoService.GetAndSaveTraderResetInfoWithLatest();
-
-            // Read the reset time data from resetTime.json
-            var resetTimeData = traderResetInfoService.ReadJsonDataFromFile("resetTime.json");
-
-            if (!string.IsNullOrEmpty(resetTimeData))
-            {
-                // Deserialize the JSON data
-                var traderResetResponse = JsonConvert.DeserializeObject<TraderResetInfoService.TraderResetResponse>(resetTimeData);
-
-                if (traderResetResponse != null && traderResetResponse.Data != null && traderResetResponse.Data.Traders != null)
-                {
-                    foreach (var trader in traderResetResponse.Data.Traders)
-                    {
-                        string traderName = trader.Name;
-                        string resetTime = trader.ResetTime;
-
-                        // Parse the reset time as a DateTime
-                        if (DateTime.TryParse(resetTime, null, System.Globalization.DateTimeStyles.RoundtripKind, out DateTime resetDateTime))
-                        {
-                            // Get the local time zone
-                            TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
-
-                            // Convert the reset time from UTC to local time
-                            DateTime localResetTime = TimeZoneInfo.ConvertTimeFromUtc(resetDateTime, localTimeZone);
-
-                            // Calculate the time remaining until the reset time
-                            TimeSpan timeRemaining = localResetTime - DateTime.Now;
-
-                            // Check if the time remaining is negative
-                            if (timeRemaining < TimeSpan.Zero)
-                            {
-                                // The reset time has passed; set the time remaining to zero
-                                timeRemaining = TimeSpan.Zero;
-                            }
-
-                            // Check if the time remaining is less than 5 minutes
-                            if (timeRemaining <= TimeSpan.FromMinutes(5) && timeRemaining > TimeSpan.Zero)
-                            {
-                                // Format the time difference as hours and minutes
-                                string formattedTimeRemaining = $"{(int)timeRemaining.TotalHours} hours {timeRemaining.Minutes} minutes";
-
-                                // Send a message indicating less than 5 minutes remaining
-                                client.SendMessage(channelId, $"@{channelId} {traderName} has 5 minutes or less remaining! Countdown: {formattedTimeRemaining}");
-                                Console.WriteLine($"{traderName} has 5 minutes or less remaining! Countdown: {formattedTimeRemaining}");
-
-                            }
-                        }
-                    }
-                }
-            }
-        } */
 
         public void CheckTraderResetTimes(object state)
         {
