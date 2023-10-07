@@ -1027,6 +1027,14 @@
         3g29I3pX9M7o3dE75ORYKzObQ4f+B1jTr1lF8NlCAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Bits are not fully incorporated yet and do not work
+
+Drop kit only works with the default keys and if you are on a screen res of 
+3440x1440(working on making it adjustable)
+
+Currently you need to restart the app after changing any of these values</value>
+  </data>
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

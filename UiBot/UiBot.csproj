@@ -13,6 +13,8 @@
     <AssemblyName>Tarkov Sweat Bot</AssemblyName>
     <Version>1.0.0.5-alpha</Version>
     <AssemblyVersion>1.0.0.5</AssemblyVersion>
+	  <PublishSingleFile>true</PublishSingleFile>
+
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

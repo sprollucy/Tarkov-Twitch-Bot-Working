@@ -51,6 +51,7 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            label2 = new Label();
             pictureBox12 = new PictureBox();
             enableBagDrop = new CheckBox();
             dropbagCostBox = new TextBox();
@@ -77,6 +78,7 @@
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
+            textBox1 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -99,7 +101,6 @@
             wiggleCooldownTextBox.Size = new Size(100, 23);
             wiggleCooldownTextBox.TabIndex = 0;
             wiggleCooldownTextBox.Text = "300";
-            wiggleCooldownTextBox.TextChanged += wiggleCooldownTextBox_TextChanged;
             // 
             // dropCooldownTextBox
             // 
@@ -108,7 +109,6 @@
             dropCooldownTextBox.Size = new Size(100, 23);
             dropCooldownTextBox.TabIndex = 1;
             dropCooldownTextBox.Text = "300";
-            dropCooldownTextBox.TextChanged += dropCooldownTextBox_TextChanged;
             // 
             // gooseCooldownTextBox
             // 
@@ -117,7 +117,6 @@
             gooseCooldownTextBox.Size = new Size(100, 23);
             gooseCooldownTextBox.TabIndex = 2;
             gooseCooldownTextBox.Text = "300";
-            gooseCooldownTextBox.TextChanged += gooseCooldownTextBox_TextChanged;
             // 
             // randomKeyCooldownTextBox
             // 
@@ -213,9 +212,9 @@
             oneClickCheck.BackColor = Color.FromArgb(181, 176, 163);
             oneClickCheck.Location = new Point(15, 247);
             oneClickCheck.Name = "oneClickCheck";
-            oneClickCheck.Size = new Size(105, 19);
+            oneClickCheck.Size = new Size(115, 19);
             oneClickCheck.TabIndex = 14;
-            oneClickCheck.Text = "oneClickCheck";
+            oneClickCheck.Text = "Enable One Click";
             oneClickCheck.UseVisualStyleBackColor = false;
             oneClickCheck.CheckedChanged += oneClickCheck_CheckedChanged;
             // 
@@ -237,9 +236,9 @@
             enableRandomKey.BackColor = Color.FromArgb(181, 176, 163);
             enableRandomKey.Location = new Point(15, 159);
             enableRandomKey.Name = "enableRandomKey";
-            enableRandomKey.Size = new Size(125, 19);
+            enableRandomKey.Size = new Size(136, 19);
             enableRandomKey.TabIndex = 16;
-            enableRandomKey.Text = "enableRandomKey";
+            enableRandomKey.Text = "Enable Random Keys";
             enableRandomKey.UseVisualStyleBackColor = false;
             enableRandomKey.CheckedChanged += enableRandomKey_CheckedChanged;
             // 
@@ -249,9 +248,9 @@
             chkEnableGoose.BackColor = Color.FromArgb(181, 176, 163);
             chkEnableGoose.Location = new Point(15, 130);
             chkEnableGoose.Name = "chkEnableGoose";
-            chkEnableGoose.Size = new Size(113, 19);
+            chkEnableGoose.Size = new Size(97, 19);
             chkEnableGoose.TabIndex = 17;
-            chkEnableGoose.Text = "chkEnableGoose";
+            chkEnableGoose.Text = "Enable Goose";
             chkEnableGoose.UseVisualStyleBackColor = false;
             chkEnableGoose.CheckedChanged += chkEnableGoose_CheckedChanged;
             // 
@@ -261,9 +260,9 @@
             enableKitDrop.BackColor = Color.FromArgb(181, 176, 163);
             enableKitDrop.Location = new Point(15, 101);
             enableKitDrop.Name = "enableKitDrop";
-            enableKitDrop.Size = new Size(101, 19);
+            enableKitDrop.Size = new Size(107, 19);
             enableKitDrop.TabIndex = 18;
-            enableKitDrop.Text = "enableKitDrop";
+            enableKitDrop.Text = "Enable Kit Drop";
             enableKitDrop.UseVisualStyleBackColor = false;
             enableKitDrop.CheckedChanged += enableKitDrop_CheckedChanged;
             // 
@@ -273,14 +272,16 @@
             enableWiggle.BackColor = Color.FromArgb(181, 176, 163);
             enableWiggle.Location = new Point(15, 72);
             enableWiggle.Name = "enableWiggle";
-            enableWiggle.Size = new Size(98, 19);
+            enableWiggle.Size = new Size(101, 19);
             enableWiggle.TabIndex = 19;
-            enableWiggle.Text = "enableWiggle";
+            enableWiggle.Text = "Enable Wiggle";
             enableWiggle.UseVisualStyleBackColor = false;
             enableWiggle.CheckedChanged += enableWiggle_CheckedChanged;
             // 
             // panel1
             // 
+            panel1.Controls.Add(textBox1);
+            panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox12);
             panel1.Controls.Add(enableBagDrop);
             panel1.Controls.Add(dropbagCostBox);
@@ -321,7 +322,17 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(409, 415);
             panel1.TabIndex = 20;
-            panel1.Paint += panel1_Paint;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.FromArgb(162, 123, 92);
+            label2.Font = new Font("Cambria", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Location = new Point(15, 8);
+            label2.Name = "label2";
+            label2.Size = new Size(174, 25);
+            label2.TabIndex = 29;
+            label2.Text = "Command Toggles";
             // 
             // pictureBox12
             // 
@@ -360,7 +371,6 @@
             dropbagCooldownTextBox.Size = new Size(100, 23);
             dropbagCooldownTextBox.TabIndex = 40;
             dropbagCooldownTextBox.Text = "300";
-            dropbagCooldownTextBox.TextChanged += dropbagCooldownTextBox_TextChanged;
             // 
             // pictureBox11
             // 
@@ -391,7 +401,6 @@
             grenadeCostBox.Name = "grenadeCostBox";
             grenadeCostBox.Size = new Size(100, 23);
             grenadeCostBox.TabIndex = 37;
-            grenadeCostBox.TextChanged += grenadeCostBox_TextChanged;
             // 
             // grenadeCooldownTextBox
             // 
@@ -408,7 +417,6 @@
             randomKeyInputs.Size = new Size(206, 23);
             randomKeyInputs.TabIndex = 35;
             randomKeyInputs.Text = "W,A,S,D,E,Q,C,{TAB},G,2,3";
-            randomKeyInputs.TextChanged += randomKeyInputs_TextChanged;
             // 
             // pictureBox9
             // 
@@ -501,11 +509,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(497, 293);
+            label1.Location = new Point(487, 257);
             label1.Name = "label1";
-            label1.Size = new Size(384, 30);
+            label1.Size = new Size(394, 90);
             label1.TabIndex = 28;
-            label1.Text = "Bits are not fully incorporated yet and do not work\r\nCurrently you need to restart the app after changing any of these values";
+            label1.Text = resources.GetString("label1.Text");
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
@@ -552,21 +560,24 @@
             // autoMessageLabel
             // 
             autoMessageLabel.AutoSize = true;
-            autoMessageLabel.Location = new Point(493, 40);
+            autoMessageLabel.BackColor = Color.FromArgb(162, 123, 92);
+            autoMessageLabel.Font = new Font("Cambria", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            autoMessageLabel.Location = new Point(489, 31);
             autoMessageLabel.Name = "autoMessageLabel";
-            autoMessageLabel.Size = new Size(111, 15);
+            autoMessageLabel.Size = new Size(135, 25);
             autoMessageLabel.TabIndex = 25;
-            autoMessageLabel.Text = "Auto Send Message";
+            autoMessageLabel.Text = "Auto Message";
             // 
             // enableAutoMessageCheck
             // 
             enableAutoMessageCheck.AutoSize = true;
+            enableAutoMessageCheck.BackColor = Color.FromArgb(181, 176, 163);
             enableAutoMessageCheck.Location = new Point(628, 70);
             enableAutoMessageCheck.Name = "enableAutoMessageCheck";
             enableAutoMessageCheck.Size = new Size(139, 19);
             enableAutoMessageCheck.TabIndex = 26;
             enableAutoMessageCheck.Text = "Enable Auto Message";
-            enableAutoMessageCheck.UseVisualStyleBackColor = true;
+            enableAutoMessageCheck.UseVisualStyleBackColor = false;
             enableAutoMessageCheck.CheckedChanged += enableAutoMessageCheck_CheckedChanged;
             // 
             // pictureBox3
@@ -578,6 +589,17 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.FromArgb(181, 176, 163);
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Location = new Point(189, 49);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 16);
+            textBox1.TabIndex = 44;
+            textBox1.Text = "Cooldown Timer";
+            textBox1.TextAlign = HorizontalAlignment.Center;
             // 
             // ControlMenu
             // 
@@ -599,7 +621,6 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "ControlMenu";
             Text = "ControlMenu";
-            Load += ControlMenu_Load_1;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).EndInit();
@@ -667,5 +688,7 @@
         private CheckBox enableBagDrop;
         private TextBox dropbagCostBox;
         private TextBox dropbagCooldownTextBox;
+        private Label label2;
+        private TextBox textBox1;
     }
 }

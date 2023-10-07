@@ -96,7 +96,6 @@ namespace UiBot
         string soundFileName = Path.Combine("Sounds", "grenade.wav");
 
         private DateTime lastdropbagTime = DateTime.MinValue;
-        private TimeSpan dropbagCommandCooldown;
 
 
         internal MainBot()
@@ -171,7 +170,6 @@ namespace UiBot
             }
         }
 
-        // Rest of your methods go here
 
         private void InitializeTwitchClient()
         {
@@ -403,14 +401,15 @@ namespace UiBot
                         TimeSpan remainingCooldown = GetRemainingDropBagCooldown();
                         if (remainingCooldown.TotalSeconds > 0)
                         {
-                            client.SendMessage(channelId, $"Drop Bag command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
+                            client.SendMessage(channelId, $"Drop Bag command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                         else
                         {
+
                             lastdropbagTime = DateTime.Now; 
                             BagDrop();
+                            client.SendMessage(channelId, $"Bag dropped! Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                             remainingCooldown = GetRemainingDropBagCooldown();
-                            client.SendMessage(channelId, $"Drop that bag!");
                         }
                     }
                     else
@@ -438,7 +437,7 @@ namespace UiBot
                             if (DateTime.Now - lastGooseCommandTime < gooseCooldown)
                             {
                                 TimeSpan remainingCooldown = gooseCooldown - (DateTime.Now - lastGooseCommandTime);
-                                client.SendMessage(channelId, $"Goose command is on cooldown. You can use it again in {remainingCooldown.TotalMinutes} minutes.");
+                                client.SendMessage(channelId, $"Goose command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} minutes.");
                             }
                             else
                             {
@@ -511,14 +510,15 @@ namespace UiBot
                         TimeSpan remainingCooldown = GetRemainingWiggleCooldown();
                         if (remainingCooldown.TotalSeconds > 0)
                         {
-                            client.SendMessage(channelId, $"Wiggle command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
+                            client.SendMessage(channelId, $"Wiggle command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                         else
                         {
                             lastWiggleTime = DateTime.Now; // Record the start time before wiggling
                             WiggleMouse(4, 30, 50); //format is turns, distance in px, delay between move
                             remainingCooldown = GetRemainingWiggleCooldown(); // Recalculate remaining cooldown
-                            client.SendMessage(channelId, $"Mouse wiggle!");
+                            client.SendMessage(channelId, $"Wiggle command is now on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
+
                         }
                     }
                     else
@@ -531,29 +531,27 @@ namespace UiBot
                 case "turn":
                     if (Properties.Settings.Default.IsTurnEnabled)
                     {
-                        if (int.TryParse(controlMenu.TurnCooldownTextBox.Text, out int cooldownSeconds))
+                        TimeSpan remainingCooldown = GetRemainingTurnCooldown();
+                        if (remainingCooldown.TotalSeconds > 0)
                         {
-                            if (cooldownSeconds <= 0)
-                            {
-                                lastTurnTime = DateTime.Now; 
-                                bool moveRight = (new Random()).Next(2) == 0;
-                                TurnRandom(2000);
-                                client.SendMessage(channelId, "Turn executed.");
-                            }
-                            else if (GetRemainingTurnCooldown().TotalSeconds > 0)
-                            {
-                                TimeSpan remainingCooldown = GetRemainingTurnCooldown();
-                                client.SendMessage(channelId, $"Turn command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
-                            }
+                            client.SendMessage(channelId, $"Turn command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                         else
                         {
-                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                            lastTurnTime = DateTime.Now; // Record the start time before wiggling
+
+                            // Randomly decide whether to move the mouse to the right or left
+                            bool moveRight = (new Random()).Next(2) == 0;
+
+                            TurnRandom(2000);
+
+                            remainingCooldown = GetRemainingTurnCooldown(); // Recalculate remaining cooldown
+                            client.SendMessage(channelId, $"Turn is on cooldown for {remainingCooldown.TotalSeconds:F0} seconds");
                         }
                     }
                     else
                     {
-                        client.SendMessage(channelId, "Turn command is currently disabled.");
+                        client.SendMessage(channelId, "Wiggle command is currently disabled.");
                     }
                     break;
 
@@ -565,27 +563,28 @@ namespace UiBot
                     {
                         if (int.TryParse(controlMenu.RandomKeyCooldownTextBox.Text, out int cooldownSeconds))
                         {
+                            TimeSpan remainingCooldown = GetRemainingRandomKeyPressesCooldown();
+
                             if (cooldownSeconds <= 0)
                             {
-                                // If cooldown is 0 or negative, there's no cooldown
-                                SendRandomKeyPresses();
-                                client.SendMessage(channelId, "Hold that key!");
                                 lastRandomKeyPressesTime = DateTime.Now;
+                                SendRandomKeyPresses();
+                                client.SendMessage(channelId, $"Random keypresses command is now on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                             }
                             else if (IsRandomKeyPressesCommandOnCooldown())
                             {
-                                TimeSpan remainingCooldown = GetRemainingRandomKeyPressesCooldown();
-                                client.SendMessage(channelId, $"Random keypresses command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds} seconds.");
+                                client.SendMessage(channelId, $"Random keypresses command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                             }
                             else
                             {
-                                SendRandomKeyPresses();
-                                client.SendMessage(channelId, "Hold that key!");
                                 lastRandomKeyPressesTime = DateTime.Now;
+                                SendRandomKeyPresses();
 
                                 // Set the cooldown duration based on the TextBox value in seconds
                                 int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
                                 randomKeyCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
+                                client.SendMessage(channelId, $"Random keypresses command is now on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                         }
                         else
@@ -607,27 +606,30 @@ namespace UiBot
                     {
                         if (int.TryParse(controlMenu.DropCooldownTextBox.Text, out int cooldownSeconds))
                         {
+                            TimeSpan remainingCooldown = dropCommandCooldown - (DateTime.Now - lastDropCommandTime);
+
                             if (cooldownSeconds <= 0)
                             {
                                 // If cooldown is 0 or negative, there's no cooldown
                                 SimulateButtonPressAndMouseMovement();
-                                client.SendMessage(channelId, "Simulated button press and mouse movement.");
                                 lastDropCommandTime = DateTime.Now; // Update the last command time
+                                client.SendMessage(channelId, $"Kit dropped! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                             else if (DateTime.Now - lastDropCommandTime < dropCommandCooldown)
                             {
-                                TimeSpan remainingCooldown = dropCommandCooldown - (DateTime.Now - lastDropCommandTime);
-                                client.SendMessage(channelId, $"Drop command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds} seconds.");
+                                client.SendMessage(channelId, $"Drop command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                             }
                             else
                             {
                                 SimulateButtonPressAndMouseMovement();
-                                client.SendMessage(channelId, "Simulated button press and mouse movement.");
                                 lastDropCommandTime = DateTime.Now;
 
                                 // Set the cooldown duration based on the TextBox value in seconds
                                 int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
                                 dropCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
+                                client.SendMessage(channelId, $"Drop command is now on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                         }
                         else
@@ -647,27 +649,31 @@ namespace UiBot
                     {
                         if (int.TryParse(controlMenu.OneClickCooldownTextBox.Text, out int cooldownSeconds))
                         {
+                            TimeSpan remainingCooldown = popCommandCooldown - (DateTime.Now - lastPopCommandTime);
+
                             if (cooldownSeconds <= 0)
                             {
+
                                 // If cooldown is 0 or negative, there's no cooldown
                                 PopShot();
-                                client.SendMessage(channelId, $"Oops misclick!");
                                 lastPopCommandTime = DateTime.Now;
+                                client.SendMessage(channelId, $"Pop! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                             else if (DateTime.Now - lastPopCommandTime < popCommandCooldown)
                             {
-                                TimeSpan remainingCooldown = popCommandCooldown - (DateTime.Now - lastPopCommandTime);
-                                client.SendMessage(channelId, $"Pop command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds} seconds.");
+                                client.SendMessage(channelId, $"Pop command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                             }
                             else
                             {
                                 PopShot();
-                                client.SendMessage(channelId, $"Oops misclick!");
                                 lastPopCommandTime = DateTime.Now;
 
                                 // Set the cooldown duration based on the TextBox value in seconds
                                 int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
                                 popCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
+                                client.SendMessage(channelId, $"Pop! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                         }
                         else
@@ -686,27 +692,30 @@ namespace UiBot
                     {
                         if (int.TryParse(controlMenu.GrenadeCooldownTextBox.Text, out int cooldownSeconds))
                         {
+                            TimeSpan remainingCooldown = grenadeCommandCooldown - (DateTime.Now - lastPopCommandTime);
+
                             if (cooldownSeconds <= 0)
                             {
                                 // If cooldown is 0 or negative, there's no cooldown
-                                client.SendMessage(channelId, $"Grenade incoming!");
                                 GrenadeSound();
-                                lastnadeCommandTime = DateTime.Now;
+                                lastnadeCommandTime = DateTime.Now; 
+                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                             else if (DateTime.Now - lastnadeCommandTime < grenadeCommandCooldown)
                             {
-                                TimeSpan remainingCooldown = grenadeCommandCooldown - (DateTime.Now - lastPopCommandTime);
-                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds} seconds.");
+                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                             }
                             else
                             {    
-                                client.SendMessage(channelId, $"Grenade incoming!");
                                 GrenadeSound();
                                 lastnadeCommandTime = DateTime.Now;
 
                                 // Set the cooldown duration based on the TextBox value in seconds
                                 int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
                                 grenadeCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
+                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
+
                             }
                         }
                         else
