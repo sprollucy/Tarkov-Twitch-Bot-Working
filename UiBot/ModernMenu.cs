@@ -99,9 +99,9 @@ namespace UiBot
             setMouseEvents(connectButton);
             setMouseEvents(commandMenu);
             setMouseEvents(pictureBox5);
-            setMouseEvents(pictureBox6);
-            setMouseEvents(pictureBox7);
-            setMouseEvents(pictureBox8);
+            //setMouseEvents(pictureBox6);
+            //setMouseEvents(pictureBox7);
+            //setMouseEvents(pictureBox8);
             setMouseEvents(settingsButton);
             CheckStart();
         }
@@ -201,12 +201,22 @@ namespace UiBot
 
         private void connectMenu_Click(object sender, EventArgs e)
         {
+
             HideOpenMenu(); // Hide the current open menu, if any
             ShowConnectMenu();
+            if (isEnlarged)
+            {
+                menuButton_Click(sender, e);
+            }
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
+            if (isEnlarged)
+            {
+                menuButton_Click(sender, e);
+            }
+
             HideOpenMenu(); // Hide the current open menu, if any
             ShowSettingMenu();
         }
@@ -343,17 +353,27 @@ namespace UiBot
 
         private void commandMenu_Click(object sender, EventArgs e)
         {
+            if (isEnlarged)
+            {
+                menuButton_Click(sender, e);
+            }
+
             HideOpenMenu(); // Hide the current open menu, if any
             ShowControlMenu();
         }
 
         private void ModernMenu_Load(object sender, EventArgs e)
         {
-
+            ShowConnectMenu();
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
+            if (isEnlarged)
+            {
+                menuButton_Click(sender, e);
+            }
+
             HideOpenMenu();
             ShowTraderMenu();
         }

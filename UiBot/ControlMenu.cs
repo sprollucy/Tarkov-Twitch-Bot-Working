@@ -262,27 +262,6 @@ namespace UiBot
 
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void wiggleCooldownTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void dropCooldownTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void gooseCooldownTextBox_TextChanged(object sender, EventArgs e)
-        {
-        }
-        private void grenadeCostBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void enableAutoMessageCheck_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.isAutoMessageEnabled = enableAutoMessageCheck.Checked;
@@ -305,52 +284,6 @@ namespace UiBot
             Properties.Settings.Default.isDropBagEnabled = enableBagDrop.Checked;
             Properties.Settings.Default.Save();
         }
-
-        private void wiggleConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dropConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void gooseConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void randomKeyConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void turnConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void oneClickConfig_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void randomKeyInputs_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ControlMenu_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dropbagCooldownTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
 
     }
 }
