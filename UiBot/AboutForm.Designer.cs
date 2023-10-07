@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             tabControl1 = new TabControl();
-            tabPage1 = new TabPage();
-            textBox1 = new TextBox();
-            tabPage2 = new TabPage();
-            textBox2 = new TextBox();
             tabPage3 = new TabPage();
             textBox3 = new TextBox();
             label1 = new Label();
@@ -42,63 +38,17 @@
             label3 = new Label();
             label4 = new Label();
             tabControl1.SuspendLayout();
-            tabPage1.SuspendLayout();
-            tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             SuspendLayout();
             // 
             // tabControl1
             // 
-            tabControl1.Controls.Add(tabPage1);
-            tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Location = new Point(-2, -2);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
             tabControl1.Size = new Size(313, 358);
             tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            tabPage1.Controls.Add(textBox1);
-            tabPage1.Location = new Point(4, 24);
-            tabPage1.Name = "tabPage1";
-            tabPage1.Padding = new Padding(3);
-            tabPage1.Size = new Size(305, 330);
-            tabPage1.TabIndex = 0;
-            tabPage1.Text = "How to use";
-            tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(0, 2);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(305, 332);
-            textBox1.TabIndex = 0;
-            textBox1.Text = resources.GetString("textBox1.Text");
-            // 
-            // tabPage2
-            // 
-            tabPage2.Controls.Add(textBox2);
-            tabPage2.Location = new Point(4, 24);
-            tabPage2.Name = "tabPage2";
-            tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(305, 330);
-            tabPage2.TabIndex = 1;
-            tabPage2.Text = "Command List";
-            tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(-4, 0);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(309, 334);
-            textBox2.TabIndex = 0;
-            textBox2.Text = resources.GetString("textBox2.Text");
             // 
             // tabPage3
             // 
@@ -188,10 +138,6 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AboutForm1";
             tabControl1.ResumeLayout(false);
-            tabPage1.ResumeLayout(false);
-            tabPage1.PerformLayout();
-            tabPage2.ResumeLayout(false);
-            tabPage2.PerformLayout();
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ResumeLayout(false);
@@ -201,10 +147,6 @@
         #endregion
 
         private TabControl tabControl1;
-        private TabPage tabPage1;
-        private TextBox textBox1;
-        private TabPage tabPage2;
-        private TextBox textBox2;
         private TabPage tabPage3;
         private TextBox textBox3;
         private Label label1;
