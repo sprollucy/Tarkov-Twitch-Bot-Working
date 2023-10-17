@@ -48,7 +48,7 @@
             // 
             // pictureBox9
             // 
-            pictureBox9.BackColor = Color.FromArgb(192, 0, 0);
+            pictureBox9.BackColor = Color.FromArgb(44, 54, 57);
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
             pictureBox9.Location = new Point(230, 0);
             pictureBox9.Name = "pictureBox9";

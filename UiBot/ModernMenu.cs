@@ -194,9 +194,14 @@ namespace UiBot
             }
         }
 
-        private void pictureBox9_Click(object sender, EventArgs e)
+        private void closeBox_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void minBox_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void connectMenu_Click(object sender, EventArgs e)

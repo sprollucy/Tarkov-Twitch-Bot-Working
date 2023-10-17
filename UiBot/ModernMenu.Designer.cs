@@ -37,7 +37,7 @@
             pictureBox6 = new PictureBox();
             pictureBox7 = new PictureBox();
             pictureBox8 = new PictureBox();
-            pictureBox9 = new PictureBox();
+            closeBox = new PictureBox();
             pictureBox10 = new PictureBox();
             settingsButton = new PictureBox();
             label1 = new Label();
@@ -49,6 +49,7 @@
             label7 = new Label();
             label8 = new Label();
             currentTab = new Label();
+            minBox = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)connectButton).BeginInit();
@@ -57,9 +58,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)closeBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)settingsButton).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)minBox).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -147,17 +149,17 @@
             pictureBox8.TabIndex = 7;
             pictureBox8.TabStop = false;
             // 
-            // pictureBox9
+            // closeBox
             // 
-            pictureBox9.BackColor = Color.FromArgb(192, 0, 0);
-            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(931, 0);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(20, 20);
-            pictureBox9.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox9.TabIndex = 8;
-            pictureBox9.TabStop = false;
-            pictureBox9.Click += pictureBox9_Click;
+            closeBox.BackColor = Color.FromArgb(44, 54, 57);
+            closeBox.Image = (Image)resources.GetObject("closeBox.Image");
+            closeBox.Location = new Point(931, 0);
+            closeBox.Name = "closeBox";
+            closeBox.Size = new Size(20, 20);
+            closeBox.SizeMode = PictureBoxSizeMode.Zoom;
+            closeBox.TabIndex = 8;
+            closeBox.TabStop = false;
+            closeBox.Click += closeBox_Click;
             // 
             // pictureBox10
             // 
@@ -286,14 +288,27 @@
             currentTab.Text = "Start Menu";
             currentTab.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // minBox
+            // 
+            minBox.BackColor = Color.FromArgb(44, 54, 57);
+            minBox.Image = (Image)resources.GetObject("minBox.Image");
+            minBox.Location = new Point(911, 0);
+            minBox.Name = "minBox";
+            minBox.Size = new Size(20, 20);
+            minBox.SizeMode = PictureBoxSizeMode.Zoom;
+            minBox.TabIndex = 20;
+            minBox.TabStop = false;
+            minBox.Click += minBox_Click;
+            // 
             // ModernMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(220, 215, 201);
             ClientSize = new Size(951, 448);
+            Controls.Add(minBox);
             Controls.Add(currentTab);
-            Controls.Add(pictureBox9);
+            Controls.Add(closeBox);
             Controls.Add(pictureBox10);
             Controls.Add(settingsButton);
             Controls.Add(pictureBox8);
@@ -324,9 +339,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)closeBox).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)settingsButton).EndInit();
+            ((System.ComponentModel.ISupportInitialize)minBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -341,7 +357,7 @@
         private PictureBox pictureBox6;
         private PictureBox pictureBox7;
         private PictureBox pictureBox8;
-        private PictureBox pictureBox9;
+        private PictureBox closeBox;
         private PictureBox pictureBox10;
         private PictureBox settingsButton;
         private Label label1;
@@ -353,5 +369,6 @@
         private Label label7;
         private Label label8;
         private Label currentTab;
+        private PictureBox minBox;
     }
 }
