@@ -1,4 +1,4 @@
-# Tarkov-Twitch-Bot 1.0.0.5alpha
+# Tarkov-Twitch-Bot 1.0.0.6alpha
 
 This is my simple to use and open source twitch bot designed to be used with tarkov for now  
 It features chat commands to interact with you as you play. Only a few right now but more are coming. It also includes a trader reset screen for the true sweats to track exactly when traders reset and twitch chat reminders for it also!  
@@ -8,8 +8,9 @@ Readme and other info currently incomplete. This app has zero error exception ha
 -Some bitbot cloned features  
 -A trader reset timer that tracks when items are restocked for the real sweats  
 -Twitch chat incorporation  
--Twitch Bits for commands(UNTESTED)  
+-Twitch Bits for commands(not fully working)  
 -Easy to use UI  
+-Fun and easy commands  
 
 ## Upcoming Features
 -Bot moderation  
@@ -58,7 +59,7 @@ Normal Commands:
 
 !help: Displays help commands.  
 
-!randomkeys: Inputs one of these keys (W, A, S, D, E, Q, C, TAB, G, 2, 3) for 250ms to 1 second. Has a cooldown ranging from 2 to 15 minutes.  
+!randomkeys: Inputs Selected keys
 
 !roll: Rolls a number between 1-6 and posts it in chat.  
 
@@ -67,6 +68,10 @@ Normal Commands:
 !turn: Turns left or right for 2 seconds. Has a cooldown ranging from 30 seconds to 5 minutes.  
 
 !wiggle: Wiggles the mouse back and forth a few times. Has a cooldown ranging from 30 seconds to 5 minutes.  
+
+!grenade: plays grenade sound.  
+
+!dropbag: drops your bag.  
 
 Mod Commands:  
 
@@ -100,20 +105,34 @@ Broadcaster Commands:
 
 ## Changelog
 
-1.0.0.5-alpha 09-17-2023  
--Added individual configs for each trader so you only hear the notifications for which ones you want  
--Added a way to apply this configuration to the twitch bot  
--Added a config under commands for random keys to configure what buttons it holds and hits. Currently it just spams buttons for 5 seconds  
--Added notification mute for traders  
--Added ability to turn off trader auto notifications on twitch  
--Finished up a Auto Messaging command to the commands menu. The cooldown timer reads in seconds so 300 seconds = 5 minutes. Added a syntax to be able to send multiple messages at a time by typing \ after any message you want to send. I will probably expand its funtionality to send more messages on seperate timers.  
--Removed old files used for prototyping  
+1.0.0.6-alpha 10-6-23
+-Fixed numerous dumb errors(made more probably)
+-Fixed wiggle command not always working
+-Changed cooldown format to not read the float
+-Updated trader ui
+-Updated starting screen
+-Updated how to use
+-Simplified some code used
+-Added bag drop command. Currently uses z as the default drop key
+-Added grenade command. Currently you cannot adjust the volume but you can modify the sound file
+-Modified the trader logic on load so the sound doesnt lock the application up or crash if the info cannot be retrieved
 
-1.0.0.03-alpha hotfix 09-11-2023  
--Added catch for crashing if you connect without putting login info in  
--Fixed trader menu timers to keep the timers in memory and not be cleared out as long as they run  
--Started working on a automessage system - it will send and save a message, but not resend messages  
--Added notification system for trader timer updates    
+1.0.0.5-alpha 09-17-2023
+-Added individual configs for each trader so you only hear the notifications for which ones you want
+-Added a way to apply this configuration to the twitch bot
+-Added a config under commands for random keys to configure what buttons it holds and hits. Currently it just spams buttons for 5 seconds
+-Added notification mute for traders
+-Added ability to turn off trader auto notifications on twitch
+-Finished up a Auto Messaging command to the commands menu. The cooldown timer reads in seconds so 300 seconds = 5 minutes. Added a syntax to be able to send multiple messages at a time by typing \\ after any message you want to send. I will probably expand its funtionality to send more messages on seperate timers.
+-Removed old files used for prototyping
+
+
+1.0.0.03-alpha hotfix 09-11-2023
+-Added catch for crashing if you connect without putting login info in
+-Fixed trader menu timers to keep the timers in memory and not be cleared out as long as they run
+-Started working on a automessage system - it will send and save a message, but not resend messages
+-Added notification system for trader timer updates
+
 
 1.0.0.3-alpha 09-10-2023
 -Rebuild Commands and unified most of the timer systems
@@ -144,3 +163,5 @@ Broadcaster Commands:
 -Fixed some cooldowns accidentally triggering another when certain commands are used
 -Refactored most of the original code for readability
 Remember to report any bugs or new feature request on the github page!
+
+Next feature update will include more bug fixes and hopefully I will start working on a way to adjust and edit cooldown timers
