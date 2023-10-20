@@ -28,6 +28,7 @@ namespace UiBot
     {
         public string RandomKeyInputs { get; set; }
         public string DropKey { get; set; }
+        public Point[] MouseCursorPositions { get; set; }
     }
     internal class MainBot : IDisposable
     {
@@ -1161,7 +1162,7 @@ namespace UiBot
             // Disable keyboard and mouse inputs
             BlockInput(true);
 
-            string configFilePath = "CommandConfigData.json"; // Adjust the file path as needed
+            string configFilePath = "DropPositionData.json"; // Adjust the file path as needed
             string dropKey;
 
             System.Threading.Timer timer = new System.Threading.Timer(state =>
@@ -1173,10 +1174,19 @@ namespace UiBot
 
             try
             {
-                // Read the JSON file and parse it to extract the keys
+                // Read the JSON file and parse it to extract the keys and mouse positions
                 string json = File.ReadAllText(configFilePath);
                 var configData = JsonConvert.DeserializeObject<ConfigData>(json);
                 dropKey = configData?.DropKey;
+
+                // Load the recorded mouse positions
+                Point[] mousePositions = configData?.MouseCursorPositions;
+
+                if (mousePositions == null)
+                {
+                    Console.WriteLine("Invalid or missing mouse positions data in the configuration.");
+                    return;
+                }
 
                 // Simulate button presses
                 string[] keyPresses = new string[] { "{Z}", "{Z}", "{TAB}", "{DELETE}" };
@@ -1190,20 +1200,6 @@ namespace UiBot
                     if (sleepDurations[i] > 0)
                         Thread.Sleep(sleepDurations[i]);
                 }
-
-                // Define mouse positions and simulate mouse movements
-                Point[] mousePositions = new Point[]
-                {
-                    new Point(880, 314),
-                    new Point(878, 527),
-                    new Point(648, 311),
-                    new Point(1110, 294),
-                    new Point(787, 748),
-                    new Point(1125, 745),
-                    new Point(777, 979),
-                    new Point(1437, 298),
-                    new Point(1439, 872)
-                };
 
                 foreach (Point newPosition in mousePositions)
                 {
@@ -1228,8 +1224,8 @@ namespace UiBot
                 // Ensure that input is re-enabled in case of exceptions
                 BlockInput(false);
             }
-
         }
+
 
         private void BagDrop()
         {

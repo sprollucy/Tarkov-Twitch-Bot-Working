@@ -51,6 +51,7 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            textBox2 = new TextBox();
             dropKeyTextBox = new TextBox();
             textBox1 = new TextBox();
             label2 = new Label();
@@ -80,6 +81,7 @@
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
+            textBox3 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -281,6 +283,8 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(textBox3);
+            panel1.Controls.Add(textBox2);
             panel1.Controls.Add(dropKeyTextBox);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label2);
@@ -325,11 +329,22 @@
             panel1.Size = new Size(409, 415);
             panel1.TabIndex = 20;
             // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.FromArgb(181, 176, 163);
+            textBox2.BorderStyle = BorderStyle.None;
+            textBox2.Location = new Point(84, 133);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(100, 16);
+            textBox2.TabIndex = 46;
+            textBox2.Text = "Drop Item Button";
+            textBox2.TextAlign = HorizontalAlignment.Center;
+            // 
             // dropKeyTextBox
             // 
             dropKeyTextBox.Location = new Point(189, 130);
             dropKeyTextBox.Name = "dropKeyTextBox";
-            dropKeyTextBox.Size = new Size(19, 23);
+            dropKeyTextBox.Size = new Size(100, 23);
             dropKeyTextBox.TabIndex = 45;
             dropKeyTextBox.Text = "/";
             dropKeyTextBox.TextChanged += dropKeyBox_TextChanged;
@@ -531,9 +546,9 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(487, 257);
+            label1.Location = new Point(479, 270);
             label1.Name = "label1";
-            label1.Size = new Size(394, 90);
+            label1.Size = new Size(437, 90);
             label1.TabIndex = 28;
             label1.Text = resources.GetString("label1.Text");
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -611,6 +626,17 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
+            // 
+            // textBox3
+            // 
+            textBox3.BackColor = Color.FromArgb(181, 176, 163);
+            textBox3.BorderStyle = BorderStyle.None;
+            textBox3.Location = new Point(51, 220);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(133, 16);
+            textBox3.TabIndex = 47;
+            textBox3.Text = "Random buttons to press";
+            textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // ControlMenu
             // 
@@ -702,5 +728,7 @@
         private Label label2;
         private TextBox textBox1;
         private TextBox dropKeyTextBox;
+        private TextBox textBox2;
+        private TextBox textBox3;
     }
 }

@@ -1030,8 +1030,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>Bits are not fully incorporated yet and do not work
 
-Drop kit only works with the default keys and if you are on a screen res of 
-3440x1440(working on making it adjustable)
+Drop kit only works if you run the "Drop Config.exe" to configure where the items
+ are based on your screen resolution
 
 Currently you need to restart the app after changing any of these values</value>
   </data>
