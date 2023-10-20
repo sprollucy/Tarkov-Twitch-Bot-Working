@@ -6,7 +6,7 @@ public class Counter
 {
     public int AllDeath { get; set; }
     public int SurvivalCount { get; set; }
-
+    public int AllKillCount { get; set; }
 
     private readonly string jsonFilePath;
 
@@ -16,6 +16,7 @@ public class Counter
         jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "counter.json");
         AllDeath = GetAllDeathFromJson();
         SurvivalCount = GetSurvivalCountFromJson();
+        AllKillCount = GetKillCountFromJson();
     }
 
     public void IncrementAllDeath()
@@ -30,6 +31,12 @@ public class Counter
         SaveCountsToJson();
     }
 
+    public void IncrementKillCount()
+    {
+        AllKillCount++;
+        SaveCountsToJson();
+    }
+
     public void ResetAllDeath()
     {
         AllDeath = 0;
@@ -39,6 +46,11 @@ public class Counter
     public void ResetSurvivalCount()
     {
         SurvivalCount = 0;
+        SaveCountsToJson();
+    }
+    public void ResetKillCount()
+    {
+        AllKillCount = 0;
         SaveCountsToJson();
     }
 
@@ -61,13 +73,23 @@ public class Counter
         }
         return 0;
     }
+    private int GetKillCountFromJson()
+    {
+        if (File.Exists(jsonFilePath))
+        {
+            string json = File.ReadAllText(jsonFilePath);
+            return JsonConvert.DeserializeObject<CounterData>(json)?.AllKillCount ?? 0;
+        }
+        return 0;
+    }
 
     private void SaveCountsToJson()
     {
         var counterData = new CounterData
         {
             AllDeath = AllDeath,
-            SurvivalCount = SurvivalCount
+            SurvivalCount = SurvivalCount,
+            AllKillCount = AllKillCount
         };
         string json = JsonConvert.SerializeObject(counterData);
         File.WriteAllText(jsonFilePath, json);
@@ -77,6 +99,7 @@ public class Counter
     {
         public int AllDeath { get; set; }
         public int SurvivalCount { get; set; }
+        public int AllKillCount {  get; set; }
     }
 
 }

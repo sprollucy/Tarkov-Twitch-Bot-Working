@@ -47,8 +47,6 @@ namespace UiBot
 
         }
 
-        // ... rest of your code ...
-
         public void InitializeTextBoxes()
         {
             // Add your TextBox controls to the dictionary with unique keys

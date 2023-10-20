@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlMenu));
             wiggleCooldownTextBox = new TextBox();
             dropCooldownTextBox = new TextBox();
@@ -51,6 +50,7 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            textBox3 = new TextBox();
             textBox2 = new TextBox();
             dropKeyTextBox = new TextBox();
             textBox1 = new TextBox();
@@ -75,13 +75,11 @@
             label1 = new Label();
             pictureBox1 = new PictureBox();
             pictureBox10 = new PictureBox();
-            imageList1 = new ImageList(components);
             autoMessageBox = new TextBox();
             autoSendMessageCD = new TextBox();
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
-            textBox3 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -329,6 +327,17 @@
             panel1.Size = new Size(409, 415);
             panel1.TabIndex = 20;
             // 
+            // textBox3
+            // 
+            textBox3.BackColor = Color.FromArgb(181, 176, 163);
+            textBox3.BorderStyle = BorderStyle.None;
+            textBox3.Location = new Point(51, 220);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(133, 16);
+            textBox3.TabIndex = 47;
+            textBox3.Text = "Random buttons to press";
+            textBox3.TextAlign = HorizontalAlignment.Center;
+            // 
             // textBox2
             // 
             textBox2.BackColor = Color.FromArgb(181, 176, 163);
@@ -571,12 +580,6 @@
             pictureBox10.TabIndex = 22;
             pictureBox10.TabStop = false;
             // 
-            // imageList1
-            // 
-            imageList1.ColorDepth = ColorDepth.Depth8Bit;
-            imageList1.ImageSize = new Size(16, 16);
-            imageList1.TransparentColor = Color.Transparent;
-            // 
             // autoMessageBox
             // 
             autoMessageBox.Location = new Point(627, 99);
@@ -626,17 +629,6 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
-            // 
-            // textBox3
-            // 
-            textBox3.BackColor = Color.FromArgb(181, 176, 163);
-            textBox3.BorderStyle = BorderStyle.None;
-            textBox3.Location = new Point(51, 220);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(133, 16);
-            textBox3.TabIndex = 47;
-            textBox3.Text = "Random buttons to press";
-            textBox3.TextAlign = HorizontalAlignment.Center;
             // 
             // ControlMenu
             // 
@@ -702,7 +694,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox10;
         private CheckBox enableTraderCheck;
-        private ImageList imageList1;
         private PictureBox pictureBox2;
         private TextBox autoMessageBox;
         private TextBox autoSendMessageCD;

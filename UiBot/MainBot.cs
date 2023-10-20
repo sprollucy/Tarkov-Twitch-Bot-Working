@@ -78,27 +78,34 @@ namespace UiBot
 
         //drop
         private DateTime lastDropCommandTime = DateTime.MinValue;
-        private TimeSpan dropCommandCooldown;
 
-        private TimeSpan randomKeyCooldown;
-
-
+        //death counter
         private int deathCount = 0;
+        private int killCount = 0;
+        private int survivalCount = 0;
         Counter counter = new Counter();
 
+        //pop
         private DateTime lastPopCommandTime = DateTime.MinValue;
-        private TimeSpan popCommandCooldown;
 
+        //goose
         private DateTime lastGooseCommandTime = DateTime.MinValue;
         private Process gooseProcess; // Declare a Process variable to store the Goose process.
 
+        //grenade
         private DateTime lastnadeCommandTime = DateTime.MinValue;
-        private TimeSpan grenadeCommandCooldown;
         string appDirectory = AppDomain.CurrentDomain.BaseDirectory;
         string soundFileName = Path.Combine("Sounds", "grenade.wav");
 
+        //dropbag
         private DateTime lastdropbagTime = DateTime.MinValue;
 
+        //spam command
+        private DateTime lastStatCommandTimer = DateTime.MinValue;
+        private DateTime lastWipeStatCommandTimer = DateTime.MinValue;
+        private DateTime lastHelpCommandTimer = DateTime.MinValue;
+        private DateTime lastTradersCommandTimer = DateTime.MinValue;
+        private DateTime lastAboutCommandTimer = DateTime.MinValue;
 
         internal MainBot()
         {
@@ -287,24 +294,77 @@ namespace UiBot
             Process[] pname = Process.GetProcessesByName("notepad");
             Process[] gname = Process.GetProcessesByName("GooseDesktop");
 
+            //antispam cooldowns
+            int wipecooldownDuration = 10;
+            int wipestatcooldownDuration = 10;
+            int helpCooldownDuration = 10;
+            int aboutCooldownDuration = 10;
+            int tradersCooldownDuration = 60;
 
+            TimeSpan timeSinceLastExecution = DateTime.Now - lastStatCommandTimer;
 
             //Normal Commands
             switch (e.Command.CommandText.ToLower())
             {
-                // to ad "mybits"
+                case "help":
+                    // Calculate the time elapsed since the last "help" command execution
+                    timeSinceLastExecution = DateTime.Now - lastHelpCommandTimer;
+                    if (timeSinceLastExecution.TotalSeconds >= helpCooldownDuration)
+                    {
+                        lastHelpCommandTimer = DateTime.Now; // Update the last "help" execution time
+                        client.SendMessage(channelId, "!about, !traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop, !grenade, !dropbag");
+                    }
+                    else
+                    {
+                    }
+                    break;
+
+                case "about":
+                    timeSinceLastExecution = DateTime.Now - lastAboutCommandTimer;
+
+                    if (timeSinceLastExecution.TotalSeconds >= aboutCooldownDuration)
+                    {
+                        lastAboutCommandTimer = DateTime.Now; // Update the last "help" execution time
+                        client.SendMessage(channelId, $"I am a bot created by Sprollucy. This is a small project that was inspired by bitbot and to help practice my coding. Many features may be incomplete or missing at this time.");
+                        client.SendMessage(channelId, $"If you want to learn more about this project, visit https://github.com/sprollucy/Tarkov-Twitch-Bot-Working for more information, bug reporting, and suggestions");
+                    }
+                    else
+                    {
+                    }
+                    break;
 
                 case "roll":
                     string msg = $"{e.Command.ChatMessage.DisplayName} Rolled {RndInt(1, 6)}";
                     client.SendMessage(channelId, msg);
                     Console.WriteLine($"[Bot]: {msg}");
                     break;
-                case "help":
-                    client.SendMessage(channelId, "!traders, !drop, !goose, !help, !killgoose, !randomkeys, !roll, !stats, !turn, !wiggle, !pop, !grenade, !dropbag\n Some commands may be broken!");
-                    break;
+
                 case "stats":
-                    client.SendMessage(channelId, $"Sprollucy has died {deathCount} times today, and has escaped {counter.SurvivalCount} times");
-                    client.SendMessage(channelId, $"Deaths this wipe: {counter.AllDeath}");
+                    // Calculate the time elapsed since the last execution
+                    timeSinceLastExecution = DateTime.Now - lastStatCommandTimer;
+
+                    if (timeSinceLastExecution.TotalSeconds >= wipecooldownDuration)
+                    {
+                        lastStatCommandTimer = DateTime.Now; // Update the last execution time
+                        client.SendMessage(channelId, $"@{channelId} has died {deathCount} times today, escaped {survivalCount} times, and killed {killCount} players");
+                    }
+                    else
+                    {
+                    }
+                    break;
+
+                case "wipestats":
+                    // Calculate the time elapsed since the last execution
+                    timeSinceLastExecution = DateTime.Now - lastWipeStatCommandTimer;
+
+                    if (timeSinceLastExecution.TotalSeconds >= wipestatcooldownDuration)
+                    {
+                        lastWipeStatCommandTimer = DateTime.Now; // Update the last execution time
+                        client.SendMessage(channelId, $"@{channelId} has died {counter.AllDeath} times, killed {counter.AllKillCount} players, and escaped {counter.SurvivalCount} raids this wipe.");
+                    }
+                    else
+                    {
+                    }
                     break;
 
                 case "mybits":
@@ -322,78 +382,89 @@ namespace UiBot
                     break;
 
                 case "traders":
-                    // Update the resetTime.json file with the latest reset info
-                    await traderResetInfoService.GetAndSaveTraderResetInfoWithLatest();
+                    timeSinceLastExecution = DateTime.Now - lastTradersCommandTimer;
 
-                    // Read the reset time data from resetTime.json
-                    var resetTimeData = traderResetInfoService.ReadJsonDataFromFile("resetTime.json");
-
-                    if (!string.IsNullOrEmpty(resetTimeData))
+                    if (timeSinceLastExecution.TotalSeconds >= tradersCooldownDuration)
                     {
-                        // Deserialize the JSON data
-                        var traderResetResponse = JsonConvert.DeserializeObject<TraderResetInfoService.TraderResetResponse>(resetTimeData);
+                        // Update the resetTime.json file with the latest reset info
+                        await traderResetInfoService.GetAndSaveTraderResetInfoWithLatest();
 
-                        if (traderResetResponse != null && traderResetResponse.Data != null && traderResetResponse.Data.Traders != null)
+                        // Read the reset time data from resetTime.json
+                        var resetTimeData = traderResetInfoService.ReadJsonDataFromFile("resetTime.json");
+
+                        if (!string.IsNullOrEmpty(resetTimeData))
                         {
-                            foreach (var trader in traderResetResponse.Data.Traders)
+                            // Deserialize the JSON data
+                            var traderResetResponse = JsonConvert.DeserializeObject<TraderResetInfoService.TraderResetResponse>(resetTimeData);
+
+                            if (traderResetResponse != null && traderResetResponse.Data != null && traderResetResponse.Data.Traders != null)
                             {
-                                string traderName = trader.Name;
-                                string resetTime = trader.ResetTime;
-
-                                // Parse the reset time as a DateTime
-                                if (DateTime.TryParse(resetTime, null, System.Globalization.DateTimeStyles.RoundtripKind, out DateTime resetDateTime))
+                                foreach (var trader in traderResetResponse.Data.Traders)
                                 {
-                                    // Get the local time zone
-                                    TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
+                                    string traderName = trader.Name;
+                                    string resetTime = trader.ResetTime;
 
-                                    // Convert the reset time from UTC to local time
-                                    DateTime localResetTime = TimeZoneInfo.ConvertTimeFromUtc(resetDateTime, localTimeZone);
-
-                                    // Calculate the time remaining until the reset time
-                                    TimeSpan timeRemaining = localResetTime - DateTime.Now;
-
-                                    // Check if the time remaining is negative
-                                    if (timeRemaining < TimeSpan.Zero)
+                                    // Parse the reset time as a DateTime
+                                    if (DateTime.TryParse(resetTime, null, System.Globalization.DateTimeStyles.RoundtripKind, out DateTime resetDateTime))
                                     {
-                                        // The reset time has passed; set the time remaining to zero
-                                        timeRemaining = TimeSpan.Zero;
-                                    }
+                                        // Get the local time zone
+                                        TimeZoneInfo localTimeZone = TimeZoneInfo.Local;
 
-                                    // Debugging: Print resetTime and timeRemaining
-                                    Console.WriteLine($"Trader Name: {traderName}, Reset Time: {resetTime}");
-                                    Console.WriteLine($"Time Remaining: {timeRemaining}");
+                                        // Convert the reset time from UTC to local time
+                                        DateTime localResetTime = TimeZoneInfo.ConvertTimeFromUtc(resetDateTime, localTimeZone);
 
-                                    // Format the time difference as hours and minutes
-                                    string formattedTimeRemaining = $"{(int)timeRemaining.TotalHours} hours {timeRemaining.Minutes} minutes";
+                                        // Calculate the time remaining until the reset time
+                                        TimeSpan timeRemaining = localResetTime - DateTime.Now;
 
-                                    // Send a separate alert if there are 5 minutes or less remaining
-                                    if (timeRemaining <= TimeSpan.FromMinutes(5))
-                                    {
-                                        client.SendMessage(channelId, $"@{channelId} {traderName} has 5 minutes or less remaining! Countdown: {formattedTimeRemaining}");
+                                        // Check if the time remaining is negative
+                                        if (timeRemaining < TimeSpan.Zero)
+                                        {
+                                            // The reset time has passed; set the time remaining to zero
+                                            timeRemaining = TimeSpan.Zero;
+                                        }
+
+                                        // Debugging: Print resetTime and timeRemaining
+                                        Console.WriteLine($"Trader Name: {traderName}, Reset Time: {resetTime}");
+                                        Console.WriteLine($"Time Remaining: {timeRemaining}");
+
+                                        // Format the time difference as hours and minutes
+                                        string formattedTimeRemaining = $"{(int)timeRemaining.TotalHours} hours {timeRemaining.Minutes} minutes";
+
+                                        // Send a separate alert if there are 5 minutes or less remaining
+                                        if (timeRemaining <= TimeSpan.FromMinutes(5))
+                                        {
+                                            client.SendMessage(channelId, $"@{channelId} {traderName} has 5 minutes or less remaining! Countdown: {formattedTimeRemaining}");
+                                        }
+                                        else
+                                        {
+                                            // Send the regular countdown message
+                                            client.SendMessage(channelId, $"Trader Name: {traderName}, Countdown: {formattedTimeRemaining}");
+                                        }
                                     }
                                     else
                                     {
-                                        // Send the regular countdown message
-                                        client.SendMessage(channelId, $"Trader Name: {traderName}, Countdown: {formattedTimeRemaining}");
+                                        // Handle the case where the reset time cannot be parsed
+                                        client.SendMessage(channelId, $"Failed to parse reset time for trader '{traderName}'.");
                                     }
                                 }
-                                else
-                                {
-                                    // Handle the case where the reset time cannot be parsed
-                                    client.SendMessage(channelId, $"Failed to parse reset time for trader '{traderName}'.");
-                                }
+                            }
+                            else
+                            {
+                                // Handle the case where the JSON data is not as expected
+                                client.SendMessage(channelId, "Failed to fetch trader reset info.");
                             }
                         }
                         else
                         {
-                            // Handle the case where the JSON data is not as expected
-                            client.SendMessage(channelId, "Failed to fetch trader reset info.");
+                            // Handle the case where resetTime.json is empty or not found
+                            client.SendMessage(channelId, "Reset time data not available.");
                         }
+
+                        // Update the last execution time for the "traders" command
+                        lastTradersCommandTimer = DateTime.Now;
                     }
                     else
                     {
-                        // Handle the case where resetTime.json is empty or not found
-                        client.SendMessage(channelId, "Reset time data not available.");
                     }
                     break;
 
@@ -407,11 +478,10 @@ namespace UiBot
                         }
                         else
                         {
-
                             lastdropbagTime = DateTime.Now; 
                             BagDrop();
-                            client.SendMessage(channelId, $"Bag dropped! Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                             remainingCooldown = GetRemainingDropBagCooldown();
+                            client.SendMessage(channelId, $"Bag dropped! Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                     }
                     else
@@ -439,7 +509,7 @@ namespace UiBot
                             if (DateTime.Now - lastGooseCommandTime < gooseCooldown)
                             {
                                 TimeSpan remainingCooldown = gooseCooldown - (DateTime.Now - lastGooseCommandTime);
-                                client.SendMessage(channelId, $"Goose command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} minutes.");
+                                client.SendMessage(channelId, $"Goose command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                             }
                             else
                             {
@@ -529,7 +599,6 @@ namespace UiBot
                     }
                     break;
 
-
                 case "turn":
                     if (Properties.Settings.Default.IsTurnEnabled)
                     {
@@ -557,177 +626,98 @@ namespace UiBot
                     }
                     break;
 
-
-
                 case "randomkeys":
                     // Check if the command is enabled
                     if (Properties.Settings.Default.IsKeyEnabled)
                     {
-                        if (int.TryParse(controlMenu.RandomKeyCooldownTextBox.Text, out int cooldownSeconds))
+                        TimeSpan remainingCooldown = GetRemainingRandomKeyPressesCooldown();
+                        if (remainingCooldown.TotalSeconds > 0)
                         {
-                            TimeSpan remainingCooldown = GetRemainingRandomKeyPressesCooldown();
-
-                            if (cooldownSeconds <= 0)
-                            {
-                                lastRandomKeyPressesTime = DateTime.Now;
-                                SendRandomKeyPresses();
-                                client.SendMessage(channelId, $"Random keypresses command is now on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
-                            }
-                            else if (IsRandomKeyPressesCommandOnCooldown())
-                            {
-                                client.SendMessage(channelId, $"Random keypresses command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
-                            }
-                            else
-                            {
-                                lastRandomKeyPressesTime = DateTime.Now;
-                                SendRandomKeyPresses();
-
-                                // Set the cooldown duration based on the TextBox value in seconds
-                                int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
-                                randomKeyCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
-                                client.SendMessage(channelId, $"Random keypresses command is now on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
+                            client.SendMessage(channelId, $"Random Keys command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                         else
                         {
-                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                            lastRandomKeyPressesTime = DateTime.Now; // Record the start time before wiggling
+                            SimulateButtonPressAndMouseMovement();
+                            remainingCooldown = GetRemainingRandomKeyPressesCooldown(); // Recalculate remaining cooldown
+                            client.SendMessage(channelId, $"Random keys is on cooldown for {remainingCooldown.TotalSeconds:F0} seconds");
                         }
                     }
                     else
                     {
-                        client.SendMessage(channelId, "The random keypresses command is currently disabled.");
+                        client.SendMessage(channelId, "Random Keys command is currently disabled.");
                     }
                     break;
-
-
-
 
                 case "drop":
                     if (Properties.Settings.Default.IsDropEnabled)
                     {
-                        if (int.TryParse(controlMenu.DropCooldownTextBox.Text, out int cooldownSeconds))
+                        TimeSpan remainingCooldown = GetRemainingDropKitCooldown();
+
+                        if (remainingCooldown.TotalSeconds > 0)
                         {
-                            TimeSpan remainingCooldown = dropCommandCooldown - (DateTime.Now - lastDropCommandTime);
+                            client.SendMessage(channelId, $"Drop command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
 
-                            if (cooldownSeconds <= 0)
-                            {
-                                // If cooldown is 0 or negative, there's no cooldown
-                                SimulateButtonPressAndMouseMovement();
-                                lastDropCommandTime = DateTime.Now; // Update the last command time
-                                client.SendMessage(channelId, $"Kit dropped! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
-                            else if (DateTime.Now - lastDropCommandTime < dropCommandCooldown)
-                            {
-                                client.SendMessage(channelId, $"Drop command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-                            }
-                            else
-                            {
-                                SimulateButtonPressAndMouseMovement();
-                                lastDropCommandTime = DateTime.Now;
-
-                                // Set the cooldown duration based on the TextBox value in seconds
-                                int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
-                                dropCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
-                                client.SendMessage(channelId, $"Drop command is now on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
                         }
                         else
                         {
-                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                            lastDropCommandTime = DateTime.Now;
+                            SimulateButtonPressAndMouseMovement();
+                            remainingCooldown = GetRemainingDropKitCooldown();
+                            client.SendMessage(channelId, $"Kit dropped! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                     }
                     else
                     {
-                        client.SendMessage(channelId, "The drop command is currently disabled.");
+                        client.SendMessage(channelId, "Drop command is currently disabled.");
                     }
                     break;
-
 
                 case "pop":
                     if (Properties.Settings.Default.IsPopEnabled)
                     {
-                        if (int.TryParse(controlMenu.OneClickCooldownTextBox.Text, out int cooldownSeconds))
+                        TimeSpan remainingCooldown = GetRemainingPopCooldown();
+
+                        if (remainingCooldown.TotalSeconds > 0)
                         {
-                            TimeSpan remainingCooldown = popCommandCooldown - (DateTime.Now - lastPopCommandTime);
+                            client.SendMessage(channelId, $"Pop command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
 
-                            if (cooldownSeconds <= 0)
-                            {
-
-                                // If cooldown is 0 or negative, there's no cooldown
-                                PopShot();
-                                lastPopCommandTime = DateTime.Now;
-                                client.SendMessage(channelId, $"Pop! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
-                            else if (DateTime.Now - lastPopCommandTime < popCommandCooldown)
-                            {
-                                client.SendMessage(channelId, $"Pop command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-                            }
-                            else
-                            {
-                                PopShot();
-                                lastPopCommandTime = DateTime.Now;
-
-                                // Set the cooldown duration based on the TextBox value in seconds
-                                int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
-                                popCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
-                                client.SendMessage(channelId, $"Pop! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
                         }
                         else
                         {
-                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                            lastPopCommandTime = DateTime.Now;
+                            PopShot();
+                            remainingCooldown = GetRemainingPopCooldown();
+                            client.SendMessage(channelId, $"Pop! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                     }
                     else
                     {
-                        client.SendMessage(channelId, "The pop command is currently disabled.");
+                        client.SendMessage(channelId, "Pop command is currently disabled.");
                     }
                     break;
 
                 case "grenade":
                     if (Properties.Settings.Default.isGrenadeEnabled)
                     {
-                        if (int.TryParse(controlMenu.GrenadeCooldownTextBox.Text, out int cooldownSeconds))
+                        TimeSpan remainingCooldown = GetRemainingGrenadeCooldown();
+
+                        if (remainingCooldown.TotalSeconds > 0)
                         {
-                            TimeSpan remainingCooldown = grenadeCommandCooldown - (DateTime.Now - lastPopCommandTime);
+                            client.SendMessage(channelId, $"Grenade command is on cooldown. Remaining time: {remainingCooldown.TotalSeconds:F0} seconds.");
 
-                            if (cooldownSeconds <= 0)
-                            {
-                                // If cooldown is 0 or negative, there's no cooldown
-                                GrenadeSound();
-                                lastnadeCommandTime = DateTime.Now; 
-                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
-                            else if (DateTime.Now - lastnadeCommandTime < grenadeCommandCooldown)
-                            {
-                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-                            }
-                            else
-                            {    
-                                GrenadeSound();
-                                lastnadeCommandTime = DateTime.Now;
-
-                                // Set the cooldown duration based on the TextBox value in seconds
-                                int cooldownMilliseconds = cooldownSeconds * 1000; // Convert seconds to milliseconds.
-                                grenadeCommandCooldown = TimeSpan.FromMilliseconds(cooldownMilliseconds);
-                                client.SendMessage(channelId, $"Grenade command is on cooldown. You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
-
-                            }
                         }
                         else
                         {
-                            client.SendMessage(channelId, "Invalid cooldown time format. Please enter a positive number in seconds.");
+                            lastnadeCommandTime = DateTime.Now;
+                            GrenadeSound();
+                            remainingCooldown = GetRemainingGrenadeCooldown();
+                            client.SendMessage(channelId, $"Grenade! You can use it again in {remainingCooldown.TotalSeconds:F0} seconds.");
                         }
                     }
                     else
                     {
-                        client.SendMessage(channelId, "The Grenade command is currently disabled.");
+                        client.SendMessage(channelId, "Grenade command is currently disabled.");
                     }
                     break;
 
@@ -965,41 +955,26 @@ namespace UiBot
                 switch (e.Command.CommandText.ToLower())
                 {
                     case "help":
-                        client.SendMessage(channelId, "!death, !escape, !resetdeath");
-                        break;
-
-                    //start windows proccesses 
-                    case "note":
-                        if (pname.Length > 0)
-                        {
-                            break;
-                        }
-                        else
-                        {
-                            Process notePad = new Process();
-                            notePad.StartInfo.FileName = "notepad.exe";
-                            notePad.Start();
-                        }
-
+                        client.SendMessage(channelId, "!death, !escape, !kill");
                         break;
 
                     case "death":
                         deathCount = deathCount + 1;
                         counter.IncrementAllDeath();
-                        client.SendMessage(channelId, $"Sprollucy has died {deathCount} times");
-                        client.SendMessage(channelId, $"Deaths this wipe: {counter.AllDeath}");
+                        client.SendMessage(channelId, $"@{channelId} has died {deathCount} times");
+                        break;
+
+                    case "kill":
+                        killCount = killCount + 1;
+                        counter.IncrementKillCount();
+                        client.SendMessage(channelId, $"You got a kill! thats {killCount} kills today!");
                         break;
 
                     case "escape":
+                        survivalCount = survivalCount + 1;
                         counter.IncrementSurvivalCount();
-                        client.SendMessage(channelId, $"Sprollucy has escaped {counter.SurvivalCount} times");
+                        client.SendMessage(channelId, $"@{channelId} has escaped {counter.SurvivalCount} times");
                         break;
-
-                    case "resetdeath":
-                        deathCount = 0;
-                        client.SendMessage(channelId, "Deaths have been cleared!");
-                        break;
-
                 }
             }
 
@@ -1011,7 +986,7 @@ namespace UiBot
                 switch (e.Command.CommandText.ToLower())
                 {
                     case "help":
-                        client.SendMessage(channelId, "!hi, !goose, !killgoose, !death, !escape, !resetdeath, !resetallstats");
+                        client.SendMessage(channelId, "!hi, !goose, !killgoose, !death, !escape, !resettoday, !resetallstats");
                         break;
                     case "hi":
                         client.SendMessage(channelId, "Hi Boss");
@@ -1034,18 +1009,24 @@ namespace UiBot
                     case "death":
                         deathCount = deathCount + 1;
                         counter.IncrementAllDeath();
-                        client.SendMessage(channelId, $"Sprollucy has died {deathCount} times");
-                        client.SendMessage(channelId, $"Deaths this wipe: {counter.AllDeath}");
+                        client.SendMessage(channelId, $"@{channelId} has died {deathCount} times");
                         break;
 
-                    case "resetdeath":
-                        client.SendMessage(channelId, $"Deaths Reset");
+                    case "resettoday":
+                        client.SendMessage(channelId, $"Stream stats reset!");
                         deathCount = 0;
+                        killCount = 0;
                         break;
 
                     case "escape":
                         counter.IncrementSurvivalCount();
-                        client.SendMessage(channelId, $"Sprollucy has escaped {counter.SurvivalCount} times");
+                        client.SendMessage(channelId, $"@{channelId} has escaped {counter.SurvivalCount} times");
+                        break;
+
+                    case "kill":
+                        killCount = killCount + 1;
+                        counter.IncrementKillCount();
+                        client.SendMessage(channelId, $"You got a kill! thats {killCount} kills today!");
                         break;
 
                     case "resetallstats":
@@ -1055,29 +1036,29 @@ namespace UiBot
                         deathCount = 0;
                         break;
 
-
                 }
             }
         }
 
-
-
-
-        private bool IsRandomKeyPressesCommandOnCooldown()
-        {
-            TimeSpan cooldownDuration = TimeSpan.FromMinutes(random.Next(2, 15)); // Random cooldown between 1 and 10 minutes
-            DateTime cooldownEndTime = lastRandomKeyPressesTime.Add(cooldownDuration);
-
-            return DateTime.Now < cooldownEndTime;
-        }
-
         private TimeSpan GetRemainingRandomKeyPressesCooldown()
         {
-            TimeSpan cooldownDuration = TimeSpan.FromMinutes(random.Next(2, 15)); // Random cooldown between 2 and 15 minutes
-            DateTime cooldownEndTime = lastRandomKeyPressesTime.Add(cooldownDuration);
-            TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
+            // Instantiate ControlMenu class to access the text box's text
+            TextBox randomCooldownTextBox = controlMenu.RandomKeyCooldownTextBox;
 
-            return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
+
+            if (int.TryParse(randomCooldownTextBox.Text, out int cooldownSeconds))
+            {
+                TimeSpan cooldownDuration = TimeSpan.FromSeconds(cooldownSeconds);
+                DateTime cooldownEndTime = lastRandomKeyPressesTime.Add(cooldownDuration);
+                TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
+
+                return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
+            }
+            else
+            {
+                // Invalid input from the text box, use a default value or handle the error
+                return TimeSpan.Zero; // You can return a default value or handle the error as needed
+            }
         }
 
         private static void SendRandomKeyPresses()
@@ -1295,6 +1276,52 @@ namespace UiBot
             }
         }
 
+        private TimeSpan GetRemainingPopCooldown()
+        {
+
+            // Instantiate ControlMenu class to access the text box's text
+            TextBox popCooldownTextBox = controlMenu.OneClickCooldownTextBox;
+
+
+            if (int.TryParse(popCooldownTextBox.Text, out int cooldownSeconds))
+            {
+                TimeSpan cooldownDuration = TimeSpan.FromSeconds(cooldownSeconds);
+                DateTime cooldownEndTime = lastPopCommandTime.Add(cooldownDuration);
+                TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
+
+                return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
+            }
+            else
+            {
+                // Invalid input from the text box, use a default value or handle the error
+                return TimeSpan.Zero; // You can return a default value or handle the error as needed
+            }
+        }
+
+        private TimeSpan GetRemainingGrenadeCooldown()
+        {
+
+            // Instantiate ControlMenu class to access the text box's text
+            TextBox grenadeCooldownTextBox = controlMenu.GrenadeCooldownTextBox;
+
+
+            if (int.TryParse(grenadeCooldownTextBox.Text, out int cooldownSeconds))
+            {
+                TimeSpan cooldownDuration = TimeSpan.FromSeconds(cooldownSeconds);
+                DateTime cooldownEndTime = lastnadeCommandTime.Add(cooldownDuration);
+                TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
+
+                return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
+            }
+            else
+            {
+                // Invalid input from the text box, use a default value or handle the error
+                return TimeSpan.Zero; // You can return a default value or handle the error as needed
+            }
+        }
+
+
+
         private TimeSpan GetRemainingDropBagCooldown()
         {
 
@@ -1306,6 +1333,28 @@ namespace UiBot
             {
                 TimeSpan cooldownDuration = TimeSpan.FromSeconds(cooldownSeconds);
                 DateTime cooldownEndTime = lastdropbagTime.Add(cooldownDuration);
+                TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
+
+                return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
+            }
+            else
+            {
+                // Invalid input from the text box, use a default value or handle the error
+                return TimeSpan.Zero; // You can return a default value or handle the error as needed
+            }
+        }
+
+        private TimeSpan GetRemainingDropKitCooldown()
+        {
+
+            // Instantiate ControlMenu class to access the text box's text
+            TextBox dropCooldownTextBox = controlMenu.DropCooldownTextBox;
+
+
+            if (int.TryParse(dropCooldownTextBox.Text, out int cooldownSeconds))
+            {
+                TimeSpan cooldownDuration = TimeSpan.FromSeconds(cooldownSeconds);
+                DateTime cooldownEndTime = lastDropCommandTime.Add(cooldownDuration);
                 TimeSpan remainingCooldown = cooldownEndTime - DateTime.Now;
 
                 return (remainingCooldown.TotalSeconds > 0) ? remainingCooldown : TimeSpan.Zero;
@@ -1447,7 +1496,7 @@ namespace UiBot
 
 
 
-        public void LoadCommandConfigData()
+        public void LoadAutoMessageData()
         {
             try
             {
@@ -1499,7 +1548,7 @@ namespace UiBot
                     // Ensure that commandConfigData is loaded
                     if (commandConfigData == null)
                     {
-                        LoadCommandConfigData();
+                        LoadAutoMessageData();
                     }
 
                     if (commandConfigData != null && commandConfigData.ContainsKey("autoMessageBox"))
