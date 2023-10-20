@@ -17,7 +17,7 @@ Feel free to report issues on here or directly contact me on discord if you have
 -Customizable cooldowns for commands  
 -Togglable commands to pick what commands you want(incomplete)  
 
-## Upcoming Features
+## Upcoming Features(Not promised) 
 -Bot moderation  
 -Customizable commands  
 -Extra game setups?  
