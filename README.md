@@ -1,4 +1,4 @@
-# Tarkov-Twitch-Bot 1.0.0.6alpha
+# Tarkov-Twitch-Bot 1.0.0.62alpha
 
 This is my simple to use and open source twitch bot designed to be used with tarkov for now  
 It features chat commands to interact with you as you play. Only a few right now but more are coming. It also includes a trader reset screen for the true sweats to track exactly when traders reset and twitch chat reminders for it also!  
@@ -27,27 +27,46 @@ Readme and other info currently incomplete. This app has zero error exception ha
 
 
 ## How To Use
-1. First step is to create a account on Twitch.tv that you want to use as the bot account  
+1. First step is to create a account on Twitch.tv that you want to use as the bot account. I use this site but twitch also offers their own  
+https://twitchtokengenerator.com/  
+  
 2. Go to your Twitch chat and mod the bot you have created  
-3. Go to a website or use twitches tool to generate a Access Token that has all the permissions you want the bot to have  
-and then copy the token info into the Access Token field on the app and then hit save  
 
-WARNING - DO NOT SHARE YOUR ACCESS TOKEN WITH ANYONE AS IT ALLOWS THEM TO USE YOUR BOT TO ACCESS YOUR TWITCH CHANNEL WITH MODERATOR PERMISSIONS. I AM NOT RESPONSABLE IF YOU SHARE THE TOKEN   
+3. Go to a website or use twitches tool to generate a Access Token that has all the permissions you want the bot to have and then copy the token info into the Access Token field on the app and then hit save  
+
+WARNING - DO NOT SHARE YOUR ACCESS TOKEN WITH ANYONE AS IT ALLOWS THEM TO USE YOUR BOT TO ACCESS YOUR TWITCH CHANNEL WITH MODERATOR PERMISSIONS. I AM NOT RESPONSABLE IF YOU SHARE THE TOKEN  
+   
 4. Open the EXE in the folder  
-5. Click on the settings wheel in the bottom left  
-6. Enter the channel token for the bot, hit save, then enter the channel name you want the bot to join in the Channel Name field and hit save  
-5. You can enable any of the fun commands before or after the bot is running  
-6. Hit the Start button and it should connect right away if all info is correct  
 
-FOR THE GOOSE COMMAND TO WORK YOU MUST GO TO THIS SITE AND DOWNLOAD THE FILE.  
+5. Click on the settings wheel in the bottom left  
+
+6. Enter the channel token for the bot, hit save, then enter the channel name you want the bot to join in the Channel Name field and hit save  
+
+5. Next click the Command Menu button on the left hand side(hit the 3 lines button to see the names) and configure any of the commands  
+	-The auto message has a way to format and send seperate messages using \\  
+	-The Random Keys command has a default format of "W,A,S,D,E,Q,C,{TAB},G,2,3"  
+	-Default times are set to 300 seconds which is 5 minutes  
+
+8. Open tarkov and go a offline and open your menu. Then open the "Drop Config.exe" to configure the mouse position for the drop command. Using the DOWN ARROW key, go over each of the items you with to drop(each weapon, armor, body armor, bag ect...)  
+All together there is 9 items to select. Once this is finished restart the app.  
+
+7. Next select the Connect Menu on the left hand side and hit the connect button.  
+
+FOR THE GOOSE COMMAND TO WORK YOU MUST GO TO THIS SITE AND DOWNLOAD THE FILE. 
 https://samperson.itch.io/desktop-goose  
-1. Once the game is downloaded all the files inside the folder named "Goose"  
-2. Once the files are in there, delete the folder called "FOR MOD-MAKERS" as it opens a pop up everytime the command runs  
+
+8. Once the game is downloaded all the files inside the folder named "Goose"  
+
+9. Once the files are in there, delete the folder called "FOR MOD-MAKERS" as it opens a pop up everytime the command runs  
+
 
 ## Commands
 Normal Commands:  
 
 !mybits  
+
+!about: About the app.  
+
 
 !traders: Displays the remaining time till traders reset.  
 
@@ -73,21 +92,18 @@ Normal Commands:
 
 !dropbag: drops your bag.  
 
-Mod Commands:  
+!pop: Shoots your gun once by left-clicking.  
 
-!help: Displays help commands.  
+Mod Commands:  
 
 !death: Records a death.  
 
 !escape: Records an escape.  
 
-!resetdeath: Resets the death count.  
+!kill: Counts player kills and saves them.  
 
-!pop: Shoots your gun once by left-clicking.  
 
 Broadcaster Commands:  
-
-!help: Displays help commands.  
 
 !hi: Says hi to the bot.  
 
@@ -95,15 +111,36 @@ Broadcaster Commands:
 
 !escape: Records an escape.  
 
-!resetdeath: Resets the death count.  
+!resettoday: Resets the death, kills, and escapes for the day.  
 
 !escape: Records an escape.  
 
 !resetallstats: Resets all stats, even saved death stats.  
 
+!kill: Counts player kills and saves them.  
 
 
 ## Changelog
+1.0.0.62-alpha 10-20-23  
+-All timer systems are now under a unified system and use less cpu  
+-Corrected !drop timer  
+-Corrected typo in !goose cooldown  
+-Corrected !dropbag timer  
+-Corrected !grenade timer  
+-Corrected !pop timer  
+-Corrected !randomkeys timer  
+-Added kill counter and tracker  
+-Renamed  !resetdeath to !resettoday and added kill reset to it  
+-Added !about  
+-Added !kill counter command  
+-Added !wipestats to read stats saved for this wipe  
+-Changed !stats to only show daily stats  
+-Added anti spam features to some of the commands(help, traders, stats, wipestats, about)  
+-Updated kit drop to accept any input key  
+-Reorganized Mainbot code for sanity  
+-Created a new app thats used for configuration of the drop feature. It allows for 9 seperate points on the screen to be set depending on where you select using the down arrow key. Currently it reads and loads from a seperate json and is its own exe file. Will add into the main app later  
+-Added minimize button  
+-Updated close and minimize look  
 
 1.0.0.6-alpha 10-6-23
 -Fixed numerous dumb errors(made more probably)
