@@ -63,6 +63,7 @@ namespace UiBot
             textBoxes["autoSendMessageCD"] = autoSendMessageCD;
             textBoxes["grenadeCooldown"] = grenadeCooldownTextBox;
             textBoxes["dropbagCooldown"] = dropbagCooldownTextBox;
+            textBoxes["dropKey"] = dropKeyTextBox;
 
             // Add cost text boxes to the dictionary with unique keys
             textBoxes["wiggleCost"] = wiggleCostBox;
@@ -116,6 +117,11 @@ namespace UiBot
         {
             get { return dropbagCooldownTextBox; }
             set { dropbagCooldownTextBox = value; }
+        }
+        public TextBox DropKeyTextBox
+        {
+            get { return dropKeyTextBox; }
+            set { dropKeyTextBox = value; }
         }
 
         // Bit Cost Boxes
@@ -285,5 +291,9 @@ namespace UiBot
             Properties.Settings.Default.Save();
         }
 
+        private void dropKeyBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

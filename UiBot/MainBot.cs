@@ -27,6 +27,7 @@ namespace UiBot
     public class ConfigData
     {
         public string RandomKeyInputs { get; set; }
+        public string DropKey { get; set; }
     }
     internal class MainBot : IDisposable
     {
@@ -1117,6 +1118,165 @@ namespace UiBot
                 Thread.Sleep(holdDuration);
             }
         }
+
+
+        public static void WiggleMouse(int numWiggles, int wiggleDistance, int delayBetweenWiggles)
+        {
+            for (int i = 0; i < numWiggles; i++)
+            {
+                // Move the mouse to the right
+                mouse_event(MOUSEEVENTF_MOVE, wiggleDistance, 0, 0, 0);
+                Thread.Sleep(delayBetweenWiggles);
+
+                // Move the mouse back to the left (negative distance)
+                mouse_event(MOUSEEVENTF_MOVE, -wiggleDistance, 0, 0, 0);
+                Thread.Sleep(delayBetweenWiggles);
+            }
+        }
+
+        public static void TurnRandom(int durationMilliseconds)
+        {
+            Random random = new Random();
+            int direction = random.Next(2) * 2 - 1; // -1 for left, 1 for right
+            DateTime endTime = DateTime.Now.AddMilliseconds(durationMilliseconds);
+
+            while (DateTime.Now < endTime)
+            {
+                // Generate a random distance to move (e.g., between 5 and 20 pixels)
+                int distance = random.Next(5, 21) * direction;
+
+                // Move the mouse
+                mouse_event(MOUSEEVENTF_MOVE, distance, 0, 0, 0);
+
+                // Sleep for a short duration before the next movement (e.g., 100-300ms)
+                Thread.Sleep(random.Next(10));
+            }
+        }
+
+
+
+
+        private void SimulateButtonPressAndMouseMovement()
+        {
+            // Disable keyboard and mouse inputs
+            BlockInput(true);
+
+            string configFilePath = "CommandConfigData.json"; // Adjust the file path as needed
+            string dropKey;
+
+            System.Threading.Timer timer = new System.Threading.Timer(state =>
+            {
+                // Enable keyboard and mouse inputs after 5 seconds
+                BlockInput(false);
+                Console.WriteLine("Input is now unblocked.");
+            }, null, 5000, Timeout.Infinite);
+
+            try
+            {
+                // Read the JSON file and parse it to extract the keys
+                string json = File.ReadAllText(configFilePath);
+                var configData = JsonConvert.DeserializeObject<ConfigData>(json);
+                dropKey = configData?.DropKey;
+
+                // Simulate button presses
+                string[] keyPresses = new string[] { "{Z}", "{Z}", "{TAB}", "{DELETE}" };
+                int[] sleepDurations = new int[] { 150, 200, 0, 300 }; // Corresponding sleep durations in milliseconds
+
+                for (int i = 0; i < keyPresses.Length; i++)
+                {
+                    SendKeys.SendWait(keyPresses[i]);
+
+                    // Sleep only if necessary
+                    if (sleepDurations[i] > 0)
+                        Thread.Sleep(sleepDurations[i]);
+                }
+
+                // Define mouse positions and simulate mouse movements
+                Point[] mousePositions = new Point[]
+                {
+                    new Point(880, 314),
+                    new Point(878, 527),
+                    new Point(648, 311),
+                    new Point(1110, 294),
+                    new Point(787, 748),
+                    new Point(1125, 745),
+                    new Point(777, 979),
+                    new Point(1437, 298),
+                    new Point(1439, 872)
+                };
+
+                foreach (Point newPosition in mousePositions)
+                {
+                    // Store the original mouse position
+                    Point originalMousePosition = Cursor.Position;
+
+                    // Move the mouse to the new position
+                    Cursor.Position = newPosition;
+
+                    // Simulate a mouse click (DELETE key in this case)
+                    SendKeys.SendWait(dropKey);
+
+                    // Sleep for a short duration
+                    Thread.Sleep(300);
+
+                    // Restore the original mouse position
+                    Cursor.Position = originalMousePosition;
+                }
+            }
+            finally
+            {
+                // Ensure that input is re-enabled in case of exceptions
+                BlockInput(false);
+            }
+
+        }
+
+        private void BagDrop()
+        {
+            // Simulate button presses
+            string[] keyPresses = new string[] { "{Z}", "{Z}" };
+            int[] sleepDurations = new int[] { 150, 150 }; // Corresponding sleep durations in milliseconds
+
+            for (int i = 0; i < keyPresses.Length; i++)
+            {
+                SendKeys.SendWait(keyPresses[i]);
+
+                // Sleep only if necessary
+                if (sleepDurations[i] > 0)
+                    Thread.Sleep(sleepDurations[i]);
+            }
+        }
+
+        public static void PopShot()
+        {
+            // Simulate a left mouse button click
+            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+        }
+
+        public void GrenadeSound()
+        {
+            // Create a SoundPlayer and specify the notification sound file path
+            string notificationSoundFilePath = Path.Combine(appDirectory, soundFileName);
+            SoundPlayer player = new SoundPlayer(notificationSoundFilePath);
+
+            // Play the notification sound
+            Thread.Sleep(1000);        
+                player.Play();
+
+        }
+
+        private int RndInt(int min, int max)
+        {
+            int value;
+
+            Random rnd = new Random();
+
+            value = rnd.Next(min, max + 1);
+
+            return value;
+        }
+
         private TimeSpan GetRemainingWiggleCooldown()
         {
 
@@ -1182,157 +1342,6 @@ namespace UiBot
                 // Invalid input from the text box, use a default value or handle the error
                 return TimeSpan.Zero; // You can return a default value or handle the error as needed
             }
-        }
-
-        public static void WiggleMouse(int numWiggles, int wiggleDistance, int delayBetweenWiggles)
-        {
-            for (int i = 0; i < numWiggles; i++)
-            {
-                // Move the mouse to the right
-                mouse_event(MOUSEEVENTF_MOVE, wiggleDistance, 0, 0, 0);
-                Thread.Sleep(delayBetweenWiggles);
-
-                // Move the mouse back to the left (negative distance)
-                mouse_event(MOUSEEVENTF_MOVE, -wiggleDistance, 0, 0, 0);
-                Thread.Sleep(delayBetweenWiggles);
-            }
-        }
-
-        public static void TurnRandom(int durationMilliseconds)
-        {
-            Random random = new Random();
-            int direction = random.Next(2) * 2 - 1; // -1 for left, 1 for right
-            DateTime endTime = DateTime.Now.AddMilliseconds(durationMilliseconds);
-
-            while (DateTime.Now < endTime)
-            {
-                // Generate a random distance to move (e.g., between 5 and 20 pixels)
-                int distance = random.Next(5, 21) * direction;
-
-                // Move the mouse
-                mouse_event(MOUSEEVENTF_MOVE, distance, 0, 0, 0);
-
-                // Sleep for a short duration before the next movement (e.g., 100-300ms)
-                Thread.Sleep(random.Next(10));
-            }
-        }
-
-
-
-
-        private void SimulateButtonPressAndMouseMovement()
-        {
-            // Disable keyboard and mouse inputs
-            BlockInput(true);
-
-            System.Threading.Timer timer = new System.Threading.Timer(state =>
-            {
-                // Enable keyboard and mouse inputs after 5 seconds
-                BlockInput(false);
-                Console.WriteLine("Input is now unblocked.");
-            }, null, 5000, Timeout.Infinite);
-
-            try
-            {
-                // Simulate button presses
-                string[] keyPresses = new string[] { "{Z}", "{Z}", "{TAB}", "{DELETE}" };
-                int[] sleepDurations = new int[] { 150, 200, 0, 300 }; // Corresponding sleep durations in milliseconds
-
-                for (int i = 0; i < keyPresses.Length; i++)
-                {
-                    SendKeys.SendWait(keyPresses[i]);
-
-                    // Sleep only if necessary
-                    if (sleepDurations[i] > 0)
-                        Thread.Sleep(sleepDurations[i]);
-                }
-
-                // Define mouse positions and simulate mouse movements
-                Point[] mousePositions = new Point[]
-                {
-            new Point(880, 314),
-            new Point(878, 527),
-            new Point(648, 311),
-            new Point(1110, 294),
-            new Point(787, 748),
-            new Point(1125, 745),
-            new Point(777, 979),
-            new Point(1437, 298),
-            new Point(1439, 872)
-                };
-
-                foreach (Point newPosition in mousePositions)
-                {
-                    // Store the original mouse position
-                    Point originalMousePosition = Cursor.Position;
-
-                    // Move the mouse to the new position
-                    Cursor.Position = newPosition;
-
-                    // Simulate a mouse click (DELETE key in this case)
-                    SendKeys.SendWait("{DELETE}");
-
-                    // Sleep for a short duration
-                    Thread.Sleep(300);
-
-                    // Restore the original mouse position
-                    Cursor.Position = originalMousePosition;
-                }
-            }
-            finally
-            {
-                // Ensure that input is re-enabled in case of exceptions
-                BlockInput(false);
-            }
-
-        }
-
-        private void BagDrop()
-        {
-                    // Simulate button presses
-                    string[] keyPresses = new string[] { "{Z}", "{Z}" };
-                    int[] sleepDurations = new int[] { 150, 150 }; // Corresponding sleep durations in milliseconds
-
-                    for (int i = 0; i < keyPresses.Length; i++)
-                    {
-                        SendKeys.SendWait(keyPresses[i]);
-
-                        // Sleep only if necessary
-                        if (sleepDurations[i] > 0)
-                            Thread.Sleep(sleepDurations[i]);
-                    }
-
-  
-        }
-
-        public static void PopShot()
-        {
-            // Simulate a left mouse button click
-            mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
-            mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
-        }
-
-        public void GrenadeSound()
-        {
-            // Create a SoundPlayer and specify the notification sound file path
-            string notificationSoundFilePath = Path.Combine(appDirectory, soundFileName);
-            SoundPlayer player = new SoundPlayer(notificationSoundFilePath);
-
-            // Play the notification sound
-            Thread.Sleep(1000);        
-                player.Play();
-
-        }
-
-        private int RndInt(int min, int max)
-        {
-            int value;
-
-            Random rnd = new Random();
-
-            value = rnd.Next(min, max + 1);
-
-            return value;
         }
 
         public void StartTraderResetTimer()

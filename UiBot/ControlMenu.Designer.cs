@@ -51,6 +51,8 @@
             enableKitDrop = new CheckBox();
             enableWiggle = new CheckBox();
             panel1 = new Panel();
+            dropKeyTextBox = new TextBox();
+            textBox1 = new TextBox();
             label2 = new Label();
             pictureBox12 = new PictureBox();
             enableBagDrop = new CheckBox();
@@ -78,7 +80,6 @@
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
-            textBox1 = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -112,7 +113,7 @@
             // 
             // gooseCooldownTextBox
             // 
-            gooseCooldownTextBox.Location = new Point(190, 130);
+            gooseCooldownTextBox.Location = new Point(190, 159);
             gooseCooldownTextBox.Name = "gooseCooldownTextBox";
             gooseCooldownTextBox.Size = new Size(100, 23);
             gooseCooldownTextBox.TabIndex = 2;
@@ -120,7 +121,7 @@
             // 
             // randomKeyCooldownTextBox
             // 
-            randomKeyCooldownTextBox.Location = new Point(190, 159);
+            randomKeyCooldownTextBox.Location = new Point(190, 188);
             randomKeyCooldownTextBox.Name = "randomKeyCooldownTextBox";
             randomKeyCooldownTextBox.Size = new Size(100, 23);
             randomKeyCooldownTextBox.TabIndex = 3;
@@ -128,7 +129,7 @@
             // 
             // turnCooldownTextBox
             // 
-            turnCooldownTextBox.Location = new Point(190, 218);
+            turnCooldownTextBox.Location = new Point(190, 247);
             turnCooldownTextBox.Name = "turnCooldownTextBox";
             turnCooldownTextBox.Size = new Size(100, 23);
             turnCooldownTextBox.TabIndex = 4;
@@ -136,7 +137,7 @@
             // 
             // oneClickCooldownTextBox
             // 
-            oneClickCooldownTextBox.Location = new Point(190, 247);
+            oneClickCooldownTextBox.Location = new Point(190, 276);
             oneClickCooldownTextBox.Name = "oneClickCooldownTextBox";
             oneClickCooldownTextBox.Size = new Size(100, 23);
             oneClickCooldownTextBox.TabIndex = 5;
@@ -180,28 +181,28 @@
             // 
             // gooseCostBox
             // 
-            gooseCostBox.Location = new Point(296, 130);
+            gooseCostBox.Location = new Point(296, 159);
             gooseCostBox.Name = "gooseCostBox";
             gooseCostBox.Size = new Size(100, 23);
             gooseCostBox.TabIndex = 10;
             // 
             // randomKeyCostBox
             // 
-            randomKeyCostBox.Location = new Point(296, 159);
+            randomKeyCostBox.Location = new Point(296, 188);
             randomKeyCostBox.Name = "randomKeyCostBox";
             randomKeyCostBox.Size = new Size(100, 23);
             randomKeyCostBox.TabIndex = 11;
             // 
             // turnCostBox
             // 
-            turnCostBox.Location = new Point(296, 218);
+            turnCostBox.Location = new Point(296, 247);
             turnCostBox.Name = "turnCostBox";
             turnCostBox.Size = new Size(100, 23);
             turnCostBox.TabIndex = 12;
             // 
             // oneClickCostBox
             // 
-            oneClickCostBox.Location = new Point(296, 247);
+            oneClickCostBox.Location = new Point(296, 276);
             oneClickCostBox.Name = "oneClickCostBox";
             oneClickCostBox.Size = new Size(100, 23);
             oneClickCostBox.TabIndex = 13;
@@ -210,7 +211,7 @@
             // 
             oneClickCheck.AutoSize = true;
             oneClickCheck.BackColor = Color.FromArgb(181, 176, 163);
-            oneClickCheck.Location = new Point(15, 247);
+            oneClickCheck.Location = new Point(15, 276);
             oneClickCheck.Name = "oneClickCheck";
             oneClickCheck.Size = new Size(115, 19);
             oneClickCheck.TabIndex = 14;
@@ -222,7 +223,7 @@
             // 
             randomTurn.AutoSize = true;
             randomTurn.BackColor = Color.FromArgb(181, 176, 163);
-            randomTurn.Location = new Point(15, 218);
+            randomTurn.Location = new Point(15, 247);
             randomTurn.Name = "randomTurn";
             randomTurn.Size = new Size(85, 19);
             randomTurn.TabIndex = 15;
@@ -234,7 +235,7 @@
             // 
             enableRandomKey.AutoSize = true;
             enableRandomKey.BackColor = Color.FromArgb(181, 176, 163);
-            enableRandomKey.Location = new Point(15, 159);
+            enableRandomKey.Location = new Point(15, 188);
             enableRandomKey.Name = "enableRandomKey";
             enableRandomKey.Size = new Size(136, 19);
             enableRandomKey.TabIndex = 16;
@@ -246,7 +247,7 @@
             // 
             chkEnableGoose.AutoSize = true;
             chkEnableGoose.BackColor = Color.FromArgb(181, 176, 163);
-            chkEnableGoose.Location = new Point(15, 130);
+            chkEnableGoose.Location = new Point(15, 159);
             chkEnableGoose.Name = "chkEnableGoose";
             chkEnableGoose.Size = new Size(97, 19);
             chkEnableGoose.TabIndex = 17;
@@ -280,6 +281,7 @@
             // 
             // panel1
             // 
+            panel1.Controls.Add(dropKeyTextBox);
             panel1.Controls.Add(textBox1);
             panel1.Controls.Add(label2);
             panel1.Controls.Add(pictureBox12);
@@ -323,6 +325,26 @@
             panel1.Size = new Size(409, 415);
             panel1.TabIndex = 20;
             // 
+            // dropKeyTextBox
+            // 
+            dropKeyTextBox.Location = new Point(189, 130);
+            dropKeyTextBox.Name = "dropKeyTextBox";
+            dropKeyTextBox.Size = new Size(19, 23);
+            dropKeyTextBox.TabIndex = 45;
+            dropKeyTextBox.Text = "/";
+            dropKeyTextBox.TextChanged += dropKeyBox_TextChanged;
+            // 
+            // textBox1
+            // 
+            textBox1.BackColor = Color.FromArgb(181, 176, 163);
+            textBox1.BorderStyle = BorderStyle.None;
+            textBox1.Location = new Point(189, 49);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(100, 16);
+            textBox1.TabIndex = 44;
+            textBox1.Text = "Cooldown Timer";
+            textBox1.TextAlign = HorizontalAlignment.Center;
+            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -338,7 +360,7 @@
             // 
             pictureBox12.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox12.Image = (Image)resources.GetObject("pictureBox12.Image");
-            pictureBox12.Location = new Point(163, 304);
+            pictureBox12.Location = new Point(163, 333);
             pictureBox12.Name = "pictureBox12";
             pictureBox12.Size = new Size(20, 20);
             pictureBox12.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -349,7 +371,7 @@
             // 
             enableBagDrop.AutoSize = true;
             enableBagDrop.BackColor = Color.FromArgb(181, 176, 163);
-            enableBagDrop.Location = new Point(14, 308);
+            enableBagDrop.Location = new Point(14, 337);
             enableBagDrop.Name = "enableBagDrop";
             enableBagDrop.Size = new Size(113, 19);
             enableBagDrop.TabIndex = 42;
@@ -359,14 +381,14 @@
             // 
             // dropbagCostBox
             // 
-            dropbagCostBox.Location = new Point(295, 304);
+            dropbagCostBox.Location = new Point(295, 333);
             dropbagCostBox.Name = "dropbagCostBox";
             dropbagCostBox.Size = new Size(100, 23);
             dropbagCostBox.TabIndex = 41;
             // 
             // dropbagCooldownTextBox
             // 
-            dropbagCooldownTextBox.Location = new Point(189, 304);
+            dropbagCooldownTextBox.Location = new Point(189, 333);
             dropbagCooldownTextBox.Name = "dropbagCooldownTextBox";
             dropbagCooldownTextBox.Size = new Size(100, 23);
             dropbagCooldownTextBox.TabIndex = 40;
@@ -376,7 +398,7 @@
             // 
             pictureBox11.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox11.Image = (Image)resources.GetObject("pictureBox11.Image");
-            pictureBox11.Location = new Point(164, 275);
+            pictureBox11.Location = new Point(164, 304);
             pictureBox11.Name = "pictureBox11";
             pictureBox11.Size = new Size(20, 20);
             pictureBox11.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -387,7 +409,7 @@
             // 
             enableGrenade.AutoSize = true;
             enableGrenade.BackColor = Color.FromArgb(181, 176, 163);
-            enableGrenade.Location = new Point(15, 279);
+            enableGrenade.Location = new Point(15, 308);
             enableGrenade.Name = "enableGrenade";
             enableGrenade.Size = new Size(108, 19);
             enableGrenade.TabIndex = 38;
@@ -397,14 +419,14 @@
             // 
             // grenadeCostBox
             // 
-            grenadeCostBox.Location = new Point(296, 275);
+            grenadeCostBox.Location = new Point(296, 304);
             grenadeCostBox.Name = "grenadeCostBox";
             grenadeCostBox.Size = new Size(100, 23);
             grenadeCostBox.TabIndex = 37;
             // 
             // grenadeCooldownTextBox
             // 
-            grenadeCooldownTextBox.Location = new Point(190, 275);
+            grenadeCooldownTextBox.Location = new Point(190, 304);
             grenadeCooldownTextBox.Name = "grenadeCooldownTextBox";
             grenadeCooldownTextBox.Size = new Size(100, 23);
             grenadeCooldownTextBox.TabIndex = 36;
@@ -412,7 +434,7 @@
             // 
             // randomKeyInputs
             // 
-            randomKeyInputs.Location = new Point(190, 188);
+            randomKeyInputs.Location = new Point(190, 217);
             randomKeyInputs.Name = "randomKeyInputs";
             randomKeyInputs.Size = new Size(206, 23);
             randomKeyInputs.TabIndex = 35;
@@ -422,7 +444,7 @@
             // 
             pictureBox9.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(164, 246);
+            pictureBox9.Location = new Point(164, 275);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(20, 20);
             pictureBox9.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -433,7 +455,7 @@
             // 
             pictureBox8.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(164, 218);
+            pictureBox8.Location = new Point(164, 247);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(20, 20);
             pictureBox8.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -444,7 +466,7 @@
             // 
             pictureBox7.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(164, 159);
+            pictureBox7.Location = new Point(164, 188);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(20, 20);
             pictureBox7.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -455,7 +477,7 @@
             // 
             pictureBox6.BackColor = Color.FromArgb(181, 176, 163);
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(164, 130);
+            pictureBox6.Location = new Point(164, 159);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(20, 20);
             pictureBox6.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -590,17 +612,6 @@
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
             // 
-            // textBox1
-            // 
-            textBox1.BackColor = Color.FromArgb(181, 176, 163);
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(189, 49);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 16);
-            textBox1.TabIndex = 44;
-            textBox1.Text = "Cooldown Timer";
-            textBox1.TextAlign = HorizontalAlignment.Center;
-            // 
             // ControlMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -690,5 +701,6 @@
         private TextBox dropbagCooldownTextBox;
         private Label label2;
         private TextBox textBox1;
+        private TextBox dropKeyTextBox;
     }
 }
