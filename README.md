@@ -4,7 +4,8 @@ This is my simple to use and open source twitch bot designed to be used with tar
 It features chat commands to interact with you as you play. Only a few right now but more are coming. It also includes a trader reset screen for the true sweats to track exactly when traders reset and twitch chat reminders for it also!  
 Readme and other info currently incomplete. This app has zero error exception handling so if it crashes, it may lock up!  
 
-Notice - This app was written with the assistance of chatgpt as I am still learning, but 95% of the code was writen by me. Its not fun writing the same thing 50 times.
+Notice - This app was written with the assistance of chatgpt as I am still learning, but 90% of the code was writen by me. Its not fun writing the same thing 50 times and its great for finding bugs that I have missed.  
+Feel free to report issues on here or directly contact me on discord if you have any issues, or have any suggestion/criticisms: sprollucy
 
 ## Features
 -Some bitbot cloned features  
