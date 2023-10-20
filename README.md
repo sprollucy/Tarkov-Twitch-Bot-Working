@@ -9,8 +9,10 @@ Readme and other info currently incomplete. This app has zero error exception ha
 -A trader reset timer that tracks when items are restocked for the real sweats  
 -Twitch chat incorporation  
 -Twitch Bits for commands(not fully working)  
--Easy to use UI  
--Fun and easy commands  
+-Easy to use UI(WIP)  
+-Fun and easy commands(WIP)  
+-Customizable cooldowns for commands  
+-Togglable commands to pick what commands you want(incomplete)  
 
 ## Upcoming Features
 -Bot moderation  
@@ -21,7 +23,7 @@ Readme and other info currently incomplete. This app has zero error exception ha
 -Follower services  
 
 ### Download Latest Here
-[1.0.0.05a](https://github.com/sprollucy/Tarkov-Twitch-Bot-Working/releases/tag/1.0.0.05a)
+[1.0.0.062a](https://github.com/sprollucy/Tarkov-Twitch-Bot-Working/releases/tag/1.0.0.62a)
 
 ## Some of this readme is outdated!
 
