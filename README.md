@@ -25,9 +25,6 @@ Readme and other info currently incomplete. This app has zero error exception ha
 ### Download Latest Here
 [1.0.0.062a](https://github.com/sprollucy/Tarkov-Twitch-Bot-Working/releases/tag/1.0.0.62a)
 
-## Some of this readme is outdated!
-
-
 ## How To Use
 1. First step is to create a account on Twitch.tv that you want to use as the bot account. I use this site but twitch also offers their own  
 https://twitchtokengenerator.com/  
