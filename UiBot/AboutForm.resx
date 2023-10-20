@@ -118,7 +118,28 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox3.Text" xml:space="preserve">
-    <value>1.0.0.6-alpha 10-6-23
+    <value>1.0.0.62-alpha 10-20-23
+-All timer systems are now under a unified system and use less cpu
+-Corrected !drop timer
+-Corrected typo in !goose cooldown
+-Corrected !dropbag timer
+-Corrected !grenade timer
+-Corrected !pop timer
+-Corrected !randomkeys timer
+-Added kill counter and tracker
+-Renamed  !resetdeath to !resettoday and added kill reset to it
+-Added !about
+-Added !kill counter command
+-Added !wipestats to read stats saved for this wipe
+-Changed !stats to only show daily stats
+-Added anti spam features to some of the commands(help, traders, stats, wipestats, about)
+-Updated kit drop to accept any input key
+-Reorganized Mainbot code for sanity
+-Created a new app thats used for configuration of the drop feature. It allows for 9 seperate points on the screen to be set depending on where you select using the down arrow key. Currently it reads and loads from a seperate json and is its own exe file. Will add into the main app later
+-Added minimize button
+-Updated close and minimize look
+
+1.0.0.6-alpha 10-6-23
 -Fixed numerous dumb errors(made more probably)
 -Fixed wiggle command not always working
 -Changed cooldown format to not read the float
