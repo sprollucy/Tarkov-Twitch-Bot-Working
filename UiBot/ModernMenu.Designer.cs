@@ -153,7 +153,7 @@
             // 
             closeBox.BackColor = Color.FromArgb(44, 54, 57);
             closeBox.Image = (Image)resources.GetObject("closeBox.Image");
-            closeBox.Location = new Point(931, 0);
+            closeBox.Location = new Point(1022, 0);
             closeBox.Name = "closeBox";
             closeBox.Size = new Size(20, 20);
             closeBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -166,7 +166,7 @@
             pictureBox10.BackColor = Color.FromArgb(44, 54, 57);
             pictureBox10.Location = new Point(0, 0);
             pictureBox10.Name = "pictureBox10";
-            pictureBox10.Size = new Size(952, 20);
+            pictureBox10.Size = new Size(1042, 20);
             pictureBox10.TabIndex = 9;
             pictureBox10.TabStop = false;
             // 
@@ -292,7 +292,7 @@
             // 
             minBox.BackColor = Color.FromArgb(44, 54, 57);
             minBox.Image = (Image)resources.GetObject("minBox.Image");
-            minBox.Location = new Point(911, 0);
+            minBox.Location = new Point(1002, 0);
             minBox.Name = "minBox";
             minBox.Size = new Size(20, 20);
             minBox.SizeMode = PictureBoxSizeMode.Zoom;
@@ -305,7 +305,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(220, 215, 201);
-            ClientSize = new Size(951, 448);
+            ClientSize = new Size(1042, 448);
             Controls.Add(minBox);
             Controls.Add(currentTab);
             Controls.Add(closeBox);

@@ -71,7 +71,6 @@
             pictureBox5 = new PictureBox();
             pictureBox4 = new PictureBox();
             enableTraderCheck = new CheckBox();
-            pictureBox2 = new PictureBox();
             label1 = new Label();
             pictureBox1 = new PictureBox();
             pictureBox10 = new PictureBox();
@@ -80,6 +79,7 @@
             autoMessageLabel = new Label();
             enableAutoMessageCheck = new CheckBox();
             pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox12).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox11).BeginInit();
@@ -89,10 +89,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // wiggleCooldownTextBox
@@ -542,16 +542,6 @@
             enableTraderCheck.UseVisualStyleBackColor = false;
             enableTraderCheck.CheckedChanged += enableTraderCheck_CheckedChanged;
             // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(0, 0);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(409, 412);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 21;
-            pictureBox2.TabStop = false;
-            // 
             // label1
             // 
             label1.AutoSize = true;
@@ -630,6 +620,16 @@
             pictureBox3.TabIndex = 27;
             pictureBox3.TabStop = false;
             // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(0, 0);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(409, 412);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 21;
+            pictureBox2.TabStop = false;
+            // 
             // ControlMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -660,10 +660,10 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox10).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -694,7 +694,6 @@
         private PictureBox pictureBox1;
         private PictureBox pictureBox10;
         private CheckBox enableTraderCheck;
-        private PictureBox pictureBox2;
         private TextBox autoMessageBox;
         private TextBox autoSendMessageCD;
         private Label autoMessageLabel;
@@ -721,5 +720,6 @@
         private TextBox dropKeyTextBox;
         private TextBox textBox2;
         private TextBox textBox3;
+        private PictureBox pictureBox2;
     }
 }
