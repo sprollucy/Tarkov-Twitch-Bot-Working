@@ -14,6 +14,7 @@
     <Version>1.0.0.62-alpha</Version>
     <AssemblyVersion>1.0.0.62</AssemblyVersion>
 	  <PublishSingleFile>true</PublishSingleFile>
+	  <ApplicationManifest>app.manifest</ApplicationManifest>
 
   </PropertyGroup>
 
@@ -40,6 +41,10 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Deploy|x64'">
     <DebugType>embedded</DebugType>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Remove="app.manifest" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="icon.ico" />

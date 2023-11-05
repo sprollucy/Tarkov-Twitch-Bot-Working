@@ -35,6 +35,8 @@ namespace UiBot
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.None;
+            this.AutoScaleMode = AutoScaleMode.Dpi;
+
             // Create a GraphicsPath with rounded corners
             GraphicsPath path = new GraphicsPath();
             int radius = 10; // Adjust the radius as needed
