@@ -64,6 +64,7 @@
             consoleTextBox.Multiline = true;
             consoleTextBox.Name = "consoleTextBox";
             consoleTextBox.ReadOnly = true;
+            consoleTextBox.ScrollBars = ScrollBars.Horizontal;
             consoleTextBox.Size = new Size(574, 300);
             consoleTextBox.TabIndex = 1;
             // 

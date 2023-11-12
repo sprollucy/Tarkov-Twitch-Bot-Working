@@ -221,7 +221,10 @@ namespace UiBot
 
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
-            Console.WriteLine($"[{e.ChatMessage.DisplayName}]: {e.ChatMessage.Message}");
+            string timestamp = DateTime.Now.ToString("HH:mm:ss");
+            Console.WriteLine($"[{timestamp}] [{e.ChatMessage.DisplayName}]: {e.ChatMessage.Message}");
+        
+
             if (e.ChatMessage.Bits > 0)
             {
                 string username = e.ChatMessage.DisplayName;
@@ -1538,18 +1541,14 @@ namespace UiBot
             timer = new System.Threading.Timer(AutoMessageSender, null, 0, intervalMilliseconds);
         }
 
-
         public void AutoMessageSender(object state)
         {
             try
             {
                 if (Properties.Settings.Default.isAutoMessageEnabled)
                 {
-                    // Ensure that commandConfigData is loaded
-                    if (commandConfigData == null)
-                    {
-                        LoadAutoMessageData();
-                    }
+                    // Reload auto message data before sending
+                    LoadAutoMessageData();
 
                     if (commandConfigData != null && commandConfigData.ContainsKey("autoMessageBox"))
                     {
@@ -1567,8 +1566,11 @@ namespace UiBot
                                 Console.WriteLine(messagePart);
                             }
                         }
+
+                        // Update the timer interval
+                        int intervalMilliseconds = autoSendMessageCD * 1000;
+                        timer.Change(intervalMilliseconds, Timeout.Infinite);
                     }
-                    timer.Change(autoSendMessageCD * 1000, Timeout.Infinite);
                 }
             }
             catch (Exception ex)
@@ -1576,9 +1578,6 @@ namespace UiBot
                 Console.WriteLine($"Error in AutoMessageSender: {ex.Message}");
             }
         }
-
-
-
     }
 
 }
